@@ -2,8 +2,6 @@
     <title>5 分布式 Git - Pro Git</title>
     <meta charset="utf-8">
     <link href="files/styles.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="files/prettify.css" rel="stylesheet" type="text/css">
-    <script src="files/prettify.js" type="text/javascript"></script>
 </head>
 <body>
 <p class="bottom-nav"><a class="next" href="6-Git工具.html">下一节</a><a class="prev" href="4-服务器上的Git.html">上一节</a><a href="0-ProGit.html">Pro Git</a></p>
@@ -112,13 +110,13 @@
 <p>首先，请不要在更新中提交多余的白字符（whitespace）。Git 有种检查此类问题的方法，在提交之前，先运行 <code>git diff --check</code>，会把可能的多余白字符修正列出来。下面的示例，我已经把终端中显示为红色的白字符用
     <code>X</code> 替换掉：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git diff </span><span class="pun">--</span><span class="pln">check
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb</span><span class="pun">:</span><span class="lit">5</span><span class="pun">:</span><span class="pln"> trailing whitespace</span><span class="pun">.</span><span class="pln">
-    </span><span class="pun">+</span><span class="pln"> </span><span class="lit">@git_dir</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="typ">File</span><span class="pun">.</span><span class="pln">expand_path</span><span class="pun">(</span><span class="pln">git_dir</span><span class="pun">)</span><span class="pln">XX
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb</span><span class="pun">:</span><span class="lit">7</span><span class="pun">:</span><span class="pln"> trailing whitespace</span><span class="pun">.</span><span class="pln">
-    </span><span class="pun">+</span><span class="pln"> XXXXXXXXXXX
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb</span><span class="pun">:</span><span class="lit">26</span><span class="pun">:</span><span class="pln"> trailing whitespace</span><span class="pun">.</span><span class="pln">
-    </span><span class="pun">+</span><span class="pln"> </span><span class="kwd">def</span><span class="pln"> command</span><span class="pun">(</span><span class="pln">git_cmd</span><span class="pun">)</span><span class="pln">XXXX</span></code></pre>
+<pre>$ git diff --check
+    lib/simplegit.rb:5: trailing whitespace.
+    + @git_dir = File.expand_path(git_dir)XX
+    lib/simplegit.rb:7: trailing whitespace.
+    + XXXXXXXXXXX
+    lib/simplegit.rb:26: trailing whitespace.
+    + def command(git_cmd)XXXX</pre>
 
 <p>这样在提交之前你就可以看到这类问题，及时解决以免困扰其他开发者。</p>
 
@@ -132,19 +130,19 @@
     项目本身需要开发者撰写详尽注解，包括本次修订的因由，以及前后不同实现之间的比较，我们也该借鉴这种做法。另外，提交说明应该用祈使现在式语态，比如，不要说成 “I added tests for” 或 “Adding tests
     for” 而应该用 “Add tests for”。下面是来自 tpope.net 的 Tim Pope 原创的提交说明格式模版，供参考：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">本次更新的简要描述（</span><span class="lit">50</span><span class="pln"> </span><span class="pun">个字符以内）</span><span class="pln">
+<pre>本次更新的简要描述（50 个字符以内）
 
-    </span><span class="pun">如果必要，此处展开详尽阐述。段落宽度限定在</span><span class="pln"> </span><span class="lit">72</span><span class="pln"> </span><span class="pun">个字符以内。</span><span class="pln">
-    </span><span class="pun">某些情况下，第一行的简要描述将用作邮件标题，其余部分作为邮件正文。</span><span class="pln">
-    </span><span class="pun">其间的空行是必要的，以区分两者（当然没有正文另当别论）。</span><span class="pln">
-    </span><span class="pun">如果并在一起，</span><span class="pln">rebase </span><span class="pun">这样的工具就可能会迷惑。</span><span class="pln">
+    如果必要，此处展开详尽阐述。段落宽度限定在 72 个字符以内。
+    某些情况下，第一行的简要描述将用作邮件标题，其余部分作为邮件正文。
+    其间的空行是必要的，以区分两者（当然没有正文另当别论）。
+    如果并在一起，rebase 这样的工具就可能会迷惑。
 
-    </span><span class="pun">另起空行后，再进一步补充其他说明。</span><span class="pln">
+    另起空行后，再进一步补充其他说明。
 
-    </span><span class="pun">-</span><span class="pln"> </span><span class="pun">可以使用这样的条目列举式。</span><span class="pln">
+    - 可以使用这样的条目列举式。
 
-    </span><span class="pun">-</span><span class="pln"> </span><span class="pun">一般以单个空格紧跟短划线或者星号作为每项条目的起始符。每个条目间用一空行隔开。</span><span class="pln">
-    </span><span class="pun">不过这里按自己项目的约定，可以略作变化。</span></code></pre>
+    - 一般以单个空格紧跟短划线或者星号作为每项条目的起始符。每个条目间用一空行隔开。
+    不过这里按自己项目的约定，可以略作变化。</pre>
 
 <p>如果你的提交说明都用这样的格式来书写，好多事情就可以变得十分简单。Git 项目本身就是这样要求的，我强烈建议你到 Git 项目仓库下运行 <code>git log --no-merges</code>
     看看，所有提交历史的说明是怎样撰写的。（译注：如果现在还没有克隆 git 项目源代码，是时候 <code>git clone git://git.kernel.org/pub/scm/git/git.git</code> 了。）
@@ -160,51 +158,51 @@
     带来的其他好处：离线提交，快速分支与合并等等，但工作流程还是差不多的。主要区别在于，合并操作发生在客户端而非服务器上。让我们来看看，两个开发者一起使用同一个共享仓库，会发生些什么。第一个人，John，克隆了仓库，作了些更新，在本地提交。（下面的例子中省略了常规提示，用
     <code>...</code> 代替以节约版面。）</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># John's Machine</span><span class="pln">
-    $ git clone john@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">john</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">/.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    </span><span class="pun">...</span><span class="pln">
-    $ cd simplegit</span><span class="pun">/</span><span class="pln">
-    $ vim lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    $ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'removed invalid default value'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">master </span><span class="lit">738ee87</span><span class="pun">]</span><span class="pln"> removed invalid </span><span class="kwd">default</span><span class="pln"> value
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre># John's Machine
+    $ git clone john@githost:simplegit.git
+    Initialized empty Git repository in /home/john/simplegit/.git/
+    ...
+    $ cd simplegit/
+    $ vim lib/simplegit.rb
+    $ git commit -am 'removed invalid default value'
+    [master 738ee87] removed invalid default value
+    1 files changed, 1 insertions(+), 1 deletions(-)</pre>
 
 <p>第二个开发者，Jessica，一样这么做：克隆仓库，提交更新：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># Jessica's Machine</span><span class="pln">
-    $ git clone jessica@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">jessica</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">/.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    </span><span class="pun">...</span><span class="pln">
-    $ cd simplegit</span><span class="pun">/</span><span class="pln">
+<pre># Jessica's Machine
+    $ git clone jessica@githost:simplegit.git
+    Initialized empty Git repository in /home/jessica/simplegit/.git/
+    ...
+    $ cd simplegit/
     $ vim TODO
-    $ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'add reset task'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">master fbff5bc</span><span class="pun">]</span><span class="pln"> add reset task
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+    $ git commit -am 'add reset task'
+    [master fbff5bc] add reset task
+    1 files changed, 1 insertions(+), 0 deletions(-)</pre>
 
 <p>现在，Jessica 将她的工作推送到服务器上：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># Jessica's Machine</span><span class="pln">
+<pre># Jessica's Machine
     $ git push origin master
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    </span><span class="lit">1edee6b</span><span class="pun">..</span><span class="pln">fbff5bc master </span><span class="pun">-&gt;</span><span class="pln"> master</span></code></pre>
+    ...
+    To jessica@githost:simplegit.git
+    1edee6b..fbff5bc master -&gt; master</pre>
 
 <p>John 也尝试推送自己的工作上去：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># John's Machine</span><span class="pln">
+<pre># John's Machine
     $ git push origin master
-    </span><span class="typ">To</span><span class="pln"> john@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    </span><span class="pun">!</span><span class="pln"> </span><span class="pun">[</span><span class="pln">rejected</span><span class="pun">]</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> master </span><span class="pun">(</span><span class="pln">non</span><span class="pun">-</span><span class="pln">fast forward</span><span class="pun">)</span><span class="pln">
-    error</span><span class="pun">:</span><span class="pln"> failed to push some refs to </span><span class="str">'john@githost:simplegit.git'</span></code></pre>
+    To john@githost:simplegit.git
+    ! [rejected] master -&gt; master (non-fast forward)
+    error: failed to push some refs to 'john@githost:simplegit.git'</pre>
 
 <p>John 的推送操作被驳回，因为 Jessica 已经推送了新的数据上去。请注意，特别是你用惯了 Subversion 的话，这里其实修改的是两个文件，而不是同一个文件的同一个地方。Subversion
     会在服务器端自动合并提交上来的更新，而 Git 则必须先在本地合并后才能推送。于是，John 不得不先把 Jessica 的更新拉下来：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git fetch origin
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">From</span><span class="pln"> john@githost</span><span class="pun">:</span><span class="pln">simplegit
-    </span><span class="pun">+</span><span class="pln"> </span><span class="lit">049d078.</span><span class="pun">..</span><span class="pln">fbff5bc master </span><span class="pun">-&gt;</span><span class="pln"> origin</span><span class="pun">/</span><span class="pln">master</span></code></pre>
+<pre>$ git fetch origin
+    ...
+    From john@githost:simplegit
+    + 049d078...fbff5bc master -&gt; origin/master</pre>
 
 <p>此刻，John 的本地仓库如图 5-4 所示：</p>
 
@@ -216,10 +214,10 @@
 <p>虽然 John 下载了 Jessica 推送到服务器的最近更新（fbff5），但目前只是 <code>origin/master</code> 指针指向它，而当前的本地分支 <code>master</code>
     仍然指向自己的更新（738ee），所以需要先把她的提交合并过来，才能继续推送数据：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git merge origin</span><span class="pun">/</span><span class="pln">master
-    </span><span class="typ">Merge</span><span class="pln"> made </span><span class="kwd">by</span><span class="pln"> recursive</span><span class="pun">.</span><span class="pln">
-    TODO </span><span class="pun">|</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">+</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre>$ git merge origin/master
+    Merge made by recursive.
+    TODO | 1 +
+    1 files changed, 1 insertions(+), 0 deletions(-)</pre>
 
 <p>还好，合并过程非常顺利，没有冲突，现在 John 的提交历史如图 5-5 所示：</p>
 
@@ -230,10 +228,10 @@
 
 <p>现在，John 应该再测试一下代码是否仍然正常工作，然后将合并结果（72bbc）推送到服务器上：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git push origin master
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> john@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    fbff5bc</span><span class="pun">..</span><span class="lit">72bbc59</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> master</span></code></pre>
+<pre>$ git push origin master
+    ...
+    To john@githost:simplegit.git
+    fbff5bc..72bbc59 master -&gt; master</pre>
 
 <p>最终，John 的提交历史变为图 5-6 所示：</p>
 
@@ -251,11 +249,11 @@
 
 <p>Jessica 想要先和服务器上的数据同步，所以先下载数据：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># Jessica's Machine</span><span class="pln">
+<pre># Jessica's Machine
     $ git fetch origin
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">From</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit
-    fbff5bc</span><span class="pun">..</span><span class="lit">72bbc59</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> origin</span><span class="pun">/</span><span class="pln">master</span></code></pre>
+    ...
+    From jessica@githost:simplegit
+    fbff5bc..72bbc59 master -&gt; origin/master</pre>
 
 <p>于是 Jessica 的本地仓库历史多出了 John 的两次提交（738ee 和 72bbc），如图 5-8 所示：</p>
 
@@ -266,37 +264,37 @@
 
 <p>此时，Jessica 在特性分支上的工作已经完成，但她想在推送数据之前，先确认下要并进来的数据究竟是什么，于是运行 <code>git log</code> 查看：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">merges origin</span><span class="pun">/</span><span class="pln">master </span><span class="pun">^</span><span class="pln">issue54
-    commit </span><span class="lit">738ee872852dfaa9d6634e0dea7a324040193016</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">John</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jsmith@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Fri</span><span class="pln"> </span><span class="typ">May</span><span class="pln"> </span><span class="lit">29</span><span class="pln"> </span><span class="lit">16</span><span class="pun">:</span><span class="lit">01</span><span class="pun">:</span><span class="lit">27</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
+<pre>$ git log --no-merges origin/master ^issue54
+    commit 738ee872852dfaa9d6634e0dea7a324040193016
+    Author: John Smith &lt;jsmith@example.com&gt;
+    Date: Fri May 29 16:01:27 2009 -0700
 
-    removed invalid </span><span class="kwd">default</span><span class="pln"> value</span></code></pre>
+    removed invalid default value</pre>
 
 <p>现在，Jessica 可以将特性分支上的工作并到 <code>master</code> 分支，然后再并入 John 的工作（<code>origin/master</code>）到自己的 <code>master</code>
     分支，最后再推送回服务器。当然，得先切回主分支才能集成所有数据：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout master
-    </span><span class="typ">Switched</span><span class="pln"> to branch </span><span class="str">"master"</span><span class="pln">
-    </span><span class="typ">Your</span><span class="pln"> branch </span><span class="kwd">is</span><span class="pln"> behind </span><span class="str">'origin/master'</span><span class="pln"> </span><span class="kwd">by</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> commits</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">and</span><span class="pln"> can be fast</span><span class="pun">-</span><span class="pln">forwarded</span><span class="pun">.</span></code></pre>
+<pre>$ git checkout master
+    Switched to branch "master"
+    Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.</pre>
 
 <p>要合并 <code>origin/master</code> 或 <code>issue54</code> 分支，谁先谁后都没有关系，因为它们都在上游（upstream）（译注：想像分叉的更新像是汇流成河的源头，所以上游
     upstream 是指最新的提交），所以无所谓先后顺序，最终合并后的内容快照都是一样的，而仅是提交历史看起来会有些先后差别。Jessica 选择先合并 <code>issue54</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git merge issue54
-    </span><span class="typ">Updating</span><span class="pln"> fbff5bc</span><span class="pun">..</span><span class="lit">4af4298</span><span class="pln">
-    </span><span class="typ">Fast</span><span class="pln"> forward
-    README </span><span class="pun">|</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">+</span><span class="pln">
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb </span><span class="pun">|</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> </span><span class="pun">+++++-</span><span class="pln">
-    </span><span class="lit">2</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre>$ git merge issue54
+    Updating fbff5bc..4af4298
+    Fast forward
+    README | 1 +
+    lib/simplegit.rb | 6 +++++-
+    2 files changed, 6 insertions(+), 1 deletions(-)</pre>
 
 <p>正如所见，没有冲突发生，仅是一次简单快进。现在 Jessica 开始合并 John 的工作（<code>origin/master</code>）：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git merge origin</span><span class="pun">/</span><span class="pln">master
-    </span><span class="typ">Auto</span><span class="pun">-</span><span class="pln">merging lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="typ">Merge</span><span class="pln"> made </span><span class="kwd">by</span><span class="pln"> recursive</span><span class="pun">.</span><span class="pln">
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb </span><span class="pun">|</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">+-</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre>$ git merge origin/master
+    Auto-merging lib/simplegit.rb
+    Merge made by recursive.
+    lib/simplegit.rb | 2 +-
+    1 files changed, 1 insertions(+), 1 deletions(-)</pre>
 
 <p>所有的合并都非常干净。现在 Jessica 的提交历史如图 5-9 所示：</p>
 
@@ -308,10 +306,10 @@
 <p>现在 Jessica 已经可以在自己的 <code>master</code> 分支中访问 <code>origin/master</code> 的最新改动了，所以她应该可以成功推送最后的合并结果到服务器上（假设 John
     此时没再推送新数据上来）：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git push origin master
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    </span><span class="lit">72bbc59.</span><span class="pun">.</span><span class="lit">8059c15</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> master</span></code></pre>
+<pre>$ git push origin master
+    ...
+    To jessica@githost:simplegit.git
+    72bbc59..8059c15 master -&gt; master</pre>
 
 <p>至此，每个开发者都提交了若干次，且成功合并了对方的工作成果，最新的提交历史如图 5-10 所示：</p>
 
@@ -338,40 +336,40 @@
 <p>让我们跟随 Jessica 的视角看看她的工作流程。她参与开发两项特性，同时和不同小组的开发者一起协作。克隆生成本地仓库后，她打算先着手开发特性 A。于是创建了新的 <code>featureA</code> 分支，继而编写代码：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># Jessica's Machine</span><span class="pln">
-    $ git checkout </span><span class="pun">-</span><span class="pln">b featureA
-    </span><span class="typ">Switched</span><span class="pln"> to a </span><span class="kwd">new</span><span class="pln"> branch </span><span class="str">"featureA"</span><span class="pln">
-    $ vim lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    $ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'add limit to log function'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">featureA </span><span class="lit">3300904</span><span class="pun">]</span><span class="pln"> add limit to log </span><span class="kwd">function</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre># Jessica's Machine
+    $ git checkout -b featureA
+    Switched to a new branch "featureA"
+    $ vim lib/simplegit.rb
+    $ git commit -am 'add limit to log function'
+    [featureA 3300904] add limit to log function
+    1 files changed, 1 insertions(+), 1 deletions(-)</pre>
 
 <p>此刻，她需要分享目前的进展给 John，于是她将自己的 <code>featureA</code> 分支提交到服务器。由于 Jessica 没有权限推送数据到主仓库的 <code>master</code>
     分支（只有集成管理员有此权限），所以只能将此分支推上去同 John 共享协作：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git push origin featureA
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">new</span><span class="pln"> branch</span><span class="pun">]</span><span class="pln"> featureA </span><span class="pun">-&gt;</span><span class="pln"> featureA</span></code></pre>
+<pre>$ git push origin featureA
+    ...
+    To jessica@githost:simplegit.git
+    * [new branch] featureA -&gt; featureA</pre>
 
 <p>Jessica 发邮件给 John 让他上来看看 <code>featureA</code> 分支上的进展。在等待他的反馈之前，Jessica 决定继续工作，和 Josie 一起开发 <code>featureB</code>
     上的特性 B。当然，先创建此分支，分叉点以服务器上的 <code>master</code> 为起点：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># Jessica's Machine</span><span class="pln">
+<pre># Jessica's Machine
     $ git fetch origin
-    $ git checkout </span><span class="pun">-</span><span class="pln">b featureB origin</span><span class="pun">/</span><span class="pln">master
-    </span><span class="typ">Switched</span><span class="pln"> to a </span><span class="kwd">new</span><span class="pln"> branch </span><span class="str">"featureB"</span></code></pre>
+    $ git checkout -b featureB origin/master
+    Switched to a new branch "featureB"</pre>
 
 <p>随后，Jessica 在 <code>featureB</code> 上提交了若干更新：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ vim lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    $ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'made the ls-tree function recursive'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">featureB e5b0fdc</span><span class="pun">]</span><span class="pln"> made the ls</span><span class="pun">-</span><span class="pln">tree </span><span class="kwd">function</span><span class="pln"> recursive
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span><span class="pln">
-    $ vim lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    $ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'add ls-files'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">featureB </span><span class="lit">8512791</span><span class="pun">]</span><span class="pln"> add ls</span><span class="pun">-</span><span class="pln">files
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">5</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre>$ vim lib/simplegit.rb
+    $ git commit -am 'made the ls-tree function recursive'
+    [featureB e5b0fdc] made the ls-tree function recursive
+    1 files changed, 1 insertions(+), 1 deletions(-)
+    $ vim lib/simplegit.rb
+    $ git commit -am 'add ls-files'
+    [featureB 8512791] add ls-files
+    1 files changed, 5 insertions(+), 0 deletions(-)</pre>
 
 <p>现在 Jessica 的更新历史如图 5-12 所示：</p>
 
@@ -383,64 +381,64 @@
 <p>Jessica 正准备推送自己的进展上去，却收到 Josie 的来信，说是她已经将自己的工作推到服务器上的 <code>featureBee</code> 分支了。这样，Jessica 就必须先将 Josie
     的代码合并到自己本地分支中，才能再一起推送回服务器。她用 <code>git fetch</code> 下载 Josie 的最新代码：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git fetch origin
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">From</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">new</span><span class="pln"> branch</span><span class="pun">]</span><span class="pln"> featureBee </span><span class="pun">-&gt;</span><span class="pln"> origin</span><span class="pun">/</span><span class="pln">featureBee</span></code></pre>
+<pre>$ git fetch origin
+    ...
+    From jessica@githost:simplegit
+    * [new branch] featureBee -&gt; origin/featureBee</pre>
 
 <p>然后 Jessica 使用 <code>git merge</code> 将此分支合并到自己分支中：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git merge origin</span><span class="pun">/</span><span class="pln">featureBee
-    </span><span class="typ">Auto</span><span class="pun">-</span><span class="pln">merging lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="typ">Merge</span><span class="pln"> made </span><span class="kwd">by</span><span class="pln"> recursive</span><span class="pun">.</span><span class="pln">
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb </span><span class="pun">|</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> </span><span class="pun">++++</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre>$ git merge origin/featureBee
+    Auto-merging lib/simplegit.rb
+    Merge made by recursive.
+    lib/simplegit.rb | 4 ++++
+    1 files changed, 4 insertions(+), 0 deletions(-)</pre>
 
 <p>合并很顺利，但另外有个小问题：她要推送自己的 <code>featureB</code> 分支到服务器上的 <code>featureBee</code> 分支上去。当然，她可以使用冒号（:）格式指定目标分支：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git push origin featureB</span><span class="pun">:</span><span class="pln">featureBee
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    fba9af8</span><span class="pun">..</span><span class="pln">cd685d1 featureB </span><span class="pun">-&gt;</span><span class="pln"> featureBee</span></code></pre>
+<pre>$ git push origin featureB:featureBee
+    ...
+    To jessica@githost:simplegit.git
+    fba9af8..cd685d1 featureB -&gt; featureBee</pre>
 
 <p>我们称此为<em>refspec</em>。更多有关于 Git refspec 的讨论和使用方式会在第九章作详细阐述。</p>
 
 <p>接下来，John 发邮件给 Jessica 告诉她，他看了之后作了些修改，已经推回服务器 <code>featureA</code> 分支，请她过目下。于是 Jessica 运行 <code>git fetch</code>
     下载最新数据：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git fetch origin
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">From</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit
-    </span><span class="lit">3300904.</span><span class="pun">.</span><span class="pln">aad881d featureA </span><span class="pun">-&gt;</span><span class="pln"> origin</span><span class="pun">/</span><span class="pln">featureA</span></code></pre>
+<pre>$ git fetch origin
+    ...
+    From jessica@githost:simplegit
+    3300904..aad881d featureA -&gt; origin/featureA</pre>
 
 <p>接下来便可以用 <code>git log</code> 查看更新了些什么：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log origin</span><span class="pun">/</span><span class="pln">featureA </span><span class="pun">^</span><span class="pln">featureA
+<pre>$ git log origin/featureA ^featureA
     commit aad881d154acdaeb2b6b18ea0e827ed8a6d671e6
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">John</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jsmith@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Fri</span><span class="pln"> </span><span class="typ">May</span><span class="pln"> </span><span class="lit">29</span><span class="pln"> </span><span class="lit">19</span><span class="pun">:</span><span class="lit">57</span><span class="pun">:</span><span class="lit">33</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
+    Author: John Smith &lt;jsmith@example.com&gt;
+    Date: Fri May 29 19:57:33 2009 -0700
 
-    changed log output to </span><span class="lit">30</span><span class="pln"> </span><span class="kwd">from</span><span class="pln"> </span><span class="lit">25</span></code></pre>
+    changed log output to 30 from 25</pre>
 
 <p>最后，她将 John 的工作合并到自己的 <code>featureA</code> 分支中：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout featureA
-    </span><span class="typ">Switched</span><span class="pln"> to branch </span><span class="str">"featureA"</span><span class="pln">
-    $ git merge origin</span><span class="pun">/</span><span class="pln">featureA
-    </span><span class="typ">Updating</span><span class="pln"> </span><span class="lit">3300904.</span><span class="pun">.</span><span class="pln">aad881d
-    </span><span class="typ">Fast</span><span class="pln"> forward
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb </span><span class="pun">|</span><span class="pln"> </span><span class="lit">10</span><span class="pln"> </span><span class="pun">+++++++++-</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">9</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre>$ git checkout featureA
+    Switched to branch "featureA"
+    $ git merge origin/featureA
+    Updating 3300904..aad881d
+    Fast forward
+    lib/simplegit.rb | 10 +++++++++-
+    1 files changed, 9 insertions(+), 1 deletions(-)</pre>
 
 <p>Jessica 稍做一番修整后同步到服务器：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'small tweak'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">featureA ed774b3</span><span class="pun">]</span><span class="pln"> small tweak
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span><span class="pln">
+<pre>$ git commit -am 'small tweak'
+    [featureA ed774b3] small tweak
+    1 files changed, 1 insertions(+), 1 deletions(-)
     $ git push origin featureA
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> jessica@githost</span><span class="pun">:</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">git
-    </span><span class="lit">3300904.</span><span class="pun">.</span><span class="pln">ed774b3 featureA </span><span class="pun">-&gt;</span><span class="pln"> featureA</span></code></pre>
+    ...
+    To jessica@githost:simplegit.git
+    3300904..ed774b3 featureA -&gt; featureA</pre>
 
 <p>现在的 Jessica 提交历史如图 5-13 所示：</p>
 
@@ -472,25 +470,25 @@
 
 <p>但不管哪种方式，起先我们总需要克隆原始仓库，而后创建特性分支开展工作。基本工作流程如下：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone </span><span class="pun">(</span><span class="pln">url</span><span class="pun">)</span><span class="pln">
+<pre>$ git clone (url)
     $ cd project
-    $ git checkout </span><span class="pun">-</span><span class="pln">b featureA
-    $ </span><span class="pun">(</span><span class="pln">work</span><span class="pun">)</span><span class="pln">
+    $ git checkout -b featureA
+    $ (work)
     $ git commit
-    $ </span><span class="pun">(</span><span class="pln">work</span><span class="pun">)</span><span class="pln">
-    $ git commit</span></code></pre>
+    $ (work)
+    $ git commit</pre>
 
 <p>你可能想到用 <code>rebase -i</code> 将所有更新先变作单个提交，又或者想重新安排提交之间的差异补丁，以方便项目维护者审阅 -- 有关交互式衍合操作的细节见第六章。</p>
 
 <p>在完成了特性分支开发，提交给项目维护者之前，先到原始项目的页面上点击“Fork”按钮，创建一个自己可写的公共仓库（译注：即下面的 url 部分，参照后续的例子，应该是
     <code>git://githost/simplegit.git</code>）。然后将此仓库添加为本地的第二个远端仓库，姑且称为 <code>myfork</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git remote add myfork </span><span class="pun">(</span><span class="pln">url</span><span class="pun">)</span></code></pre>
+<pre>$ git remote add myfork (url)</pre>
 
 <p>你需要将本地更新推送到这个仓库。要是将远端 master 合并到本地再推回去，还不如把整个特性分支推上去来得干脆直接。而且，假若项目维护者未采纳你的贡献的话（不管是直接合并还是 cherry
     pick），都不用回退（rewind）自己的 master 分支。但若维护者合并或 cherry-pick 了你的工作，最后总还可以从他们的更新中同步这些代码。好吧，现在先把 featureA 分支整个推上去：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git push myfork featureA</span></code></pre>
+<pre>$ git push myfork featureA</pre>
 
 <p>然后通知项目管理员，让他来抓取你的代码。通常我们把这件事叫做 pull request。可以直接用 GitHub 等网站提供的 “pull request” 按钮自动发送请求通知；或手工把 <code>git
     request-pull</code> 命令输出结果电邮给项目管理员。</p>
@@ -498,21 +496,21 @@
 <p><code>request-pull</code> 命令接受两个参数，第一个是本地特性分支开始前的原始分支，第二个是请求对方来抓取的 Git 仓库 URL（译注：即下面 <code>myfork</code>
     所指的，自己可写的公共仓库）。比如现在Jessica 准备要给 John 发一个 pull requst，她之前在自己的特性分支上提交了两次更新，并把分支整个推到了服务器上，所以运行该命令会看到：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git request</span><span class="pun">-</span><span class="pln">pull origin</span><span class="pun">/</span><span class="pln">master myfork
-    </span><span class="typ">The</span><span class="pln"> following changes since commit </span><span class="lit">1edee6b1d61823a2de3b09c160d7080b8d1b3a40</span><span class="pun">:</span><span class="pln">
-    </span><span class="typ">John</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">):</span><span class="pln">
-    added a </span><span class="kwd">new</span><span class="pln"> </span><span class="kwd">function</span><span class="pln">
+<pre>$ git request-pull origin/master myfork
+    The following changes since commit 1edee6b1d61823a2de3b09c160d7080b8d1b3a40:
+    John Smith (1):
+    added a new function
 
-    are available </span><span class="kwd">in</span><span class="pln"> the git repository at</span><span class="pun">:</span><span class="pln">
+    are available in the git repository at:
 
-    git</span><span class="pun">:</span><span class="com">//githost/simplegit.git featureA</span><span class="pln">
+    git://githost/simplegit.git featureA
 
-    </span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">):</span><span class="pln">
-    add limit to log </span><span class="kwd">function</span><span class="pln">
-    change log output to </span><span class="lit">30</span><span class="pln"> </span><span class="kwd">from</span><span class="pln"> </span><span class="lit">25</span><span class="pln">
+    Jessica Smith (2):
+    add limit to log function
+    change log output to 30 from 25
 
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb </span><span class="pun">|</span><span class="pln"> </span><span class="lit">10</span><span class="pln"> </span><span class="pun">+++++++++-</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">9</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+    lib/simplegit.rb | 10 +++++++++-
+    1 files changed, 9 insertions(+), 1 deletions(-)</pre>
 
 <p>输出的内容可以直接发邮件给管理者，他们就会明白这是从哪次提交开始旁支出去的，该到哪里去抓取新的代码，以及新的代码增加了哪些功能等等。</p>
 
@@ -520,12 +518,12 @@
     同步，并将自己的工作限制在特性分支上的做法，既方便又灵活，采纳和丢弃都轻而易举。就算原始主干发生变化，我们也能重新衍合提供新的补丁。比如现在要开始第二项特性的开发，不要在原来已推送的特性分支上继续，还是按原始 <code>master</code>
     开始：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout </span><span class="pun">-</span><span class="pln">b featureB origin</span><span class="pun">/</span><span class="pln">master
-    $ </span><span class="pun">(</span><span class="pln">work</span><span class="pun">)</span><span class="pln">
+<pre>$ git checkout -b featureB origin/master
+    $ (work)
     $ git commit
     $ git push myfork featureB
-    $ </span><span class="pun">(</span><span class="pln">email maintainer</span><span class="pun">)</span><span class="pln">
-    $ git fetch origin</span></code></pre>
+    $ (email maintainer)
+    $ git fetch origin</pre>
 
 <p>现在，A、B 两个特性分支各不相扰，如同竹筒里的两颗豆子，队列中的两个补丁，你随时都可以分别从头写过，或者衍合，或者修改，而不用担心特性代码的交叉混杂。如图 5-16 所示：</p>
 
@@ -537,9 +535,9 @@
 <p>假设项目管理员接纳了许多别人提交的补丁后，准备要采纳你提交的第一个分支，却发现因为代码基准不一致，合并工作无法正确干净地完成。这就需要你再次衍合到最新的 <code>origin/master</code>，解决相关冲突，然后重新提交你的修改：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout featureA
-    $ git rebase origin</span><span class="pun">/</span><span class="pln">master
-    $ git push </span><span class="pun">-</span><span class="pln">f myfork featureA</span></code></pre>
+<pre>$ git checkout featureA
+    $ git rebase origin/master
+    $ git push -f myfork featureA</pre>
 
 <p>自然，这会重写提交历史，如图 5-17 所示：</p>
 
@@ -554,11 +552,11 @@
 <p>再考虑另一种情形：管理员看过第二个分支后觉得思路新颖，但想请你改下具体实现。我们只需以当前 <code>origin/master</code> 分支为基准，开始一个新的特性分支 <code>featureBv2</code>，然后把原来的
     <code>featureB</code> 的更新拿过来，解决冲突，按要求重新实现部分代码，然后将此特性分支推送上去：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout </span><span class="pun">-</span><span class="pln">b featureBv2 origin</span><span class="pun">/</span><span class="pln">master
-    $ git merge </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">commit </span><span class="pun">--</span><span class="pln">squash featureB
-    $ </span><span class="pun">(</span><span class="pln">change implementation</span><span class="pun">)</span><span class="pln">
+<pre>$ git checkout -b featureBv2 origin/master
+    $ git merge --no-commit --squash featureB
+    $ (change implementation)
     $ git commit
-    $ git push myfork featureBv2</span></code></pre>
+    $ git push myfork featureBv2</pre>
 
 <p>这里的 <code>--squash</code> 选项将目标分支上的所有更改全拿来应用到当前分支上，而 <code>--no-commit</code> 选项告诉 Git
     此时无需自动生成和记录（合并）提交。这样，你就可以在原来代码基础上，继续工作，直到最后一起提交。</p>
@@ -576,48 +574,48 @@
 
 <p>整个工作流程类似上面的情形：为每个补丁创建独立的特性分支，而不同之处在于如何提交这些补丁。不需要创建自己可写的公共仓库，也不用将自己的更新推送到自己的服务器，你只需将每次提交的差异内容以电子邮件的方式依次发送到邮件列表中即可。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout </span><span class="pun">-</span><span class="pln">b topicA
-    $ </span><span class="pun">(</span><span class="pln">work</span><span class="pun">)</span><span class="pln">
+<pre>$ git checkout -b topicA
+    $ (work)
     $ git commit
-    $ </span><span class="pun">(</span><span class="pln">work</span><span class="pun">)</span><span class="pln">
-    $ git commit</span></code></pre>
+    $ (work)
+    $ git commit</pre>
 
 <p>如此一番后，有了两个提交要发到邮件列表。我们可以用 <code>git format-patch</code> 命令来生成 mbox 格式的文件然后作为附件发送。每个提交都会封装为一个 <code>.patch</code> 后缀的
     mbox 文件，但其中只包含一封邮件，邮件标题就是提交消息（译注：额外有前缀，看例子），邮件内容包含补丁正文和 Git 版本号。这种方式的妙处在于接受补丁时仍可保留原来的提交消息，请看接下来的例子：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git format</span><span class="pun">-</span><span class="pln">patch </span><span class="pun">-</span><span class="pln">M origin</span><span class="pun">/</span><span class="pln">master
-    </span><span class="lit">0001</span><span class="pun">-</span><span class="pln">add</span><span class="pun">-</span><span class="pln">limit</span><span class="pun">-</span><span class="pln">to</span><span class="pun">-</span><span class="pln">log</span><span class="pun">-</span><span class="kwd">function</span><span class="pun">.</span><span class="pln">patch
-    </span><span class="lit">0002</span><span class="pun">-</span><span class="pln">changed</span><span class="pun">-</span><span class="pln">log</span><span class="pun">-</span><span class="pln">output</span><span class="pun">-</span><span class="pln">to</span><span class="pun">-</span><span class="lit">30</span><span class="pun">-</span><span class="kwd">from</span><span class="pun">-</span><span class="lit">25.patch</span></code></pre>
+<pre>$ git format-patch -M origin/master
+    0001-add-limit-to-log-function.patch
+    0002-changed-log-output-to-30-from-25.patch</pre>
 
 <p><code>format-patch</code> 命令依次创建补丁文件，并输出文件名。上面的 <code>-M</code> 选项允许 Git 检查是否有对文件重命名的提交。我们来看看补丁文件的内容：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cat </span><span class="lit">0001</span><span class="pun">-</span><span class="pln">add</span><span class="pun">-</span><span class="pln">limit</span><span class="pun">-</span><span class="pln">to</span><span class="pun">-</span><span class="pln">log</span><span class="pun">-</span><span class="kwd">function</span><span class="pun">.</span><span class="pln">patch
-    </span><span class="typ">From</span><span class="pln"> </span><span class="lit">330090432754092d704da8e76ca5c05c198e71a8</span><span class="pln"> </span><span class="typ">Mon</span><span class="pln"> </span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">17</span><span class="pln"> </span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span><span class="pln"> </span><span class="lit">2001</span><span class="pln">
-    </span><span class="typ">From</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Sun</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">17</span><span class="pun">:</span><span class="lit">23</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
-    </span><span class="typ">Subject</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">PATCH </span><span class="lit">1</span><span class="pun">/</span><span class="lit">2</span><span class="pun">]</span><span class="pln"> add limit to log </span><span class="kwd">function</span><span class="pln">
+<pre>$ cat 0001-add-limit-to-log-function.patch
+    From 330090432754092d704da8e76ca5c05c198e71a8 Mon Sep 17 00:00:00 2001
+    From: Jessica Smith &lt;jessica@example.com&gt;
+    Date: Sun, 6 Apr 2008 10:17:23 -0700
+    Subject: [PATCH 1/2] add limit to log function
 
-    </span><span class="typ">Limit</span><span class="pln"> log functionality to the first </span><span class="lit">20</span><span class="pln">
+    Limit log functionality to the first 20
 
-    </span><span class="pun">---</span><span class="pln">
-    lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb </span><span class="pun">|</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">+-</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span><span class="pln">
+    ---
+    lib/simplegit.rb | 2 +-
+    1 files changed, 1 insertions(+), 1 deletions(-)
 
-    diff </span><span class="pun">--</span><span class="pln">git a</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb b</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    index </span><span class="lit">76f47bc</span><span class="pun">..</span><span class="pln">f9815f1 </span><span class="lit">100644</span><span class="pln">
-    </span><span class="pun">---</span><span class="pln"> a</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="pun">+++</span><span class="pln"> b</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="pun">@@</span><span class="pln"> </span><span class="pun">-</span><span class="lit">14</span><span class="pun">,</span><span class="lit">7</span><span class="pln"> </span><span class="pun">+</span><span class="lit">14</span><span class="pun">,</span><span class="lit">7</span><span class="pln"> </span><span class="pun">@@</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SimpleGit</span><span class="pln">
-    </span><span class="kwd">end</span><span class="pln">
+    diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+    index 76f47bc..f9815f1 100644
+    --- a/lib/simplegit.rb
+    +++ b/lib/simplegit.rb
+    @@ -14,7 +14,7 @@ class SimpleGit
+    end
 
-    </span><span class="kwd">def</span><span class="pln"> log</span><span class="pun">(</span><span class="pln">treeish </span><span class="pun">=</span><span class="pln"> </span><span class="str">'master'</span><span class="pun">)</span><span class="pln">
-    </span><span class="pun">-</span><span class="pln"> command</span><span class="pun">(</span><span class="str">"git log #{treeish}"</span><span class="pun">)</span><span class="pln">
-    </span><span class="pun">+</span><span class="pln"> command</span><span class="pun">(</span><span class="str">"git log -n 20 #{treeish}"</span><span class="pun">)</span><span class="pln">
-    </span><span class="kwd">end</span><span class="pln">
+    def log(treeish = 'master')
+    - command("git log #{treeish}")
+    + command("git log -n 20 #{treeish}")
+    end
 
-    </span><span class="kwd">def</span><span class="pln"> ls_tree</span><span class="pun">(</span><span class="pln">treeish </span><span class="pun">=</span><span class="pln"> </span><span class="str">'master'</span><span class="pun">)</span><span class="pln">
-    </span><span class="pun">--</span><span class="pln">
-    </span><span class="lit">1.6</span><span class="pun">.</span><span class="lit">2.rc1.20</span><span class="pun">.</span><span class="pln">g8c5b</span><span class="pun">.</span><span class="pln">dirty</span></code></pre>
+    def ls_tree(treeish = 'master')
+    --
+    1.6.2.rc1.20.g8c5b.dirty</pre>
 
 <p>如果有额外信息需要补充，但又不想放在提交消息中说明，可以编辑这些补丁文件，在第一个 <code>---</code> 行之前添加说明，但不要修改下面的补丁正文，比如例子中的 <code>Limit log functionality
     to the first 20</code> 部分。这样，其它开发者能阅读，但在采纳补丁时不会将此合并进来。</p>
@@ -628,42 +626,42 @@
 
 <p>首先在 <code>~/.gitconfig</code> 文件中配置 imap 项。每个选项都可用 <code>git config</code> 命令分别设置，当然直接编辑文件添加以下内容更便捷：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">[</span><span class="pln">imap</span><span class="pun">]</span><span class="pln">
-    folder </span><span class="pun">=</span><span class="pln"> </span><span class="str">"[Gmail]/Drafts"</span><span class="pln">
-    host </span><span class="pun">=</span><span class="pln"> imaps</span><span class="pun">:</span><span class="com">//imap.gmail.com</span><span class="pln">
-    user </span><span class="pun">=</span><span class="pln"> user@gmail</span><span class="pun">.</span><span class="pln">com
-    </span><span class="kwd">pass</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> p4ssw0rd
-    port </span><span class="pun">=</span><span class="pln"> </span><span class="lit">993</span><span class="pln">
-    sslverify </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span></code></pre>
+<pre>[imap]
+    folder = "[Gmail]/Drafts"
+    host = imaps://imap.gmail.com
+    user = user@gmail.com
+    pass = p4ssw0rd
+    port = 993
+    sslverify = false</pre>
 
 <p>如果你的 IMAP 服务器没有启用 SSL，就无需配置最后那两行，并且 host 应该以 <code>imap://</code> 开头而不再是有 <code>s</code> 的 <code>imaps://</code>。保存配置文件后，就能用
     <code>git send-email</code> 命令把补丁作为邮件依次发送到指定的 IMAP 服务器上的文件夹中（译注：这里就是 Gmail 的 <code>[Gmail]/Drafts</code>
     文件夹。但如果你的语言设置不是英文，此处的文件夹 Drafts 字样会变为对应的语言。）：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git send</span><span class="pun">-</span><span class="pln">email </span><span class="pun">*.</span><span class="pln">patch
-    </span><span class="lit">0001</span><span class="pun">-</span><span class="pln">added</span><span class="pun">-</span><span class="pln">limit</span><span class="pun">-</span><span class="pln">to</span><span class="pun">-</span><span class="pln">log</span><span class="pun">-</span><span class="kwd">function</span><span class="pun">.</span><span class="pln">patch
-    </span><span class="lit">0002</span><span class="pun">-</span><span class="pln">changed</span><span class="pun">-</span><span class="pln">log</span><span class="pun">-</span><span class="pln">output</span><span class="pun">-</span><span class="pln">to</span><span class="pun">-</span><span class="lit">30</span><span class="pun">-</span><span class="kwd">from</span><span class="pun">-</span><span class="lit">25.patch</span><span class="pln">
-    </span><span class="typ">Who</span><span class="pln"> should the emails appear to be </span><span class="kwd">from</span><span class="pun">?</span><span class="pln"> </span><span class="pun">[</span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;]</span><span class="pln">
-    </span><span class="typ">Emails</span><span class="pln"> will be sent </span><span class="kwd">from</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Who</span><span class="pln"> should the emails be sent to</span><span class="pun">?</span><span class="pln"> jessica@example</span><span class="pun">.</span><span class="pln">com
-    </span><span class="typ">Message</span><span class="pun">-</span><span class="pln">ID to be used </span><span class="kwd">as</span><span class="pln"> </span><span class="typ">In</span><span class="pun">-</span><span class="typ">Reply</span><span class="pun">-</span><span class="typ">To</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> the first email</span><span class="pun">?</span><span class="pln"> y</span></code></pre>
+<pre>$ git send-email *.patch
+    0001-added-limit-to-log-function.patch
+    0002-changed-log-output-to-30-from-25.patch
+    Who should the emails appear to be from? [Jessica Smith &lt;jessica@example.com&gt;]
+    Emails will be sent from: Jessica Smith &lt;jessica@example.com&gt;
+    Who should the emails be sent to? jessica@example.com
+    Message-ID to be used as In-Reply-To for the first email? y</pre>
 
 <p>接下来，Git 会根据每个补丁依次输出类似下面的日志：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">(</span><span class="pln">mbox</span><span class="pun">)</span><span class="pln"> </span><span class="typ">Adding</span><span class="pln"> cc</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln"> </span><span class="kwd">from</span><span class="pln">
-    \line </span><span class="str">'From: Jessica Smith &lt;jessica@example.com&gt;'</span><span class="pln">
-    OK</span><span class="pun">.</span><span class="pln"> </span><span class="typ">Log</span><span class="pln"> says</span><span class="pun">:</span><span class="pln">
-    </span><span class="typ">Sendmail</span><span class="pun">:</span><span class="pln"> </span><span class="str">/usr/</span><span class="pln">sbin</span><span class="pun">/</span><span class="pln">sendmail </span><span class="pun">-</span><span class="pln">i jessica@example</span><span class="pun">.</span><span class="pln">com
-    </span><span class="typ">From</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">To</span><span class="pun">:</span><span class="pln"> jessica@example</span><span class="pun">.</span><span class="pln">com
-    </span><span class="typ">Subject</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">PATCH </span><span class="lit">1</span><span class="pun">/</span><span class="lit">2</span><span class="pun">]</span><span class="pln"> added limit to log </span><span class="kwd">function</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Sat</span><span class="pun">,</span><span class="pln"> </span><span class="lit">30</span><span class="pln"> </span><span class="typ">May</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="lit">13</span><span class="pun">:</span><span class="lit">29</span><span class="pun">:</span><span class="lit">15</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
-    </span><span class="typ">Message</span><span class="pun">-</span><span class="typ">Id</span><span class="pun">:</span><span class="pln"> </span><span class="pun">&lt;</span><span class="lit">1243715356</span><span class="pun">-</span><span class="lit">61726</span><span class="pun">-</span><span class="lit">1</span><span class="pun">-</span><span class="pln">git</span><span class="pun">-</span><span class="pln">send</span><span class="pun">-</span><span class="pln">email</span><span class="pun">-</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    X</span><span class="pun">-</span><span class="typ">Mailer</span><span class="pun">:</span><span class="pln"> git</span><span class="pun">-</span><span class="pln">send</span><span class="pun">-</span><span class="pln">email </span><span class="lit">1.6</span><span class="pun">.</span><span class="lit">2.rc1.20</span><span class="pun">.</span><span class="pln">g8c5b</span><span class="pun">.</span><span class="pln">dirty
-    </span><span class="typ">In</span><span class="pun">-</span><span class="typ">Reply</span><span class="pun">-</span><span class="typ">To</span><span class="pun">:</span><span class="pln"> </span><span class="str">&lt;y&gt;</span><span class="pln">
-    </span><span class="typ">References</span><span class="pun">:</span><span class="pln"> </span><span class="str">&lt;y&gt;</span><span class="pln">
+<pre>(mbox) Adding cc: Jessica Smith &lt;jessica@example.com&gt; from
+    \line 'From: Jessica Smith &lt;jessica@example.com&gt;'
+    OK. Log says:
+    Sendmail: /usr/sbin/sendmail -i jessica@example.com
+    From: Jessica Smith &lt;jessica@example.com&gt;
+    To: jessica@example.com
+    Subject: [PATCH 1/2] added limit to log function
+    Date: Sat, 30 May 2009 13:29:15 -0700
+    Message-Id: &lt;1243715356-61726-1-git-send-email-jessica@example.com&gt;
+    X-Mailer: git-send-email 1.6.2.rc1.20.g8c5b.dirty
+    In-Reply-To: &lt;y&gt;
+    References: &lt;y&gt;
 
-    </span><span class="typ">Result</span><span class="pun">:</span><span class="pln"> OK</span></code></pre>
+    Result: OK</pre>
 
 <p>最后，到 Gmail 上打开 Drafts 文件夹，编辑这些邮件，修改收件人地址为邮件列表地址，另外给要抄送的人也加到 Cc 列表中，最后发送。</p>
 
@@ -682,11 +680,11 @@
     或者其它类似的描述性词语，以帮助将来回忆。Git 项目本身还时常把分支名称分置于不同命名空间下，比如 <code>sc/ruby_client</code> 就说明这是 <code>sc</code>
     这个人贡献的。现在从当前主干分支为基础，新建临时分支：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git branch sc</span><span class="pun">/</span><span class="pln">ruby_client master</span></code></pre>
+<pre>$ git branch sc/ruby_client master</pre>
 
 <p>另外，如果你希望立即转到分支上去工作，可以用 <code>checkout -b</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout </span><span class="pun">-</span><span class="pln">b sc</span><span class="pun">/</span><span class="pln">ruby_client master</span></code></pre>
+<pre>$ git checkout -b sc/ruby_client master</pre>
 
 <p>好了，现在已经准备妥当，可以试着将别人贡献的代码合并进来了。之后评估一下有没有问题，最后再决定是不是真的要并入主干。</p>
 
@@ -699,7 +697,7 @@
 <p>如果收到的补丁文件是用 <code>git diff</code> 或由其它 Unix 的 <code>diff</code> 命令生成，就该用 <code>git apply</code> 命令来应用补丁。假设补丁文件存在
     <code>/tmp/patch-ruby-client.patch</code>，可以这样运行：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git apply </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">patch</span><span class="pun">-</span><span class="pln">ruby</span><span class="pun">-</span><span class="pln">client</span><span class="pun">.</span><span class="pln">patch</span></code></pre>
+<pre>$ git apply /tmp/patch-ruby-client.patch</pre>
 
 <p>这会修改当前工作目录下的文件，效果基本与运行 <code>patch -p1</code> 打补丁一样，但它更为严格，且不会出现混乱。如果是 <code>git diff</code>
     格式描述的补丁，此命令还会相应地添加，删除，重命名文件。当然，普通的 <code>patch</code> 命令是不会这么做的。另外请注意，<code>git apply</code>
@@ -708,9 +706,9 @@
 
 <p>在实际打补丁之前，可以先用 <code>git apply --check</code> 查看补丁是否能够干净顺利地应用到当前分支中：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git apply </span><span class="pun">--</span><span class="pln">check </span><span class="lit">0001</span><span class="pun">-</span><span class="pln">seeing</span><span class="pun">-</span><span class="kwd">if</span><span class="pun">-</span><span class="kwd">this</span><span class="pun">-</span><span class="pln">helps</span><span class="pun">-</span><span class="pln">the</span><span class="pun">-</span><span class="pln">gem</span><span class="pun">.</span><span class="pln">patch
-    error</span><span class="pun">:</span><span class="pln"> patch failed</span><span class="pun">:</span><span class="pln"> ticgit</span><span class="pun">.</span><span class="pln">gemspec</span><span class="pun">:</span><span class="lit">1</span><span class="pln">
-    error</span><span class="pun">:</span><span class="pln"> ticgit</span><span class="pun">.</span><span class="pln">gemspec</span><span class="pun">:</span><span class="pln"> patch does </span><span class="kwd">not</span><span class="pln"> apply</span></code></pre>
+<pre>$ git apply --check 0001-seeing-if-this-helps-the-gem.patch
+    error: patch failed: ticgit.gemspec:1
+    error: ticgit.gemspec: patch does not apply</pre>
 
 <p>如果没有任何输出，表示我们可以顺利采纳该补丁。如果有问题，除了报告错误信息之外，该命令还会返回一个非零的状态，所以在 shell 脚本里可用于检测状态。</p>
 
@@ -722,77 +720,77 @@
 <p>对于 <code>format-patch</code> 制作的新式补丁，应当使用 <code>git am</code> 命令。从技术上来说，<code>git am</code> 能够读取 mbox
     格式的文件。这是种简单的纯文本文件，可以包含多封电邮，格式上用 From 加空格以及随便什么辅助信息所组成的行作为分隔行，以区分每封邮件，就像这样：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="typ">From</span><span class="pln"> </span><span class="lit">330090432754092d704da8e76ca5c05c198e71a8</span><span class="pln"> </span><span class="typ">Mon</span><span class="pln"> </span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">17</span><span class="pln"> </span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span><span class="pun">:</span><span class="lit">00</span><span class="pln"> </span><span class="lit">2001</span><span class="pln">
-    </span><span class="typ">From</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Sun</span><span class="pun">,</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">17</span><span class="pun">:</span><span class="lit">23</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
-    </span><span class="typ">Subject</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">PATCH </span><span class="lit">1</span><span class="pun">/</span><span class="lit">2</span><span class="pun">]</span><span class="pln"> add limit to log </span><span class="kwd">function</span><span class="pln">
+<pre>From 330090432754092d704da8e76ca5c05c198e71a8 Mon Sep 17 00:00:00 2001
+    From: Jessica Smith &lt;jessica@example.com&gt;
+    Date: Sun, 6 Apr 2008 10:17:23 -0700
+    Subject: [PATCH 1/2] add limit to log function
 
-    </span><span class="typ">Limit</span><span class="pln"> log functionality to the first </span><span class="lit">20</span></code></pre>
+    Limit log functionality to the first 20</pre>
 
 <p>这是 <code>format-patch</code> 命令输出的开头几行，也是一个有效的 mbox 文件格式。如果有人用 <code>git send-email</code> 给你发了一个补丁，你可以将此邮件下载到本地，然后运行
     <code>git am</code> 命令来应用这个补丁。如果你的邮件客户端能将多封电邮导出为 mbox 格式的文件，就可以用 <code>git am</code> 一次性应用所有导出的补丁。</p>
 
 <p>如果贡献者将 <code>format-patch</code> 生成的补丁文件上传到类似 Request Ticket 一样的任务处理系统，那么可以先下载到本地，继而使用 <code>git am</code> 应用该补丁：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git am </span><span class="lit">0001</span><span class="pun">-</span><span class="pln">limit</span><span class="pun">-</span><span class="pln">log</span><span class="pun">-</span><span class="kwd">function</span><span class="pun">.</span><span class="pln">patch
-    </span><span class="typ">Applying</span><span class="pun">:</span><span class="pln"> add limit to log </span><span class="kwd">function</span></code></pre>
+<pre>$ git am 0001-limit-log-function.patch
+    Applying: add limit to log function</pre>
 
 <p>你会看到它被干净地应用到本地分支，并自动创建了新的提交对象。作者信息取自邮件头 <code>From</code> 和 <code>Date</code>，提交消息则取自 <code>Subject</code>
     以及正文中补丁之前的内容。来看具体实例，采纳之前展示的那个 mbox 电邮补丁后，最新的提交对象为：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">--</span><span class="pln">pretty</span><span class="pun">=</span><span class="pln">fuller </span><span class="pun">-</span><span class="lit">1</span><span class="pln">
-    commit </span><span class="lit">6c5e70b984a60b3cecd395edd5b48a7575bf58e0</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Jessica</span><span class="pln"> </span><span class="typ">Smith</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">jessica@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">AuthorDate</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Sun</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">17</span><span class="pun">:</span><span class="lit">23</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
-    </span><span class="typ">Commit</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">CommitDate</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">9</span><span class="pln"> </span><span class="lit">09</span><span class="pun">:</span><span class="lit">19</span><span class="pun">:</span><span class="lit">06</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
+<pre>$ git log --pretty=fuller -1
+    commit 6c5e70b984a60b3cecd395edd5b48a7575bf58e0
+    Author: Jessica Smith &lt;jessica@example.com&gt;
+    AuthorDate: Sun Apr 6 10:17:23 2008 -0700
+    Commit: Scott Chacon &lt;schacon@gmail.com&gt;
+    CommitDate: Thu Apr 9 09:19:06 2009 -0700
 
-    add limit to log </span><span class="kwd">function</span><span class="pln">
+    add limit to log function
 
-    </span><span class="typ">Limit</span><span class="pln"> log functionality to the first </span><span class="lit">20</span></code></pre>
+    Limit log functionality to the first 20</pre>
 
 <p><code>Commit</code> 部分显示的是采纳补丁的人，以及采纳的时间。而 <code>Author</code> 部分则显示的是原作者，以及创建补丁的时间。</p>
 
 <p>有时，我们也会遇到打不上补丁的情况。这多半是因为主干分支和补丁的基础分支相差太远，但也可能是因为某些依赖补丁还未应用。这种情况下，<code>git am</code> 会报错并询问该怎么做：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git am </span><span class="lit">0001</span><span class="pun">-</span><span class="pln">seeing</span><span class="pun">-</span><span class="kwd">if</span><span class="pun">-</span><span class="kwd">this</span><span class="pun">-</span><span class="pln">helps</span><span class="pun">-</span><span class="pln">the</span><span class="pun">-</span><span class="pln">gem</span><span class="pun">.</span><span class="pln">patch
-    </span><span class="typ">Applying</span><span class="pun">:</span><span class="pln"> seeing </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> helps the gem
-    error</span><span class="pun">:</span><span class="pln"> patch failed</span><span class="pun">:</span><span class="pln"> ticgit</span><span class="pun">.</span><span class="pln">gemspec</span><span class="pun">:</span><span class="lit">1</span><span class="pln">
-    error</span><span class="pun">:</span><span class="pln"> ticgit</span><span class="pun">.</span><span class="pln">gemspec</span><span class="pun">:</span><span class="pln"> patch does </span><span class="kwd">not</span><span class="pln"> apply
-    </span><span class="typ">Patch</span><span class="pln"> failed at </span><span class="lit">0001.</span><span class="pln">
-    </span><span class="typ">When</span><span class="pln"> you have resolved </span><span class="kwd">this</span><span class="pln"> problem run </span><span class="str">"git am --resolved"</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">If</span><span class="pln"> you would prefer to skip </span><span class="kwd">this</span><span class="pln"> patch</span><span class="pun">,</span><span class="pln"> instead run </span><span class="str">"git am --skip"</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> restore the original branch </span><span class="kwd">and</span><span class="pln"> stop patching run </span><span class="str">"git am --abort"</span><span class="pun">.</span></code></pre>
+<pre>$ git am 0001-seeing-if-this-helps-the-gem.patch
+    Applying: seeing if this helps the gem
+    error: patch failed: ticgit.gemspec:1
+    error: ticgit.gemspec: patch does not apply
+    Patch failed at 0001.
+    When you have resolved this problem run "git am --resolved".
+    If you would prefer to skip this patch, instead run "git am --skip".
+    To restore the original branch and stop patching run "git am --abort".</pre>
 
 <p>Git 会在有冲突的文件里加入冲突解决标记，这同合并或衍合操作一样。解决的办法也一样，先编辑文件消除冲突，然后暂存文件，最后运行 <code>git am --resolved</code> 提交修正结果：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ </span><span class="pun">(</span><span class="pln">fix the file</span><span class="pun">)</span><span class="pln">
-    $ git add ticgit</span><span class="pun">.</span><span class="pln">gemspec
-    $ git am </span><span class="pun">--</span><span class="pln">resolved
-    </span><span class="typ">Applying</span><span class="pun">:</span><span class="pln"> seeing </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> helps the gem</span></code></pre>
+<pre>$ (fix the file)
+    $ git add ticgit.gemspec
+    $ git am --resolved
+    Applying: seeing if this helps the gem</pre>
 
 <p>如果想让 Git 更智能地处理冲突，可以用 <code>-3</code>
     选项进行三方合并。如果当前分支未包含该补丁的基础代码或其祖先，那么三方合并就会失败，所以该选项默认为关闭状态。一般来说，如果该补丁是基于某个公开的提交制作而成的话，你总是可以通过同步来获取这个共同祖先，所以用三方合并选项可以解决很多麻烦：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git am </span><span class="pun">-</span><span class="lit">3</span><span class="pln"> </span><span class="lit">0001</span><span class="pun">-</span><span class="pln">seeing</span><span class="pun">-</span><span class="kwd">if</span><span class="pun">-</span><span class="kwd">this</span><span class="pun">-</span><span class="pln">helps</span><span class="pun">-</span><span class="pln">the</span><span class="pun">-</span><span class="pln">gem</span><span class="pun">.</span><span class="pln">patch
-    </span><span class="typ">Applying</span><span class="pun">:</span><span class="pln"> seeing </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> helps the gem
-    error</span><span class="pun">:</span><span class="pln"> patch failed</span><span class="pun">:</span><span class="pln"> ticgit</span><span class="pun">.</span><span class="pln">gemspec</span><span class="pun">:</span><span class="lit">1</span><span class="pln">
-    error</span><span class="pun">:</span><span class="pln"> ticgit</span><span class="pun">.</span><span class="pln">gemspec</span><span class="pun">:</span><span class="pln"> patch does </span><span class="kwd">not</span><span class="pln"> apply
-    </span><span class="typ">Using</span><span class="pln"> index info to reconstruct a </span><span class="kwd">base</span><span class="pln"> tree</span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">Falling</span><span class="pln"> back to patching </span><span class="kwd">base</span><span class="pln"> </span><span class="kwd">and</span><span class="pln"> </span><span class="lit">3</span><span class="pun">-</span><span class="pln">way merge</span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">No</span><span class="pln"> changes </span><span class="pun">--</span><span class="pln"> </span><span class="typ">Patch</span><span class="pln"> already applied</span><span class="pun">.</span></code></pre>
+<pre>$ git am -3 0001-seeing-if-this-helps-the-gem.patch
+    Applying: seeing if this helps the gem
+    error: patch failed: ticgit.gemspec:1
+    error: ticgit.gemspec: patch does not apply
+    Using index info to reconstruct a base tree...
+    Falling back to patching base and 3-way merge...
+    No changes -- Patch already applied.</pre>
 
 <p>像上面的例子，对于打过的补丁我又再打一遍，自然会产生冲突，但因为加上了 <code>-3</code> 选项，所以它很聪明地告诉我，无需更新，原有的补丁已经应用。</p>
 
 <p>对于一次应用多个补丁时所用的 mbox 格式文件，可以用 <code>am</code> 命令的交互模式选项 <code>-i</code>，这样就会在打每个补丁前停住，询问该如何操作：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git am </span><span class="pun">-</span><span class="lit">3</span><span class="pln"> </span><span class="pun">-</span><span class="pln">i mbox
-    </span><span class="typ">Commit</span><span class="pln"> </span><span class="typ">Body</span><span class="pln"> </span><span class="kwd">is</span><span class="pun">:</span><span class="pln">
-    </span><span class="pun">--------------------------</span><span class="pln">
-    seeing </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> helps the gem
-    </span><span class="pun">--------------------------</span><span class="pln">
-    </span><span class="typ">Apply</span><span class="pun">?</span><span class="pln"> </span><span class="pun">[</span><span class="pln">y</span><span class="pun">]</span><span class="pln">es</span><span class="pun">/[</span><span class="pln">n</span><span class="pun">]</span><span class="pln">o</span><span class="pun">/[</span><span class="pln">e</span><span class="pun">]</span><span class="pln">dit</span><span class="pun">/[</span><span class="pln">v</span><span class="pun">]</span><span class="pln">iew patch</span><span class="pun">/[</span><span class="pln">a</span><span class="pun">]</span><span class="pln">ccept all</span></code></pre>
+<pre>$ git am -3 -i mbox
+    Commit Body is:
+    --------------------------
+    seeing if this helps the gem
+    --------------------------
+    Apply? [y]es/[n]o/[e]dit/[v]iew patch/[a]ccept all</pre>
 
 <p>在多个补丁要打的情况下，这是个非常好的办法，一方面可以预览下补丁内容，同时也可以有选择性的接纳或跳过某些补丁。</p>
 
@@ -805,9 +803,9 @@
 <p>比如，Jessica 发来一封邮件，说在她代码库中的 <code>ruby-client</code>
     分支上已经实现了某个非常棒的新功能，希望我们能帮忙测试一下。我们可以先把她的仓库加为远程仓库，然后抓取数据，完了再将她所说的分支检出到本地来测试：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git remote add jessica git</span><span class="pun">:</span><span class="com">//github.com/jessica/myproject.git</span><span class="pln">
+<pre>$ git remote add jessica git://github.com/jessica/myproject.git
     $ git fetch jessica
-    $ git checkout </span><span class="pun">-</span><span class="pln">b rubyclient jessica</span><span class="pun">/</span><span class="pln">ruby</span><span class="pun">-</span><span class="pln">client</span></code></pre>
+    $ git checkout -b rubyclient jessica/ruby-client</pre>
 
 <p>若是不久她又发来邮件，说还有个很棒的功能实现在另一分支上，那我们只需重新抓取下最新数据，然后检出那个分支到本地就可以了，无需重复设置远程仓库。</p>
 
@@ -819,10 +817,10 @@
 
 <p>如果只是临时合作，只需用 <code>git pull</code> 命令抓取远程仓库上的数据，合并到本地临时分支就可以了。一次性的抓取动作自然不会把该仓库地址加为远程仓库。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git pull git</span><span class="pun">:</span><span class="com">//github.com/onetimeguy/project.git</span><span class="pln">
-    </span><span class="typ">From</span><span class="pln"> git</span><span class="pun">:</span><span class="com">//github.com/onetimeguy/project</span><span class="pln">
-    </span><span class="pun">*</span><span class="pln"> branch HEAD </span><span class="pun">-&gt;</span><span class="pln"> FETCH_HEAD
-    </span><span class="typ">Merge</span><span class="pln"> made </span><span class="kwd">by</span><span class="pln"> recursive</span><span class="pun">.</span></code></pre>
+<pre>$ git pull git://github.com/onetimeguy/project.git
+    From git://github.com/onetimeguy/project
+    * branch HEAD -&gt; FETCH_HEAD
+    Merge made by recursive.</pre>
 
 <h3>决断代码取舍</h3>
 
@@ -831,24 +829,24 @@
 <p>一般我们会先看下，特性分支上都有哪些新增的提交。比如在 <code>contrib</code> 特性分支上打了两个补丁，仅查看这两个补丁的提交信息，可以用 <code>--not</code> 选项指定要屏蔽的分支 <code>master</code>，这样就会剔除重复的提交历史：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log contrib </span><span class="pun">--</span><span class="kwd">not</span><span class="pln"> master
-    commit </span><span class="lit">5b6235bd297351589efc4d73316f0a68d484f118</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Fri</span><span class="pln"> </span><span class="typ">Oct</span><span class="pln"> </span><span class="lit">24</span><span class="pln"> </span><span class="lit">09</span><span class="pun">:</span><span class="lit">53</span><span class="pun">:</span><span class="lit">59</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
+<pre>$ git log contrib --not master
+    commit 5b6235bd297351589efc4d73316f0a68d484f118
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Fri Oct 24 09:53:59 2008 -0700
 
-    seeing </span><span class="kwd">if</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> helps the gem
+    seeing if this helps the gem
 
-    commit </span><span class="lit">7482e0d16d04bea79d0dba8988cc78df655f16a0</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Mon</span><span class="pln"> </span><span class="typ">Oct</span><span class="pln"> </span><span class="lit">22</span><span class="pln"> </span><span class="lit">19</span><span class="pun">:</span><span class="lit">38</span><span class="pun">:</span><span class="lit">36</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
+    commit 7482e0d16d04bea79d0dba8988cc78df655f16a0
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Mon Oct 22 19:38:36 2008 -0700
 
-    updated the gemspec to hopefully work better</span></code></pre>
+    updated the gemspec to hopefully work better</pre>
 
 <p>还可以查看每次提交的具体修改。请牢记，在 <code>git log</code> 后加 <code>-p</code> 选项将展示每次提交的内容差异。</p>
 
 <p>如果想看当前分支同其他分支合并时的完整内容差异，有个小窍门：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git diff master</span></code></pre>
+<pre>$ git diff master</pre>
 
 <p>虽然能得到差异内容，但请记住，结果有可能和我们的预期不同。一旦主干 <code>master</code> 在特性分支创建之后有所修改，那么通过 <code>diff</code>
     命令来比较的，是最新主干上的提交快照。显然，这不是我们所要的。比方在 <code>master</code> 分支中某个文件里添了一行，然后运行上面的命令，简单的比较最新快照所得到的结论只能是，特性分支中删除了这一行。</p>
@@ -860,13 +858,13 @@
 
 <p>我们可以手工定位它们的共同祖先，然后与之比较：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git merge</span><span class="pun">-</span><span class="kwd">base</span><span class="pln"> contrib master
-    </span><span class="lit">36c7dba2c95e6bbb78dfa822519ecfec6e1ca649</span><span class="pln">
-    $ git diff </span><span class="lit">36c7db</span></code></pre>
+<pre>$ git merge-base contrib master
+    36c7dba2c95e6bbb78dfa822519ecfec6e1ca649
+    $ git diff 36c7db</pre>
 
 <p>但这么做很麻烦，所以 Git 提供了便捷的 <code>...</code> 语法。对于 <code>diff</code> 命令，可以把 <code>...</code> 加在原始分支（拥有共同祖先）和当前分支之间：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git diff master</span><span class="pun">...</span><span class="pln">contrib</span></code></pre>
+<pre>$ git diff master...contrib</pre>
 
 <p>现在看到的，就是实际将要引入的新代码。这是一个非常有用的命令，应该牢记。</p>
 
@@ -952,10 +950,10 @@
 
 <p>如果你希望拉取<code>e43a6</code>到你的主干分支，可以这样：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git cherry</span><span class="pun">-</span><span class="pln">pick e43a6fd3e94888d76779ad79fb568ed180e5fcdf
-    </span><span class="typ">Finished</span><span class="pln"> one cherry</span><span class="pun">-</span><span class="pln">pick</span><span class="pun">.</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">master</span><span class="pun">]:</span><span class="pln"> created a0a41a9</span><span class="pun">:</span><span class="pln"> </span><span class="str">"More friendly message when locking the index fails."</span><span class="pln">
-    </span><span class="lit">3</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">17</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> deletions</span><span class="pun">(-)</span></code></pre>
+<pre>$ git cherry-pick e43a6fd3e94888d76779ad79fb568ed180e5fcdf
+    Finished one cherry-pick.
+    [master]: created a0a41a9: "More friendly message when locking the index fails."
+    3 files changed, 17 insertions(+), 3 deletions(-)</pre>
 
 <p>这将会引入<code>e43a6</code>的代码，但是会得到不同的SHA-1值，因为应用日期不同。现在你的历史看起来像图 5-27.</p>
 
@@ -970,33 +968,33 @@
 
 <p>你可以删除上次发布的版本并重新打标签，也可以像第二章所说的那样建立一个新的标签。如果你决定以维护者的身份给发行版签名，应该这样做：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git tag </span><span class="pun">-</span><span class="pln">s v1</span><span class="pun">.</span><span class="lit">5</span><span class="pln"> </span><span class="pun">-</span><span class="pln">m </span><span class="str">'my signed 1.5 tag'</span><span class="pln">
-    </span><span class="typ">You</span><span class="pln"> need a passphrase to unlock the secret key </span><span class="kwd">for</span><span class="pln">
-    user</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Scott Chacon &lt;schacon@gmail.com&gt;"</span><span class="pln">
-    </span><span class="lit">1024</span><span class="pun">-</span><span class="pln">bit DSA key</span><span class="pun">,</span><span class="pln"> ID F721C45A</span><span class="pun">,</span><span class="pln"> created </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">02</span><span class="pun">-</span><span class="lit">09</span></code></pre>
+<pre>$ git tag -s v1.5 -m 'my signed 1.5 tag'
+    You need a passphrase to unlock the secret key for
+    user: "Scott Chacon &lt;schacon@gmail.com&gt;"
+    1024-bit DSA key, ID F721C45A, created 2009-02-09</pre>
 
 <p>完成签名之后，如何分发PGP公钥（public key）是个问题。（译者注：分发公钥是为了验证标签）。还好，Git的设计者想到了解决办法：可以把key（既公钥）作为blob变量写入Git库，然后把它的内容直接写在标签里。<code>gpg
     --list-keys</code>命令可以显示出你所拥有的key：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ gpg </span><span class="pun">--</span><span class="pln">list</span><span class="pun">-</span><span class="pln">keys
-    </span><span class="pun">/</span><span class="typ">Users</span><span class="pun">/</span><span class="pln">schacon</span><span class="pun">/.</span><span class="pln">gnupg</span><span class="pun">/</span><span class="pln">pubring</span><span class="pun">.</span><span class="pln">gpg
-    </span><span class="pun">---------------------------------</span><span class="pln">
-    pub </span><span class="lit">1024D</span><span class="pun">/</span><span class="pln">F721C45A </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">02</span><span class="pun">-</span><span class="lit">09</span><span class="pln"> </span><span class="pun">[</span><span class="pln">expires</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2010</span><span class="pun">-</span><span class="lit">02</span><span class="pun">-</span><span class="lit">09</span><span class="pun">]</span><span class="pln">
-    uid </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="kwd">sub</span><span class="pln"> </span><span class="lit">2048g</span><span class="pun">/</span><span class="lit">45D02282</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">02</span><span class="pun">-</span><span class="lit">09</span><span class="pln"> </span><span class="pun">[</span><span class="pln">expires</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2010</span><span class="pun">-</span><span class="lit">02</span><span class="pun">-</span><span class="lit">09</span><span class="pun">]</span></code></pre>
+<pre>$ gpg --list-keys
+    /Users/schacon/.gnupg/pubring.gpg
+    ---------------------------------
+    pub 1024D/F721C45A 2009-02-09 [expires: 2010-02-09]
+    uid Scott Chacon &lt;schacon@gmail.com&gt;
+    sub 2048g/45D02282 2009-02-09 [expires: 2010-02-09]</pre>
 
 <p>然后，导出key的内容并经由管道符传递给<code>git hash-object</code>，之后钥匙会以blob类型写入Git中，最后返回这个blob量的SHA-1值：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ gpg </span><span class="pun">-</span><span class="pln">a </span><span class="pun">--</span><span class="kwd">export</span><span class="pln"> F721C45A </span><span class="pun">|</span><span class="pln"> git hash</span><span class="pun">-</span><span class="kwd">object</span><span class="pln"> </span><span class="pun">-</span><span class="pln">w </span><span class="pun">--</span><span class="pln">stdin
-    </span><span class="lit">659ef797d181633c87ec71ac3f9ba29fe5775b92</span></code></pre>
+<pre>$ gpg -a --export F721C45A | git hash-object -w --stdin
+    659ef797d181633c87ec71ac3f9ba29fe5775b92</pre>
 
 <p>现在你的Git已经包含了这个key的内容了，可以通过不同的SHA-1值指定不同的key来创建标签。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git tag </span><span class="pun">-</span><span class="pln">a maintainer</span><span class="pun">-</span><span class="pln">pgp</span><span class="pun">-</span><span class="pln">pub </span><span class="lit">659ef797d181633c87ec71ac3f9ba29fe5775b92</span></code></pre>
+<pre>$ git tag -a maintainer-pgp-pub 659ef797d181633c87ec71ac3f9ba29fe5775b92</pre>
 
 <p>在运行<code>git push --tags</code>命令之后，<code>maintainer-pgp-pub</code>标签就会公布给所有人。如果有人想要校验标签，他可以使用如下命令导入你的key：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show maintainer</span><span class="pun">-</span><span class="pln">pgp</span><span class="pun">-</span><span class="pln">pub </span><span class="pun">|</span><span class="pln"> gpg </span><span class="pun">--</span><span class="kwd">import</span></code></pre>
+<pre>$ git show maintainer-pgp-pub | gpg --import</pre>
 
 <p>人们可以用这个key校验你签名的所有标签。另外，你也可以在标签信息里写入一个操作向导，用户只需要运行<code>git show &lt;tag&gt;</code>查看标签信息，然后按照你的向导就能完成校验。</p>
 
@@ -1005,8 +1003,8 @@
 <p>因为Git不会为每次提交自动附加类似'v123'的递增序列，所以如果你想要得到一个便于理解的提交号可以运行<code>git describe</code>命令。Git将会返回一个字符串，由三部分组成：最近一次标定的版本号，加上自那次标定之后的提交次数，再加上一段SHA-1值of
     the commit you’re describing：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git describe master
-    v1</span><span class="pun">.</span><span class="lit">6.2</span><span class="pun">-</span><span class="pln">rc1</span><span class="pun">-</span><span class="lit">20</span><span class="pun">-</span><span class="pln">g8c5b85c</span></code></pre>
+<pre>$ git describe master
+    v1.6.2-rc1-20-g8c5b85c</pre>
 
 <p>这个字符串可以作为快照的名字，方便人们理解。如果你的Git是你自己下载源码然后编译安装的，你会发现<code>git --version</code>命令的输出和这个字符串差不多。如果在一个刚刚打完标签的提交上运行<code>describe</code>命令，只会得到这次标定的版本号，而没有后面两项信息。
 </p>
@@ -1019,14 +1017,14 @@
 
 <p>现在可以发布一个新的版本了。首先要将代码的压缩包归档，方便那些可怜的还没有使用Git的人们。可以使用<code>git archive</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git archive master </span><span class="pun">--</span><span class="pln">prefix</span><span class="pun">=</span><span class="str">'project/'</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> gzip </span><span class="pun">&gt;</span><span class="pln"> </span><span class="str">`git describe master`</span><span class="pun">.</span><span class="pln">tar</span><span class="pun">.</span><span class="pln">gz
-    $ ls </span><span class="pun">*.</span><span class="pln">tar</span><span class="pun">.</span><span class="pln">gz
-    v1</span><span class="pun">.</span><span class="lit">6.2</span><span class="pun">-</span><span class="pln">rc1</span><span class="pun">-</span><span class="lit">20</span><span class="pun">-</span><span class="pln">g8c5b85c</span><span class="pun">.</span><span class="pln">tar</span><span class="pun">.</span><span class="pln">gz</span></code></pre>
+<pre>$ git archive master --prefix='project/' | gzip &gt; `git describe master`.tar.gz
+    $ ls *.tar.gz
+    v1.6.2-rc1-20-g8c5b85c.tar.gz</pre>
 
 <p>这个压缩包解压出来的是一个文件夹，里面是你项目的最新代码快照。你也可以用类似的方法建立一个zip压缩包，在<code>git archive</code>加上<code>--format=zip</code>选项：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git archive master </span><span class="pun">--</span><span class="pln">prefix</span><span class="pun">=</span><span class="str">'project/'</span><span class="pln"> </span><span class="pun">--</span><span class="pln">format</span><span class="pun">=</span><span class="pln">zip </span><span class="pun">&gt;</span><span class="pln"> </span><span class="str">`git describe
-    master`</span><span class="pun">.</span><span class="pln">zip</span></code></pre>
+<pre>$ git archive master --prefix='project/' --format=zip &gt; `git describe
+    master`.zip</pre>
 
 <p>现在你有了一个tar.gz压缩包和一个zip压缩包，可以把他们上传到你网站上或者用e-mail发给别人。</p>
 
@@ -1035,20 +1033,20 @@
 <p>是时候通知邮件列表里的朋友们来检验你的成果了。使用<code>git shortlog</code>命令可以方便快捷的制作一份修改日志（changelog），告诉大家上次发布之后又增加了哪些特性和修复了哪些bug。实际上这个命令能够统计给定范围内的所有提交;假如你上一次发布的版本是v1.0.1，下面的命令将给出自从上次发布之后的所有提交的简介：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git shortlog </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">merges master </span><span class="pun">--</span><span class="kwd">not</span><span class="pln"> v1</span><span class="pun">.</span><span class="lit">0.1</span><span class="pln">
-    </span><span class="typ">Chris</span><span class="pln"> </span><span class="typ">Wanstrath</span><span class="pln"> </span><span class="pun">(</span><span class="lit">8</span><span class="pun">):</span><span class="pln">
-    </span><span class="typ">Add</span><span class="pln"> support </span><span class="kwd">for</span><span class="pln"> annotated tags to </span><span class="typ">Grit</span><span class="pun">::</span><span class="typ">Tag</span><span class="pln">
-    </span><span class="typ">Add</span><span class="pln"> packed</span><span class="pun">-</span><span class="pln">refs annotated tag support</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Add</span><span class="pln"> </span><span class="typ">Grit</span><span class="pun">::</span><span class="typ">Commit</span><span class="com">#to_patch</span><span class="pln">
-    </span><span class="typ">Update</span><span class="pln"> version </span><span class="kwd">and</span><span class="pln"> </span><span class="typ">History</span><span class="pun">.</span><span class="pln">txt
-    </span><span class="typ">Remove</span><span class="pln"> stray </span><span class="str">`puts`</span><span class="pln">
-    </span><span class="typ">Make</span><span class="pln"> ls_tree ignore nils
+<pre>$ git shortlog --no-merges master --not v1.0.1
+    Chris Wanstrath (8):
+    Add support for annotated tags to Grit::Tag
+    Add packed-refs annotated tag support.
+    Add Grit::Commit#to_patch
+    Update version and History.txt
+    Remove stray `puts`
+    Make ls_tree ignore nils
 
-    </span><span class="typ">Tom</span><span class="pln"> </span><span class="typ">Preston</span><span class="pun">-</span><span class="typ">Werner</span><span class="pln"> </span><span class="pun">(</span><span class="lit">4</span><span class="pun">):</span><span class="pln">
-    fix dates </span><span class="kwd">in</span><span class="pln"> history
-    </span><span class="kwd">dynamic</span><span class="pln"> version method
-    </span><span class="typ">Version</span><span class="pln"> bump to </span><span class="lit">1.0</span><span class="pun">.</span><span class="lit">2</span><span class="pln">
-    </span><span class="typ">Regenerated</span><span class="pln"> gemspec </span><span class="kwd">for</span><span class="pln"> version </span><span class="lit">1.0</span><span class="pun">.</span><span class="lit">2</span></code></pre>
+    Tom Preston-Werner (4):
+    fix dates in history
+    dynamic version method
+    Version bump to 1.0.2
+    Regenerated gemspec for version 1.0.2</pre>
 
 <p>这就是自从v1.0.1版本以来的所有提交的简介，内容按照作者分组，以便你能快速的发e-mail给他们。</p>
 

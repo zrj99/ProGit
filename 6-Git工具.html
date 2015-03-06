@@ -2,8 +2,6 @@
     <title>6 Git 工具 - Pro Git</title>
     <meta charset="utf-8">
     <link href="files/styles.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="files/prettify.css" rel="stylesheet" type="text/css">
-    <script src="files/prettify.js" type="text/javascript"></script>
 </head>
 <body>
 <p class="bottom-nav"><a class="next" href="7-自定义Git.html">下一节</a><a class="prev" href="5-分布式Git.html">上一节</a><a href="0-ProGit.html">Pro Git</a></p>
@@ -38,39 +36,39 @@
 
 <p>例如，想要查看一次指定的提交，假设你运行 <code>git log</code> 命令并找到你增加了功能的那次提交：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log
-    commit </span><span class="lit">734713bc047d87bf7eac9674765ae793478c50d3</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Fri</span><span class="pln"> </span><span class="typ">Jan</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="lit">18</span><span class="pun">:</span><span class="lit">32</span><span class="pun">:</span><span class="lit">33</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+<pre>$ git log
+    commit 734713bc047d87bf7eac9674765ae793478c50d3
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Fri Jan 2 18:32:33 2009 -0800
 
-    </span><span class="kwd">fixed</span><span class="pln"> refs handling</span><span class="pun">,</span><span class="pln"> added gc </span><span class="kwd">auto</span><span class="pun">,</span><span class="pln"> updated tests
+    fixed refs handling, added gc auto, updated tests
 
     commit d921970aadf03b3cf0e71becdaab3147ba71cdef
-    </span><span class="typ">Merge</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1c002dd</span><span class="pun">...</span><span class="pln"> </span><span class="lit">35cfb2b</span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Dec</span><span class="pln"> </span><span class="lit">11</span><span class="pln"> </span><span class="lit">15</span><span class="pun">:</span><span class="lit">08</span><span class="pun">:</span><span class="lit">43</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+    Merge: 1c002dd... 35cfb2b...
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Thu Dec 11 15:08:43 2008 -0800
 
-    </span><span class="typ">Merge</span><span class="pln"> commit </span><span class="str">'phedders/rdocs'</span><span class="pln">
+    Merge commit 'phedders/rdocs'
 
-    commit </span><span class="lit">1c002dd4b536e7479fe34593e72e6c6c1819e53b</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Dec</span><span class="pln"> </span><span class="lit">11</span><span class="pln"> </span><span class="lit">14</span><span class="pun">:</span><span class="lit">58</span><span class="pun">:</span><span class="lit">32</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+    commit 1c002dd4b536e7479fe34593e72e6c6c1819e53b
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Thu Dec 11 14:58:32 2008 -0800
 
-    added some blame </span><span class="kwd">and</span><span class="pln"> merge stuff</span></code></pre>
+    added some blame and merge stuff</pre>
 
 <p>假设是 <code>1c002dd....</code> 。如果你想 <code>git show</code> 这次提交，下面的命令是等价的（假设简短的版本没有歧义）：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show </span><span class="lit">1c002dd4b536e7479fe34593e72e6c6c1819e53b</span><span class="pln">
-    $ git show </span><span class="lit">1c002dd4b536e7479f</span><span class="pln">
-    $ git show </span><span class="lit">1c002d</span></code></pre>
+<pre>$ git show 1c002dd4b536e7479fe34593e72e6c6c1819e53b
+    $ git show 1c002dd4b536e7479f
+    $ git show 1c002d</pre>
 
 <p>Git 可以为你的 SHA-1 值生成出简短且唯一的缩写。如果你传递 <code>--abbrev-commit</code> 给 <code>git log</code>
     命令，输出结果里就会使用简短且唯一的值；它默认使用七个字符来表示，不过必要时为了避免 SHA-1 的歧义，会增加字符数：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">--</span><span class="pln">abbrev</span><span class="pun">-</span><span class="pln">commit </span><span class="pun">--</span><span class="pln">pretty</span><span class="pun">=</span><span class="pln">oneline
+<pre>$ git log --abbrev-commit --pretty=oneline
     ca82a6d changed the version number
-    </span><span class="lit">085bb3b</span><span class="pln"> removed unnecessary test code
-    a11bef0 first commit</span></code></pre>
+    085bb3b removed unnecessary test code
+    a11bef0 first commit</pre>
 
 <p>通常在一个项目中，使用八到十个字符来避免 SHA-1 歧义已经足够了。最大的 Git 项目之一，Linux 内核，目前也只需要最长 40 个字符中的 12 个字符来保持唯一性。</p>
 
@@ -92,15 +90,15 @@
 <p>指明一次提交的最直接的方法要求有一个指向它的分支引用。这样，你就可以在任何需要一个提交对象或者 SHA-1 值的 Git 命令中使用该分支名称了。如果你想要显示一个分支的最后一次提交的对象，例如假设
     <code>topic1</code> 分支指向 <code>ca82a6d</code>，那么下面的命令是等价的：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show ca82a6dff817ec66f44342007202690a93763949
-    $ git show topic1</span></code></pre>
+<pre>$ git show ca82a6dff817ec66f44342007202690a93763949
+    $ git show topic1</pre>
 
 <p>如果你想知道某个分支指向哪个特定的 SHA，或者想看任何一个例子中被简写的 SHA-1，你可以使用一个叫做 <code>rev-parse</code> 的 Git 探测工具。在第 9
     章你可以看到关于探测工具的更多信息；简单来说，<code>rev-parse</code> 是为了底层操作而不是日常操作设计的。不过，有时你想看 Git 现在到底处于什么状态时，它可能会很有用。这里你可以对你的分支运执行
     <code>rev-parse</code>。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git rev</span><span class="pun">-</span><span class="pln">parse topic1
-    ca82a6dff817ec66f44342007202690a93763949</span></code></pre>
+<pre>$ git rev-parse topic1
+    ca82a6dff817ec66f44342007202690a93763949</pre>
 
 <h3>引用日志里的简称</h3>
 
@@ -108,44 +106,44 @@
 
 <p>你可以使用 <code>git reflog</code> 来查看引用日志：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git reflog
-    </span><span class="lit">734713b</span><span class="pun">...</span><span class="pln"> HEAD@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}:</span><span class="pln"> commit</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">fixed</span><span class="pln"> refs handling</span><span class="pun">,</span><span class="pln"> added gc </span><span class="kwd">auto</span><span class="pun">,</span><span class="pln"> updated
-    d921970</span><span class="pun">...</span><span class="pln"> HEAD@</span><span class="pun">{</span><span class="lit">1</span><span class="pun">}:</span><span class="pln"> merge phedders</span><span class="pun">/</span><span class="pln">rdocs</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Merge</span><span class="pln"> made </span><span class="kwd">by</span><span class="pln"> recursive</span><span class="pun">.</span><span class="pln">
-    </span><span class="lit">1c002dd</span><span class="pun">...</span><span class="pln"> HEAD@</span><span class="pun">{</span><span class="lit">2</span><span class="pun">}:</span><span class="pln"> commit</span><span class="pun">:</span><span class="pln"> added some blame </span><span class="kwd">and</span><span class="pln"> merge stuff
-    </span><span class="lit">1c36188.</span><span class="pun">..</span><span class="pln"> HEAD@</span><span class="pun">{</span><span class="lit">3</span><span class="pun">}:</span><span class="pln"> rebase </span><span class="pun">-</span><span class="pln">i </span><span class="pun">(</span><span class="pln">squash</span><span class="pun">):</span><span class="pln"> updating HEAD
-    </span><span class="lit">95df984.</span><span class="pun">..</span><span class="pln"> HEAD@</span><span class="pun">{</span><span class="lit">4</span><span class="pun">}:</span><span class="pln"> commit</span><span class="pun">:</span><span class="pln"> </span><span class="com"># This is a combination of two commits.</span><span class="pln">
-    </span><span class="lit">1c36188.</span><span class="pun">..</span><span class="pln"> HEAD@</span><span class="pun">{</span><span class="lit">5</span><span class="pun">}:</span><span class="pln"> rebase </span><span class="pun">-</span><span class="pln">i </span><span class="pun">(</span><span class="pln">squash</span><span class="pun">):</span><span class="pln"> updating HEAD
-    </span><span class="lit">7e05da5.</span><span class="pun">..</span><span class="pln"> HEAD@</span><span class="pun">{</span><span class="lit">6</span><span class="pun">}:</span><span class="pln"> rebase </span><span class="pun">-</span><span class="pln">i </span><span class="pun">(</span><span class="pln">pick</span><span class="pun">):</span><span class="pln"> updating HEAD</span></code></pre>
+<pre>$ git reflog
+    734713b... HEAD@{0}: commit: fixed refs handling, added gc auto, updated
+    d921970... HEAD@{1}: merge phedders/rdocs: Merge made by recursive.
+    1c002dd... HEAD@{2}: commit: added some blame and merge stuff
+    1c36188... HEAD@{3}: rebase -i (squash): updating HEAD
+    95df984... HEAD@{4}: commit: # This is a combination of two commits.
+    1c36188... HEAD@{5}: rebase -i (squash): updating HEAD
+    7e05da5... HEAD@{6}: rebase -i (pick): updating HEAD</pre>
 
 <p>每次你的分支顶端因为某些原因被修改时，Git 就会为你将信息保存在这个临时历史记录里面。你也可以使用这份数据来指明更早的分支。如果你想查看仓库中 HEAD 在五次前的值，你可以使用引用日志的输出中的 <code>@{n}</code>
     引用：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show HEAD@</span><span class="pun">{</span><span class="lit">5</span><span class="pun">}</span></code></pre>
+<pre>$ git show HEAD@{5}</pre>
 
 <p>你也可以使用这个语法来查看某个分支在一定时间前的位置。例如，想看你的 <code>master</code> 分支昨天在哪，你可以输入</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show master@</span><span class="pun">{</span><span class="pln">yesterday</span><span class="pun">}</span></code></pre>
+<pre>$ git show master@{yesterday}</pre>
 
 <p>它就会显示昨天分支的顶端在哪。这项技术只对还在你引用日志里的数据有用，所以不能用来查看比几个月前还早的提交。</p>
 
 <p>想要看类似于 <code>git log</code> 输出格式的引用日志信息，你可以运行 <code>git log -g</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">-</span><span class="pln">g master
-    commit </span><span class="lit">734713bc047d87bf7eac9674765ae793478c50d3</span><span class="pln">
-    </span><span class="typ">Reflog</span><span class="pun">:</span><span class="pln"> master@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;)</span><span class="pln">
-    </span><span class="typ">Reflog</span><span class="pln"> message</span><span class="pun">:</span><span class="pln"> commit</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">fixed</span><span class="pln"> refs handling</span><span class="pun">,</span><span class="pln"> added gc </span><span class="kwd">auto</span><span class="pun">,</span><span class="pln"> updated
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Fri</span><span class="pln"> </span><span class="typ">Jan</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="lit">18</span><span class="pun">:</span><span class="lit">32</span><span class="pun">:</span><span class="lit">33</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+<pre>$ git log -g master
+    commit 734713bc047d87bf7eac9674765ae793478c50d3
+    Reflog: master@{0} (Scott Chacon &lt;schacon@gmail.com&gt;)
+    Reflog message: commit: fixed refs handling, added gc auto, updated
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Fri Jan 2 18:32:33 2009 -0800
 
-    </span><span class="kwd">fixed</span><span class="pln"> refs handling</span><span class="pun">,</span><span class="pln"> added gc </span><span class="kwd">auto</span><span class="pun">,</span><span class="pln"> updated tests
+    fixed refs handling, added gc auto, updated tests
 
     commit d921970aadf03b3cf0e71becdaab3147ba71cdef
-    </span><span class="typ">Reflog</span><span class="pun">:</span><span class="pln"> master@</span><span class="pun">{</span><span class="lit">1</span><span class="pun">}</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;)</span><span class="pln">
-    </span><span class="typ">Reflog</span><span class="pln"> message</span><span class="pun">:</span><span class="pln"> merge phedders</span><span class="pun">/</span><span class="pln">rdocs</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Merge</span><span class="pln"> made </span><span class="kwd">by</span><span class="pln"> recursive</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Dec</span><span class="pln"> </span><span class="lit">11</span><span class="pln"> </span><span class="lit">15</span><span class="pun">:</span><span class="lit">08</span><span class="pun">:</span><span class="lit">43</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+    Reflog: master@{1} (Scott Chacon &lt;schacon@gmail.com&gt;)
+    Reflog message: merge phedders/rdocs: Merge made by recursive.
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Thu Dec 11 15:08:43 2008 -0800
 
-    </span><span class="typ">Merge</span><span class="pln"> commit </span><span class="str">'phedders/rdocs'</span></code></pre>
+    Merge commit 'phedders/rdocs'</pre>
 
 <p>需要注意的是，引用日志信息只存在于本地——这是一个记录你在你自己的仓库里做过什么的日志。其他人拷贝的仓库里的引用日志不会和你的相同；而你新克隆一个仓库的时候，引用日志是空的，因为你在仓库里还没有操作。<code>git show
     HEAD@{2.months.ago}</code> 这条命令只有在你克隆了一个项目至少两个月时才会有用——如果你是五分钟前克隆的仓库，那么它将不会有结果返回。</p>
@@ -155,61 +153,61 @@
 <p>另一种指明某次提交的常用方法是通过它的祖先。如果你在引用最后加上一个 <code>^</code>，Git 将其理解为此次提交的父提交。
     假设你的工程历史是这样的：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">--</span><span class="pln">pretty</span><span class="pun">=</span><span class="pln">format</span><span class="pun">:</span><span class="str">'%h %s'</span><span class="pln"> </span><span class="pun">--</span><span class="pln">graph
-    </span><span class="pun">*</span><span class="pln"> </span><span class="lit">734713b</span><span class="pln"> </span><span class="kwd">fixed</span><span class="pln"> refs handling</span><span class="pun">,</span><span class="pln"> added gc </span><span class="kwd">auto</span><span class="pun">,</span><span class="pln"> updated tests
-    </span><span class="pun">*</span><span class="pln"> d921970 </span><span class="typ">Merge</span><span class="pln"> commit </span><span class="str">'phedders/rdocs'</span><span class="pln">
-    </span><span class="pun">|</span><span class="pln">\
-    </span><span class="pun">|</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">35cfb2b</span><span class="pln"> </span><span class="typ">Some</span><span class="pln"> rdoc changes
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="lit">1c002dd</span><span class="pln"> added some blame </span><span class="kwd">and</span><span class="pln"> merge stuff
-    </span><span class="pun">|/</span><span class="pln">
-    </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1c36188</span><span class="pln"> ignore </span><span class="pun">*.</span><span class="pln">gem
-    </span><span class="pun">*</span><span class="pln"> </span><span class="lit">9b29157</span><span class="pln"> add open3_detach to gemspec file list</span></code></pre>
+<pre>$ git log --pretty=format:'%h %s' --graph
+    * 734713b fixed refs handling, added gc auto, updated tests
+    * d921970 Merge commit 'phedders/rdocs'
+    |\
+    | * 35cfb2b Some rdoc changes
+    * | 1c002dd added some blame and merge stuff
+    |/
+    * 1c36188 ignore *.gem
+    * 9b29157 add open3_detach to gemspec file list</pre>
 
 <p>那么，想看上一次提交，你可以使用 <code>HEAD^</code>，意思是“HEAD 的父提交”：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show HEAD</span><span class="pun">^</span><span class="pln">
+<pre>$ git show HEAD^
     commit d921970aadf03b3cf0e71becdaab3147ba71cdef
-    </span><span class="typ">Merge</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1c002dd</span><span class="pun">...</span><span class="pln"> </span><span class="lit">35cfb2b</span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Dec</span><span class="pln"> </span><span class="lit">11</span><span class="pln"> </span><span class="lit">15</span><span class="pun">:</span><span class="lit">08</span><span class="pun">:</span><span class="lit">43</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+    Merge: 1c002dd... 35cfb2b...
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Thu Dec 11 15:08:43 2008 -0800
 
-    </span><span class="typ">Merge</span><span class="pln"> commit </span><span class="str">'phedders/rdocs'</span></code></pre>
+    Merge commit 'phedders/rdocs'</pre>
 
 <p>你也可以在 <code>^</code> 后添加一个数字——例如，<code>d921970^2</code> 意思是“d921970
     的第二父提交”。这种语法只在合并提交时有用，因为合并提交可能有多个父提交。第一父提交是你合并时所在分支，而第二父提交是你所合并的分支：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show d921970</span><span class="pun">^</span><span class="pln">
-    commit </span><span class="lit">1c002dd4b536e7479fe34593e72e6c6c1819e53b</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Dec</span><span class="pln"> </span><span class="lit">11</span><span class="pln"> </span><span class="lit">14</span><span class="pun">:</span><span class="lit">58</span><span class="pun">:</span><span class="lit">32</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+<pre>$ git show d921970^
+    commit 1c002dd4b536e7479fe34593e72e6c6c1819e53b
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Thu Dec 11 14:58:32 2008 -0800
 
-    added some blame </span><span class="kwd">and</span><span class="pln"> merge stuff
+    added some blame and merge stuff
 
-    $ git show d921970</span><span class="pun">^</span><span class="lit">2</span><span class="pln">
-    commit </span><span class="lit">35cfb2b795a55793d7cc56a6cc2060b4bb732548</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Paul</span><span class="pln"> </span><span class="typ">Hedderly</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">paul</span><span class="pun">+</span><span class="pln">git@mjr</span><span class="pun">.</span><span class="pln">org</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Wed</span><span class="pln"> </span><span class="typ">Dec</span><span class="pln"> </span><span class="lit">10</span><span class="pln"> </span><span class="lit">22</span><span class="pun">:</span><span class="lit">22</span><span class="pun">:</span><span class="lit">03</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">+</span><span class="lit">0000</span><span class="pln">
+    $ git show d921970^2
+    commit 35cfb2b795a55793d7cc56a6cc2060b4bb732548
+    Author: Paul Hedderly &lt;paul+git@mjr.org&gt;
+    Date: Wed Dec 10 22:22:03 2008 +0000
 
-    </span><span class="typ">Some</span><span class="pln"> rdoc changes</span></code></pre>
+    Some rdoc changes</pre>
 
 <p>另外一个指明祖先提交的方法是 <code>~</code>。这也是指向第一父提交，所以 <code>HEAD~</code> 和 <code>HEAD^</code> 是等价的。当你指定数字的时候就明显不一样了。<code>HEAD~2</code>
     是指“第一父提交的第一父提交”，也就是“祖父提交”——它会根据你指定的次数检索第一父提交。例如，在上面列出的历史记录里面，<code>HEAD~3</code> 会是</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show HEAD</span><span class="pun">~</span><span class="lit">3</span><span class="pln">
-    commit </span><span class="lit">1c3618887afb5fbcbea25b7c013f4e2114448b8d</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Tom</span><span class="pln"> </span><span class="typ">Preston</span><span class="pun">-</span><span class="typ">Werner</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">tom@mojombo</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Fri</span><span class="pln"> </span><span class="typ">Nov</span><span class="pln"> </span><span class="lit">7</span><span class="pln"> </span><span class="lit">13</span><span class="pun">:</span><span class="lit">47</span><span class="pun">:</span><span class="lit">59</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0500</span><span class="pln">
+<pre>$ git show HEAD~3
+    commit 1c3618887afb5fbcbea25b7c013f4e2114448b8d
+    Author: Tom Preston-Werner &lt;tom@mojombo.com&gt;
+    Date: Fri Nov 7 13:47:59 2008 -0500
 
-    ignore </span><span class="pun">*.</span><span class="pln">gem</span></code></pre>
+    ignore *.gem</pre>
 
 <p>也可以写成 <code>HEAD^^^</code>，同样是第一父提交的第一父提交的第一父提交：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git show HEAD</span><span class="pun">^^^</span><span class="pln">
-    commit </span><span class="lit">1c3618887afb5fbcbea25b7c013f4e2114448b8d</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Tom</span><span class="pln"> </span><span class="typ">Preston</span><span class="pun">-</span><span class="typ">Werner</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">tom@mojombo</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Fri</span><span class="pln"> </span><span class="typ">Nov</span><span class="pln"> </span><span class="lit">7</span><span class="pln"> </span><span class="lit">13</span><span class="pun">:</span><span class="lit">47</span><span class="pun">:</span><span class="lit">59</span><span class="pln"> </span><span class="lit">2008</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0500</span><span class="pln">
+<pre>$ git show HEAD^^^
+    commit 1c3618887afb5fbcbea25b7c013f4e2114448b8d
+    Author: Tom Preston-Werner &lt;tom@mojombo.com&gt;
+    Date: Fri Nov 7 13:47:59 2008 -0500
 
-    ignore </span><span class="pun">*.</span><span class="pln">gem</span></code></pre>
+    ignore *.gem</pre>
 
 <p>你也可以混合使用这些语法——你可以通过 <code>HEAD~3^2</code> 指明先前引用的第二父提交（假设它是一个合并提交）。</p>
 
@@ -229,20 +227,20 @@
 <p>你想要查看你的试验分支上哪些没有被提交到主分支，那么你就可以使用 <code>master..experiment</code> 来让 Git
     显示这些提交的日志——这句话的意思是“所有可从experiment分支中获得而不能从master分支中获得的提交”。为了使例子简单明了，我使用了图标中提交对象的字母来代替真实日志的输出，所以会显示：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log master</span><span class="pun">..</span><span class="pln">experiment
+<pre>$ git log master..experiment
     D
-    C</span></code></pre>
+    C</pre>
 
 <p>另一方面，如果你想看相反的——所有在 <code>master</code> 而不在 <code>experiment</code> 中的分支——你可以交换分支的名字。<code>experiment..master</code>
     显示所有可在 <code>master</code> 获得而在 <code>experiment</code> 中不能的提交：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log experiment</span><span class="pun">..</span><span class="pln">master
+<pre>$ git log experiment..master
     F
-    E</span></code></pre>
+    E</pre>
 
 <p>这在你想保持 <code>experiment</code> 分支最新和预览你将合并的提交的时候特别有用。这个语法的另一种常见用途是查看你将把什么推送到远程：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log origin</span><span class="pun">/</span><span class="pln">master</span><span class="pun">..</span><span class="pln">HEAD</span></code></pre>
+<pre>$ git log origin/master..HEAD</pre>
 
 <p>这条命令显示任何在你当前分支上而不在远程<code>origin</code> 上的提交。如果你运行 <code>git push</code> 并且的你的当前分支正在跟踪
     <code>origin/master</code>，被<code>git log origin/master..HEAD</code> 列出的提交就是将被传输到服务器上的提交。
@@ -254,15 +252,15 @@
     双点语法就像速记一样有用；但是你也许会想针对两个以上的分支来指明修订版本，比如查看哪些提交被包含在某些分支中的一个，但是不在你当前的分支上。Git允许你在引用前使用<code>^</code>字符或者<code>--not</code>指明你不希望提交被包含其中的分支。因此下面三个命令是等同的：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log refA</span><span class="pun">..</span><span class="pln">refB
-    $ git log </span><span class="pun">^</span><span class="pln">refA refB
-    $ git log refB </span><span class="pun">--</span><span class="kwd">not</span><span class="pln"> refA</span></code></pre>
+<pre>$ git log refA..refB
+    $ git log ^refA refB
+    $ git log refB --not refA</pre>
 
 <p>这样很好，因为它允许你在查询中指定多于两个的引用，而这是双点语法所做不到的。例如，如果你想查找所有从<code>refA</code>或<code>refB</code>包含的但是不被<code>refC</code>包含的提交，你可以输入下面中的一个
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log refA refB </span><span class="pun">^</span><span class="pln">refC
-    $ git log refA refB </span><span class="pun">--</span><span class="kwd">not</span><span class="pln"> refC</span></code></pre>
+<pre>$ git log refA refB ^refC
+    $ git log refA refB --not refC</pre>
 
 <p>这建立了一个非常强大的修订版本查询系统，应该可以帮助你解决分支里包含了什么这个问题。</p>
 
@@ -271,21 +269,21 @@
 <p>最后一种主要的范围选择语法是三点语法，这个可以指定被两个引用中的一个包含但又不被两者同时包含的分支。回过头来看一下图6-1里所列的提交历史的例子。
     如果你想查看<code>master</code>或者<code>experiment</code>中包含的但不是两者共有的引用，你可以运行</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log master</span><span class="pun">...</span><span class="pln">experiment
+<pre>$ git log master...experiment
     F
     E
     D
-    C</span></code></pre>
+    C</pre>
 
 <p>这个再次给出你普通的<code>log</code>输出但是只显示那四次提交的信息，按照传统的提交日期排列。</p>
 
 <p>这种情形下，<code>log</code>命令的一个常用参数是<code>--left-right</code>，它会显示每个提交到底处于哪一侧的分支。这使得数据更加有用。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">--</span><span class="pln">left</span><span class="pun">-</span><span class="pln">right master</span><span class="pun">...</span><span class="pln">experiment
-    </span><span class="pun">&lt;</span><span class="pln"> F
-    </span><span class="pun">&lt;</span><span class="pln"> E
-    </span><span class="pun">&gt;</span><span class="pln"> D
-    </span><span class="pun">&gt;</span><span class="pln"> C</span></code></pre>
+<pre>$ git log --left-right master...experiment
+    &lt; F
+    &lt; E
+    &gt; D
+    &gt; C</pre>
 
 <p>有了以上工具，让Git知道你要察看哪些提交就容易得多了。</p>
 
@@ -295,16 +293,16 @@
     Git提供了很多脚本来辅助某些命令行任务。这里，你将看到一些交互式命令，它们帮助你方便地构建只包含特定组合和部分文件的提交。在你修改了一大批文件然后决定将这些变更分布在几个各有侧重的提交而不是单个又大又乱的提交时，这些工具非常有用。用这种方法，你可以确保你的提交在逻辑上划分为相应的变更集，以便于供和你一起工作的开发者审阅。如果你运行<code>git
     add</code>时加上<code>-i</code>或者<code>--interactive</code>选项，Git就进入了一个交互式的shell模式，显示一些类似于下面的信息：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git add </span><span class="pun">-</span><span class="pln">i
+<pre>$ git add -i
     staged unstaged path
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> TODO
-    </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">5</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
+    1: unchanged +0/-1 TODO
+    2: unchanged +1/-1 index.html
+    3: unchanged +5/-1 lib/simplegit.rb
 
-    </span><span class="pun">***</span><span class="pln"> </span><span class="typ">Commands</span><span class="pln"> </span><span class="pun">***</span><span class="pln">
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> status </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> update </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> revert </span><span class="lit">4</span><span class="pun">:</span><span class="pln"> add untracked
-    </span><span class="lit">5</span><span class="pun">:</span><span class="pln"> patch </span><span class="lit">6</span><span class="pun">:</span><span class="pln"> diff </span><span class="lit">7</span><span class="pun">:</span><span class="pln"> quit </span><span class="lit">8</span><span class="pun">:</span><span class="pln"> help
-    </span><span class="typ">What</span><span class="pln"> now</span><span class="pun">&gt;</span></code></pre>
+    *** Commands ***
+    1: status 2: update 3: revert 4: add untracked
+    5: patch 6: diff 7: quit 8: help
+    What now&gt;</pre>
 
 <p>你会看到这个命令以一个完全不同的视图显示了你的暂存区——主要是你通过<code>git status</code>得到的那些信息但是稍微简洁但信息更加丰富一些。它在左侧列出了你暂存的变更，在右侧列出了未被暂存的变更。</p>
 
@@ -314,88 +312,88 @@
 
 <p>如果你在<code>What now&gt;</code>的提示后输入<code>2</code>或者<code>u</code>，这个脚本会提示你那些文件你想要暂存：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="typ">What</span><span class="pln"> now</span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">2</span><span class="pln">
+<pre>What now&gt; 2
     staged unstaged path
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> TODO
-    </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">5</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="typ">Update</span><span class="pun">&gt;&gt;</span></code></pre>
+    1: unchanged +0/-1 TODO
+    2: unchanged +1/-1 index.html
+    3: unchanged +5/-1 lib/simplegit.rb
+    Update&gt;&gt;</pre>
 
 <p>如果想暂存TODO和index.html，你可以输入相应的编号：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="typ">Update</span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="lit">2</span><span class="pln">
+<pre>Update&gt;&gt; 1,2
     staged unstaged path
-    </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> TODO
-    </span><span class="pun">*</span><span class="pln"> </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">5</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="typ">Update</span><span class="pun">&gt;&gt;</span></code></pre>
+    * 1: unchanged +0/-1 TODO
+    * 2: unchanged +1/-1 index.html
+    3: unchanged +5/-1 lib/simplegit.rb
+    Update&gt;&gt;</pre>
 
 <p>每个文件旁边的<code>*</code>表示选中的文件将被暂存。如果你在<code>update&gt;&gt;</code>提示后直接敲入回车，Git会替你把所有选中的内容暂存：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="typ">Update</span><span class="pun">&gt;&gt;</span><span class="pln">
-    updated </span><span class="lit">2</span><span class="pln"> paths
+<pre>Update&gt;&gt;
+    updated 2 paths
 
-    </span><span class="pun">***</span><span class="pln"> </span><span class="typ">Commands</span><span class="pln"> </span><span class="pun">***</span><span class="pln">
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> status </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> update </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> revert </span><span class="lit">4</span><span class="pun">:</span><span class="pln"> add untracked
-    </span><span class="lit">5</span><span class="pun">:</span><span class="pln"> patch </span><span class="lit">6</span><span class="pun">:</span><span class="pln"> diff </span><span class="lit">7</span><span class="pun">:</span><span class="pln"> quit </span><span class="lit">8</span><span class="pun">:</span><span class="pln"> help
-    </span><span class="typ">What</span><span class="pln"> now</span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+    *** Commands ***
+    1: status 2: update 3: revert 4: add untracked
+    5: patch 6: diff 7: quit 8: help
+    What now&gt; 1
     staged unstaged path
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing TODO
-    </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">5</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb</span></code></pre>
+    1: +0/-1 nothing TODO
+    2: +1/-1 nothing index.html
+    3: unchanged +5/-1 lib/simplegit.rb</pre>
 
 <p>现在你可以看到TODO和index.html文件被暂存了同时simplegit.rb文件仍然未被暂存。如果这时你想要撤回TODO文件，就使用<code>3</code>或者<code>r</code>（代表revert，恢复）选项：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">***</span><span class="pln"> </span><span class="typ">Commands</span><span class="pln"> </span><span class="pun">***</span><span class="pln">
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> status </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> update </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> revert </span><span class="lit">4</span><span class="pun">:</span><span class="pln"> add untracked
-    </span><span class="lit">5</span><span class="pun">:</span><span class="pln"> patch </span><span class="lit">6</span><span class="pun">:</span><span class="pln"> diff </span><span class="lit">7</span><span class="pun">:</span><span class="pln"> quit </span><span class="lit">8</span><span class="pun">:</span><span class="pln"> help
-    </span><span class="typ">What</span><span class="pln"> now</span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">3</span><span class="pln">
+<pre>*** Commands ***
+    1: status 2: update 3: revert 4: add untracked
+    5: patch 6: diff 7: quit 8: help
+    What now&gt; 3
     staged unstaged path
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing TODO
-    </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">5</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="typ">Revert</span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+    1: +0/-1 nothing TODO
+    2: +1/-1 nothing index.html
+    3: unchanged +5/-1 lib/simplegit.rb
+    Revert&gt;&gt; 1
     staged unstaged path
-    </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing TODO
-    </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">5</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="typ">Revert</span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="pun">[</span><span class="pln">enter</span><span class="pun">]</span><span class="pln">
-    reverted one path</span></code></pre>
+    * 1: +0/-1 nothing TODO
+    2: +1/-1 nothing index.html
+    3: unchanged +5/-1 lib/simplegit.rb
+    Revert&gt;&gt; [enter]
+    reverted one path</pre>
 
 <p>再次查看Git的状态，你会看到你已经撤回了TODO文件</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">***</span><span class="pln"> </span><span class="typ">Commands</span><span class="pln"> </span><span class="pun">***</span><span class="pln">
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> status </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> update </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> revert </span><span class="lit">4</span><span class="pun">:</span><span class="pln"> add untracked
-    </span><span class="lit">5</span><span class="pun">:</span><span class="pln"> patch </span><span class="lit">6</span><span class="pun">:</span><span class="pln"> diff </span><span class="lit">7</span><span class="pun">:</span><span class="pln"> quit </span><span class="lit">8</span><span class="pun">:</span><span class="pln"> help
-    </span><span class="typ">What</span><span class="pln"> now</span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+<pre>*** Commands ***
+    1: status 2: update 3: revert 4: add untracked
+    5: patch 6: diff 7: quit 8: help
+    What now&gt; 1
     staged unstaged path
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> TODO
-    </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">5</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb</span></code></pre>
+    1: unchanged +0/-1 TODO
+    2: +1/-1 nothing index.html
+    3: unchanged +5/-1 lib/simplegit.rb</pre>
 
 <p>要查看你暂存内容的差异，你可以使用<code>6</code>或者<code>d</code>（表示diff）命令。它会显示你暂存文件的列表，你可以选择其中的几个，显示其被暂存的差异。这跟你在命令行下指定<code>git diff
     --cached</code>非常相似：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">***</span><span class="pln"> </span><span class="typ">Commands</span><span class="pln"> </span><span class="pun">***</span><span class="pln">
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> status </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> update </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> revert </span><span class="lit">4</span><span class="pun">:</span><span class="pln"> add untracked
-    </span><span class="lit">5</span><span class="pun">:</span><span class="pln"> patch </span><span class="lit">6</span><span class="pun">:</span><span class="pln"> diff </span><span class="lit">7</span><span class="pun">:</span><span class="pln"> quit </span><span class="lit">8</span><span class="pun">:</span><span class="pln"> help
-    </span><span class="typ">What</span><span class="pln"> now</span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">6</span><span class="pln">
+<pre>*** Commands ***
+    1: status 2: update 3: revert 4: add untracked
+    5: patch 6: diff 7: quit 8: help
+    What now&gt; 6
     staged unstaged path
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="typ">Review</span><span class="pln"> diff</span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
-    diff </span><span class="pun">--</span><span class="pln">git a</span><span class="pun">/</span><span class="pln">index</span><span class="pun">.</span><span class="pln">html b</span><span class="pun">/</span><span class="pln">index</span><span class="pun">.</span><span class="pln">html
-    index </span><span class="lit">4d07108.</span><span class="pun">.</span><span class="lit">4335f49</span><span class="pln"> </span><span class="lit">100644</span><span class="pln">
-    </span><span class="pun">---</span><span class="pln"> a</span><span class="pun">/</span><span class="pln">index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="pun">+++</span><span class="pln"> b</span><span class="pun">/</span><span class="pln">index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="pun">@@</span><span class="pln"> </span><span class="pun">-</span><span class="lit">16</span><span class="pun">,</span><span class="lit">7</span><span class="pln"> </span><span class="pun">+</span><span class="lit">16</span><span class="pun">,</span><span class="lit">7</span><span class="pln"> </span><span class="pun">@@</span><span class="pln"> </span><span class="typ">Date</span><span class="pln"> </span><span class="typ">Finder</span><span class="pln">
+    1: +1/-1 nothing index.html
+    Review diff&gt;&gt; 1
+    diff --git a/index.html b/index.html
+    index 4d07108..4335f49 100644
+    --- a/index.html
+    +++ b/index.html
+    @@ -16,7 +16,7 @@ Date Finder
 
-    </span><span class="pun">&lt;</span><span class="pln">p id</span><span class="pun">=</span><span class="str">"out"</span><span class="pun">&gt;...&lt;/</span><span class="pln">p</span><span class="pun">&gt;</span><span class="pln">
+    &lt;p id="out"&gt;...&lt;/p&gt;
 
-    </span><span class="pun">-&lt;</span><span class="pln">div id</span><span class="pun">=</span><span class="str">"footer"</span><span class="pun">&gt;</span><span class="pln">contact </span><span class="pun">:</span><span class="pln"> support@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="pun">+&lt;</span><span class="pln">div id</span><span class="pun">=</span><span class="str">"footer"</span><span class="pun">&gt;</span><span class="pln">contact </span><span class="pun">:</span><span class="pln"> email</span><span class="pun">.</span><span class="pln">support@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&lt;/</span><span class="pln">div</span><span class="pun">&gt;</span><span class="pln">
+    -&lt;div id="footer"&gt;contact : support@github.com&lt;/div&gt;
+    +&lt;div id="footer"&gt;contact : email.support@github.com&lt;/div&gt;
 
-    </span><span class="pun">&lt;</span><span class="pln">script type</span><span class="pun">=</span><span class="str">"text/javascript"</span><span class="pun">&gt;</span></code></pre>
+    &lt;script type="text/javascript"&gt;</pre>
 
 <p>通过这些基本命令，你可以使用交互式增加模式更加方便地处理暂存区。</p>
 
@@ -404,46 +402,46 @@
 <p>只让Git暂存文件的某些部分而忽略其他也是有可能的。例如，你对simplegit.rb文件作了两处修改但是只想暂存其中一个而忽略另一个，在Git中实现这一点非常容易。在交互式的提示符下，输入<code>5</code>或者<code>p</code>（表示patch，补丁）。Git会询问哪些文件你希望部分暂存；然后对于被选中文件的每一节，他会逐个显示文件的差异区块并询问你是否希望暂存他们：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">diff </span><span class="pun">--</span><span class="pln">git a</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb b</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    index dd5ecc4</span><span class="pun">..</span><span class="lit">57399e0</span><span class="pln"> </span><span class="lit">100644</span><span class="pln">
-    </span><span class="pun">---</span><span class="pln"> a</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="pun">+++</span><span class="pln"> b</span><span class="pun">/</span><span class="pln">lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="pun">@@</span><span class="pln"> </span><span class="pun">-</span><span class="lit">22</span><span class="pun">,</span><span class="lit">7</span><span class="pln"> </span><span class="pun">+</span><span class="lit">22</span><span class="pun">,</span><span class="lit">7</span><span class="pln"> </span><span class="pun">@@</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SimpleGit</span><span class="pln">
-    </span><span class="kwd">end</span><span class="pln">
+<pre>diff --git a/lib/simplegit.rb b/lib/simplegit.rb
+    index dd5ecc4..57399e0 100644
+    --- a/lib/simplegit.rb
+    +++ b/lib/simplegit.rb
+    @@ -22,7 +22,7 @@ class SimpleGit
+    end
 
-    </span><span class="kwd">def</span><span class="pln"> log</span><span class="pun">(</span><span class="pln">treeish </span><span class="pun">=</span><span class="pln"> </span><span class="str">'master'</span><span class="pun">)</span><span class="pln">
-    </span><span class="pun">-</span><span class="pln"> command</span><span class="pun">(</span><span class="str">"git log -n 25 #{treeish}"</span><span class="pun">)</span><span class="pln">
-    </span><span class="pun">+</span><span class="pln"> command</span><span class="pun">(</span><span class="str">"git log -n 30 #{treeish}"</span><span class="pun">)</span><span class="pln">
-    </span><span class="kwd">end</span><span class="pln">
+    def log(treeish = 'master')
+    - command("git log -n 25 #{treeish}")
+    + command("git log -n 30 #{treeish}")
+    end
 
-    </span><span class="kwd">def</span><span class="pln"> blame</span><span class="pun">(</span><span class="pln">path</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Stage</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> hunk </span><span class="pun">[</span><span class="pln">y</span><span class="pun">,</span><span class="pln">n</span><span class="pun">,</span><span class="pln">a</span><span class="pun">,</span><span class="pln">d</span><span class="pun">,/,</span><span class="pln">j</span><span class="pun">,</span><span class="pln">J</span><span class="pun">,</span><span class="pln">g</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,?]?</span></code></pre>
+    def blame(path)
+    Stage this hunk [y,n,a,d,/,j,J,g,e,?]?</pre>
 
 <p>此处你有很多选择。输入<code>?</code>可以显示列表：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="typ">Stage</span><span class="pln"> </span><span class="kwd">this</span><span class="pln"> hunk </span><span class="pun">[</span><span class="pln">y</span><span class="pun">,</span><span class="pln">n</span><span class="pun">,</span><span class="pln">a</span><span class="pun">,</span><span class="pln">d</span><span class="pun">,/,</span><span class="pln">j</span><span class="pun">,</span><span class="pln">J</span><span class="pun">,</span><span class="pln">g</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,?]?</span><span class="pln"> </span><span class="pun">?</span><span class="pln">
-    y </span><span class="pun">-</span><span class="pln"> stage </span><span class="kwd">this</span><span class="pln"> hunk
-    n </span><span class="pun">-</span><span class="pln"> </span><span class="kwd">do</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> stage </span><span class="kwd">this</span><span class="pln"> hunk
-    a </span><span class="pun">-</span><span class="pln"> stage </span><span class="kwd">this</span><span class="pln"> </span><span class="kwd">and</span><span class="pln"> all the remaining hunks </span><span class="kwd">in</span><span class="pln"> the file
-    d </span><span class="pun">-</span><span class="pln"> </span><span class="kwd">do</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> stage </span><span class="kwd">this</span><span class="pln"> hunk nor any of the remaining hunks </span><span class="kwd">in</span><span class="pln"> the file
-    g </span><span class="pun">-</span><span class="pln"> </span><span class="kwd">select</span><span class="pln"> a hunk to go to
-    </span><span class="pun">/</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> search </span><span class="kwd">for</span><span class="pln"> a hunk matching the given regex
-    j </span><span class="pun">-</span><span class="pln"> leave </span><span class="kwd">this</span><span class="pln"> hunk undecided</span><span class="pun">,</span><span class="pln"> see </span><span class="kwd">next</span><span class="pln"> undecided hunk
-    J </span><span class="pun">-</span><span class="pln"> leave </span><span class="kwd">this</span><span class="pln"> hunk undecided</span><span class="pun">,</span><span class="pln"> see </span><span class="kwd">next</span><span class="pln"> hunk
-    k </span><span class="pun">-</span><span class="pln"> leave </span><span class="kwd">this</span><span class="pln"> hunk undecided</span><span class="pun">,</span><span class="pln"> see previous undecided hunk
-    K </span><span class="pun">-</span><span class="pln"> leave </span><span class="kwd">this</span><span class="pln"> hunk undecided</span><span class="pun">,</span><span class="pln"> see previous hunk
-    s </span><span class="pun">-</span><span class="pln"> split the current hunk </span><span class="kwd">into</span><span class="pln"> smaller hunks
-    e </span><span class="pun">-</span><span class="pln"> manually edit the current hunk
-    </span><span class="pun">?</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="kwd">print</span><span class="pln"> help</span></code></pre>
+<pre>Stage this hunk [y,n,a,d,/,j,J,g,e,?]? ?
+    y - stage this hunk
+    n - do not stage this hunk
+    a - stage this and all the remaining hunks in the file
+    d - do not stage this hunk nor any of the remaining hunks in the file
+    g - select a hunk to go to
+    / - search for a hunk matching the given regex
+    j - leave this hunk undecided, see next undecided hunk
+    J - leave this hunk undecided, see next hunk
+    k - leave this hunk undecided, see previous undecided hunk
+    K - leave this hunk undecided, see previous hunk
+    s - split the current hunk into smaller hunks
+    e - manually edit the current hunk
+    ? - print help</pre>
 
 <p>如果你想暂存各个区块，通常你会输入<code>y</code>或者<code>n</code>，但是暂存特定文件里的全部区块或者暂时跳过对一个区块的处理同样也很有用。如果你暂存了文件的一个部分而保留另外一个部分不被暂存，你的状态输出看起来会是这样：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="typ">What</span><span class="pln"> now</span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+<pre>What now&gt; 1
     staged unstaged path
-    </span><span class="lit">1</span><span class="pun">:</span><span class="pln"> unchanged </span><span class="pun">+</span><span class="lit">0</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> TODO
-    </span><span class="lit">2</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> nothing index</span><span class="pun">.</span><span class="pln">html
-    </span><span class="lit">3</span><span class="pun">:</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pun">/-</span><span class="lit">1</span><span class="pln"> </span><span class="pun">+</span><span class="lit">4</span><span class="pun">/-</span><span class="lit">0</span><span class="pln"> lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb</span></code></pre>
+    1: unchanged +0/-1 TODO
+    2: +1/-1 nothing index.html
+    3: +1/-1 +4/-0 lib/simplegit.rb</pre>
 
 <p>simplegit.rb的状态非常有意思。它显示有几行被暂存了，有几行没有。你部分地暂存了这个文件。在这时，你可以退出交互式脚本然后运行<code>git commit</code>来提交部分暂存的文件。</p>
 
@@ -460,51 +458,51 @@
 
 <p>为了演示这一功能，你可以进入你的项目，在一些文件上进行工作，有可能还暂存其中一个变更。如果你运行 <code>git status</code>，你可以看到你的中间状态：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git status
-    </span><span class="com"># On branch master</span><span class="pln">
-    </span><span class="com"># Changes to be committed:</span><span class="pln">
-    </span><span class="com"># (use "git reset HEAD &lt;file&gt;..." to unstage)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: index.html</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># Changes not staged for commit:</span><span class="pln">
-    </span><span class="com"># (use "git add &lt;file&gt;..." to update what will be committed)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: lib/simplegit.rb</span><span class="pln">
-    </span><span class="com">#</span></code></pre>
+<pre>$ git status
+    # On branch master
+    # Changes to be committed:
+    # (use "git reset HEAD &lt;file&gt;..." to unstage)
+    #
+    # modified: index.html
+    #
+    # Changes not staged for commit:
+    # (use "git add &lt;file&gt;..." to update what will be committed)
+    #
+    # modified: lib/simplegit.rb
+    #</pre>
 
 <p>现在你想切换分支，但是你还不想提交你正在进行中的工作；所以你储藏这些变更。为了往堆栈推送一个新的储藏，只要运行 <code>git stash</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash
-    </span><span class="typ">Saved</span><span class="pln"> working directory </span><span class="kwd">and</span><span class="pln"> index state \
-    </span><span class="str">"WIP on master: 049d078 added the index file"</span><span class="pln">
-    HEAD </span><span class="kwd">is</span><span class="pln"> now at </span><span class="lit">049d078</span><span class="pln"> added the index file
-    </span><span class="pun">(</span><span class="typ">To</span><span class="pln"> restore them type </span><span class="str">"git stash apply"</span><span class="pun">)</span></code></pre>
+<pre>$ git stash
+    Saved working directory and index state \
+    "WIP on master: 049d078 added the index file"
+    HEAD is now at 049d078 added the index file
+    (To restore them type "git stash apply")</pre>
 
 <p>你的工作目录就干净了：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git status
-    </span><span class="com"># On branch master</span><span class="pln">
-    nothing to commit </span><span class="pun">(</span><span class="pln">working directory clean</span><span class="pun">)</span></code></pre>
+<pre>$ git status
+    # On branch master
+    nothing to commit (working directory clean)</pre>
 
 <p>这时，你可以方便地切换到其他分支工作；你的变更都保存在栈上。要查看现有的储藏，你可以使用 <code>git stash list</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash list
-    stash@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}:</span><span class="pln"> WIP on master</span><span class="pun">:</span><span class="pln"> </span><span class="lit">049d078</span><span class="pln"> added the index file
-    stash@</span><span class="pun">{</span><span class="lit">1</span><span class="pun">}:</span><span class="pln"> WIP on master</span><span class="pun">:</span><span class="pln"> c264051</span><span class="pun">...</span><span class="pln"> </span><span class="typ">Revert</span><span class="pln"> </span><span class="str">"added file_size"</span><span class="pln">
-    stash@</span><span class="pun">{</span><span class="lit">2</span><span class="pun">}:</span><span class="pln"> WIP on master</span><span class="pun">:</span><span class="pln"> </span><span class="lit">21d80a5.</span><span class="pun">..</span><span class="pln"> added number to log</span></code></pre>
+<pre>$ git stash list
+    stash@{0}: WIP on master: 049d078 added the index file
+    stash@{1}: WIP on master: c264051... Revert "added file_size"
+    stash@{2}: WIP on master: 21d80a5... added number to log</pre>
 
 <p>在这个案例中，之前已经进行了两次储藏，所以你可以访问到三个不同的储藏。你可以重新应用你刚刚实施的储藏，所采用的命令就是之前在原始的 stash 命令的帮助输出里提示的：<code>git stash apply</code>。如果你想应用更早的储藏，你可以通过名字指定它，像这样：<code>git
     stash apply stash@{2}</code>。如果你不指明，Git 默认使用最近的储藏并尝试应用它：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash apply
-    </span><span class="com"># On branch master</span><span class="pln">
-    </span><span class="com"># Changes not staged for commit:</span><span class="pln">
-    </span><span class="com"># (use "git add &lt;file&gt;..." to update what will be committed)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: index.html</span><span class="pln">
-    </span><span class="com"># modified: lib/simplegit.rb</span><span class="pln">
-    </span><span class="com">#</span></code></pre>
+<pre>$ git stash apply
+    # On branch master
+    # Changes not staged for commit:
+    # (use "git add &lt;file&gt;..." to update what will be committed)
+    #
+    # modified: index.html
+    # modified: lib/simplegit.rb
+    #</pre>
 
 <p>你可以看到 Git
     重新修改了你所储藏的那些当时尚未提交的文件。在这个案例里，你尝试应用储藏的工作目录是干净的，并且属于同一分支；但是一个干净的工作目录和应用到相同的分支上并不是应用储藏的必要条件。你可以在其中一个分支上保留一份储藏，随后切换到另外一个分支，再重新应用这些变更。在工作目录里包含已修改和未提交的文件时，你也可以应用储藏——Git
@@ -513,27 +511,27 @@
 <p>对文件的变更被重新应用，但是被暂存的文件没有重新被暂存。想那样的话，你必须在运行 <code>git stash apply</code> 命令时带上一个 <code>--index</code>
     的选项来告诉命令重新应用被暂存的变更。如果你是这么做的，你应该已经回到你原来的位置：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash apply </span><span class="pun">--</span><span class="pln">index
-    </span><span class="com"># On branch master</span><span class="pln">
-    </span><span class="com"># Changes to be committed:</span><span class="pln">
-    </span><span class="com"># (use "git reset HEAD &lt;file&gt;..." to unstage)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: index.html</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># Changes not staged for commit:</span><span class="pln">
-    </span><span class="com"># (use "git add &lt;file&gt;..." to update what will be committed)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: lib/simplegit.rb</span><span class="pln">
-    </span><span class="com">#</span></code></pre>
+<pre>$ git stash apply --index
+    # On branch master
+    # Changes to be committed:
+    # (use "git reset HEAD &lt;file&gt;..." to unstage)
+    #
+    # modified: index.html
+    #
+    # Changes not staged for commit:
+    # (use "git add &lt;file&gt;..." to update what will be committed)
+    #
+    # modified: lib/simplegit.rb
+    #</pre>
 
 <p>apply 选项只尝试应用储藏的工作——储藏的内容仍然在栈上。要移除它，你可以运行 <code>git stash drop</code>，加上你希望移除的储藏的名字：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash list
-    stash@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}:</span><span class="pln"> WIP on master</span><span class="pun">:</span><span class="pln"> </span><span class="lit">049d078</span><span class="pln"> added the index file
-    stash@</span><span class="pun">{</span><span class="lit">1</span><span class="pun">}:</span><span class="pln"> WIP on master</span><span class="pun">:</span><span class="pln"> c264051</span><span class="pun">...</span><span class="pln"> </span><span class="typ">Revert</span><span class="pln"> </span><span class="str">"added file_size"</span><span class="pln">
-    stash@</span><span class="pun">{</span><span class="lit">2</span><span class="pun">}:</span><span class="pln"> WIP on master</span><span class="pun">:</span><span class="pln"> </span><span class="lit">21d80a5.</span><span class="pun">..</span><span class="pln"> added number to log
-    $ git stash drop stash@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}</span><span class="pln">
-    </span><span class="typ">Dropped</span><span class="pln"> stash@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}</span><span class="pln"> </span><span class="pun">(</span><span class="lit">364e91f3f268f0900bc3ee613f9f733e82aaed43</span><span class="pun">)</span></code></pre>
+<pre>$ git stash list
+    stash@{0}: WIP on master: 049d078 added the index file
+    stash@{1}: WIP on master: c264051... Revert "added file_size"
+    stash@{2}: WIP on master: 21d80a5... added number to log
+    $ git stash drop stash@{0}
+    Dropped stash@{0} (364e91f3f268f0900bc3ee613f9f733e82aaed43)</pre>
 
 <p>你也可以运行 <code>git stash pop</code> 来重新应用储藏，同时立刻将其从堆栈中移走。</p>
 
@@ -541,18 +539,18 @@
 
 <p>在某些情况下，你可能想应用储藏的修改，在进行了一些其他的修改后，又要取消之前所应用储藏的修改。Git没有提供类似于 <code>stash unapply</code> 的命令，但是可以通过取消该储藏的补丁达到同样的效果：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash show </span><span class="pun">-</span><span class="pln">p stash@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> git apply </span><span class="pun">-</span><span class="pln">R</span></code></pre>
+<pre>$ git stash show -p stash@{0} | git apply -R</pre>
 
 <p>同样的，如果你沒有指定具体的某个储藏，Git 会选择最近的储藏：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash show </span><span class="pun">-</span><span class="pln">p </span><span class="pun">|</span><span class="pln"> git apply </span><span class="pun">-</span><span class="pln">R</span></code></pre>
+<pre>$ git stash show -p | git apply -R</pre>
 
 <p>你可能会想要新建一个別名，在你的 Git 里增加一个 <code>stash-unapply</code> 命令，这样更有效率。例如：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git config </span><span class="pun">--</span><span class="kwd">global</span><span class="pln"> </span><span class="kwd">alias</span><span class="pun">.</span><span class="pln">stash</span><span class="pun">-</span><span class="pln">unapply </span><span class="str">'!git stash show -p | git apply -R'</span><span class="pln">
+<pre>$ git config --global alias.stash-unapply '!git stash show -p | git apply -R'
     $ git stash
-    $ </span><span class="com">#... work work work</span><span class="pln">
-    $ git stash</span><span class="pun">-</span><span class="pln">unapply</span></code></pre>
+    $ #... work work work
+    $ git stash-unapply</pre>
 
 <h3>从储藏中创建分支</h3>
 
@@ -560,20 +558,20 @@
     如果你储藏了一些工作，暂时不去理会，然后继续在你储藏工作的分支上工作，你在重新应用工作时可能会碰到一些问题。如果尝试应用的变更是针对一个你那之后修改过的文件，你会碰到一个归并冲突并且必须去化解它。如果你想用更方便的方法来重新检验你储藏的变更，你可以运行
     <code>git stash branch</code>，这会创建一个新的分支，检出你储藏工作时的所处的提交，重新应用你的工作，如果成功，将会丢弃储藏。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git stash branch testchanges
-    </span><span class="typ">Switched</span><span class="pln"> to a </span><span class="kwd">new</span><span class="pln"> branch </span><span class="str">"testchanges"</span><span class="pln">
-    </span><span class="com"># On branch testchanges</span><span class="pln">
-    </span><span class="com"># Changes to be committed:</span><span class="pln">
-    </span><span class="com"># (use "git reset HEAD &lt;file&gt;..." to unstage)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: index.html</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># Changes not staged for commit:</span><span class="pln">
-    </span><span class="com"># (use "git add &lt;file&gt;..." to update what will be committed)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: lib/simplegit.rb</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="typ">Dropped</span><span class="pln"> refs</span><span class="pun">/</span><span class="pln">stash@</span><span class="pun">{</span><span class="lit">0</span><span class="pun">}</span><span class="pln"> </span><span class="pun">(</span><span class="pln">f0dfc4d5dc332d1cee34a634182e168c4efc3359</span><span class="pun">)</span></code></pre>
+<pre>$ git stash branch testchanges
+    Switched to a new branch "testchanges"
+    # On branch testchanges
+    # Changes to be committed:
+    # (use "git reset HEAD &lt;file&gt;..." to unstage)
+    #
+    # modified: index.html
+    #
+    # Changes not staged for commit:
+    # (use "git add &lt;file&gt;..." to update what will be committed)
+    #
+    # modified: lib/simplegit.rb
+    #
+    Dropped refs/stash@{0} (f0dfc4d5dc332d1cee34a634182e168c4efc3359)</pre>
 
 <p>这是一个很棒的捷径来恢复储藏的工作然后在新的分支上继续当时的工作。</p>
 
@@ -590,7 +588,7 @@
 
 <p>如果你只想修改最近一次提交说明，这非常简单：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git commit </span><span class="pun">--</span><span class="pln">amend</span></code></pre>
+<pre>$ git commit --amend</pre>
 
 <p>这会把你带入文本编辑器，里面包含了你最近一次提交说明，供你修改。当你保存并退出编辑器，这个编辑器会写入一个新的提交，里面包含了那个说明，并且让它成为你的新的最近一次提交。</p>
 
@@ -609,63 +607,63 @@
     -i</code>提供一个参数，指明你想要修改的提交的父提交，例如<code>HEAD~2</code>或者<code>HEAD~3</code>。可能记住<code>~3</code>更加容易，因为你想修改最近三次提交；但是请记住你事实上所指的是四次提交之前，即你想修改的提交的父提交。
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git rebase </span><span class="pun">-</span><span class="pln">i HEAD</span><span class="pun">~</span><span class="lit">3</span></code></pre>
+<pre>$ git rebase -i HEAD~3</pre>
 
 <p>再次提醒这是一个衍合命令——<code>HEAD~3..HEAD</code>范围内的每一次提交都会被重写，无论你是否修改说明。不要涵盖你已经推送到中心服务器的提交——这么做会使其他开发者产生混乱，因为你提供了同样变更的不同版本。
 </p>
 
 <p>运行这个命令会为你的文本编辑器提供一个提交列表，看起来像下面这样</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">pick f7f3f6d changed </span><span class="kwd">my</span><span class="pln"> name a bit
-    pick </span><span class="lit">310154e</span><span class="pln"> updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
-    pick a5f4a0d added cat</span><span class="pun">-</span><span class="pln">file
+<pre>pick f7f3f6d changed my name a bit
+    pick 310154e updated README formatting and added blame
+    pick a5f4a0d added cat-file
 
-    </span><span class="com"># Rebase 710f0f8..a5f4a0d onto 710f0f8</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># Commands:</span><span class="pln">
-    </span><span class="com"># p, pick = use commit</span><span class="pln">
-    </span><span class="com"># e, edit = use commit, but stop for amending</span><span class="pln">
-    </span><span class="com"># s, squash = use commit, but meld into previous commit</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># If you remove a line here THAT COMMIT WILL BE LOST.</span><span class="pln">
-    </span><span class="com"># However, if you remove everything, the rebase will be aborted.</span><span class="pln">
-    </span><span class="com">#</span></code></pre>
+    # Rebase 710f0f8..a5f4a0d onto 710f0f8
+    #
+    # Commands:
+    # p, pick = use commit
+    # e, edit = use commit, but stop for amending
+    # s, squash = use commit, but meld into previous commit
+    #
+    # If you remove a line here THAT COMMIT WILL BE LOST.
+    # However, if you remove everything, the rebase will be aborted.
+    #</pre>
 
 <p>很重要的一点是你得注意这些提交的顺序与你通常通过<code>log</code>命令看到的是相反的。如果你运行<code>log</code>，你会看到下面这样的结果：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">--</span><span class="pln">pretty</span><span class="pun">=</span><span class="pln">format</span><span class="pun">:</span><span class="str">"%h %s"</span><span class="pln"> HEAD</span><span class="pun">~</span><span class="lit">3.</span><span class="pun">.</span><span class="pln">HEAD
-    a5f4a0d added cat</span><span class="pun">-</span><span class="pln">file
-    </span><span class="lit">310154e</span><span class="pln"> updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
-    f7f3f6d changed </span><span class="kwd">my</span><span class="pln"> name a bit</span></code></pre>
+<pre>$ git log --pretty=format:"%h %s" HEAD~3..HEAD
+    a5f4a0d added cat-file
+    310154e updated README formatting and added blame
+    f7f3f6d changed my name a bit</pre>
 
 <p>请注意这里的倒序。交互式的rebase给了你一个即将运行的脚本。它会从你在命令行上指明的提交开始(<code>HEAD~3</code>)然后自上至下重播每次提交里引入的变更。它将最早的列在顶上而不是最近的，因为这是第一个需要重播的。
 </p>
 
 <p>你需要修改这个脚本来让它停留在你想修改的变更上。要做到这一点，你只要将你想修改的每一次提交前面的pick改为edit。例如，只想修改第三次提交说明的话，你就像下面这样修改文件：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">edit f7f3f6d changed </span><span class="kwd">my</span><span class="pln"> name a bit
-    pick </span><span class="lit">310154e</span><span class="pln"> updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
-    pick a5f4a0d added cat</span><span class="pun">-</span><span class="pln">file</span></code></pre>
+<pre>edit f7f3f6d changed my name a bit
+    pick 310154e updated README formatting and added blame
+    pick a5f4a0d added cat-file</pre>
 
 <p>当你保存并退出编辑器，Git会倒回至列表中的最后一次提交，然后把你送到命令行中，同时显示以下信息：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git rebase </span><span class="pun">-</span><span class="pln">i HEAD</span><span class="pun">~</span><span class="lit">3</span><span class="pln">
-    </span><span class="typ">Stopped</span><span class="pln"> at </span><span class="lit">7482e0d</span><span class="pun">...</span><span class="pln"> updated the gemspec to hopefully work better
-    </span><span class="typ">You</span><span class="pln"> can amend the commit now</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">with</span><span class="pln">
+<pre>$ git rebase -i HEAD~3
+    Stopped at 7482e0d... updated the gemspec to hopefully work better
+    You can amend the commit now, with
 
-    git commit </span><span class="pun">--</span><span class="pln">amend
+    git commit --amend
 
-    </span><span class="typ">Once</span><span class="pln"> you</span><span class="pun">’</span><span class="pln">re satisfied </span><span class="kwd">with</span><span class="pln"> your changes</span><span class="pun">,</span><span class="pln"> run
+    Once you’re satisfied with your changes, run
 
-    git rebase </span><span class="pun">--</span><span class="kwd">continue</span></code></pre>
+    git rebase --continue</pre>
 
 <p>这些指示很明确地告诉了你该干什么。输入</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git commit </span><span class="pun">--</span><span class="pln">amend</span></code></pre>
+<pre>$ git commit --amend</pre>
 
 <p>修改提交说明，退出编辑器。然后，运行</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git rebase </span><span class="pun">--</span><span class="kwd">continue</span></code></pre>
+<pre>$ git rebase --continue</pre>
 
 <p>这个命令会自动应用其他两次提交，你就完成任务了。如果你将更多行的 pick 改为 edit ，你就能对你想修改的提交重复这些步骤。Git每次都会停下，让你修正提交，完成后继续运行。</p>
 
@@ -673,14 +671,14 @@
 
 <p>你也可以使用交互式的衍合来彻底重排或删除提交。如果你想删除"added cat-file"这个提交并且修改其他两次提交引入的顺序，你将rebase脚本从这个</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">pick f7f3f6d changed </span><span class="kwd">my</span><span class="pln"> name a bit
-    pick </span><span class="lit">310154e</span><span class="pln"> updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
-    pick a5f4a0d added cat</span><span class="pun">-</span><span class="pln">file</span></code></pre>
+<pre>pick f7f3f6d changed my name a bit
+    pick 310154e updated README formatting and added blame
+    pick a5f4a0d added cat-file</pre>
 
 <p>改为这个：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">pick </span><span class="lit">310154e</span><span class="pln"> updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
-    pick f7f3f6d changed </span><span class="kwd">my</span><span class="pln"> name a bit</span></code></pre>
+<pre>pick 310154e updated README formatting and added blame
+    pick f7f3f6d changed my name a bit</pre>
 
 <p>当你保存并退出编辑器，Git 将分支倒回至这些提交的父提交，应用<code>310154e</code>，然后<code>f7f3f6d</code>，接着停止。你有效地修改了这些提交的顺序并且彻底删除了"added
     cat-file"这次提交。</p>
@@ -689,36 +687,36 @@
 
 <p>交互式的衍合工具还可以将一系列提交压制为单一提交。脚本在 rebase 的信息里放了一些有用的指示：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com">#</span><span class="pln">
-    </span><span class="com"># Commands:</span><span class="pln">
-    </span><span class="com"># p, pick = use commit</span><span class="pln">
-    </span><span class="com"># e, edit = use commit, but stop for amending</span><span class="pln">
-    </span><span class="com"># s, squash = use commit, but meld into previous commit</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># If you remove a line here THAT COMMIT WILL BE LOST.</span><span class="pln">
-    </span><span class="com"># However, if you remove everything, the rebase will be aborted.</span><span class="pln">
-    </span><span class="com">#</span></code></pre>
+<pre>#
+    # Commands:
+    # p, pick = use commit
+    # e, edit = use commit, but stop for amending
+    # s, squash = use commit, but meld into previous commit
+    #
+    # If you remove a line here THAT COMMIT WILL BE LOST.
+    # However, if you remove everything, the rebase will be aborted.
+    #</pre>
 
 <p>如果不用"pick"或者"edit"，而是指定"squash"，Git
     会同时应用那个变更和它之前的变更并将提交说明归并。因此，如果你想将这三个提交合并为单一提交，你可以将脚本修改成这样：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">pick f7f3f6d changed </span><span class="kwd">my</span><span class="pln"> name a bit
-    squash </span><span class="lit">310154e</span><span class="pln"> updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
-    squash a5f4a0d added cat</span><span class="pun">-</span><span class="pln">file</span></code></pre>
+<pre>pick f7f3f6d changed my name a bit
+    squash 310154e updated README formatting and added blame
+    squash a5f4a0d added cat-file</pre>
 
 <p>当你保存并退出编辑器，Git 会应用全部三次变更然后将你送回编辑器来归并三次提交说明。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># This is a combination of 3 commits.</span><span class="pln">
-    </span><span class="com"># The first commit's message is:</span><span class="pln">
-    changed </span><span class="kwd">my</span><span class="pln"> name a bit
+<pre># This is a combination of 3 commits.
+    # The first commit's message is:
+    changed my name a bit
 
-    </span><span class="com"># This is the 2nd commit message:</span><span class="pln">
+    # This is the 2nd commit message:
 
-    updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
+    updated README formatting and added blame
 
-    </span><span class="com"># This is the 3rd commit message:</span><span class="pln">
+    # This is the 3rd commit message:
 
-    added cat</span><span class="pun">-</span><span class="pln">file</span></code></pre>
+    added cat-file</pre>
 
 <p>当你保存之后，你就拥有了一个包含前三次提交的全部变更的单一提交。</p>
 
@@ -727,28 +725,28 @@
 <p>拆分提交就是撤销一次提交，然后多次部分地暂存或提交直到结束。例如，假设你想将三次提交中的中间一次拆分。将"updated README formatting and added blame"拆分成两次提交：第一次为"updated
     README formatting"，第二次为"added blame"。你可以在<code>rebase -i</code>脚本中修改你想拆分的提交前的指令为"edit"：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">pick f7f3f6d changed </span><span class="kwd">my</span><span class="pln"> name a bit
-    edit </span><span class="lit">310154e</span><span class="pln"> updated README formatting </span><span class="kwd">and</span><span class="pln"> added blame
-    pick a5f4a0d added cat</span><span class="pun">-</span><span class="pln">file</span></code></pre>
+<pre>pick f7f3f6d changed my name a bit
+    edit 310154e updated README formatting and added blame
+    pick a5f4a0d added cat-file</pre>
 
 <p>然后，这个脚本就将你带入命令行，你重置那次提交，提取被重置的变更，从中创建多次提交。当你保存并退出编辑器，Git 倒回到列表中第一次提交的父提交，应用第一次提交（<code>f7f3f6d</code>），应用第二次提交（<code>310154e</code>），然后将你带到控制台。那里你可以用<code>git
     reset HEAD^</code>对那次提交进行一次混合的重置，这将撤销那次提交并且将修改的文件撤回。此时你可以暂存并提交文件，直到你拥有多次提交，结束后，运行<code>git rebase --continue</code>。
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git reset HEAD</span><span class="pun">^</span><span class="pln">
+<pre>$ git reset HEAD^
     $ git add README
-    $ git commit </span><span class="pun">-</span><span class="pln">m </span><span class="str">'updated README formatting'</span><span class="pln">
-    $ git add lib</span><span class="pun">/</span><span class="pln">simplegit</span><span class="pun">.</span><span class="pln">rb
-    $ git commit </span><span class="pun">-</span><span class="pln">m </span><span class="str">'added blame'</span><span class="pln">
-    $ git rebase </span><span class="pun">--</span><span class="kwd">continue</span></code></pre>
+    $ git commit -m 'updated README formatting'
+    $ git add lib/simplegit.rb
+    $ git commit -m 'added blame'
+    $ git rebase --continue</pre>
 
 <p>Git在脚本中应用了最后一次提交（<code>a5f4a0d</code>），你的历史看起来就像这样了：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">-</span><span class="lit">4</span><span class="pln"> </span><span class="pun">--</span><span class="pln">pretty</span><span class="pun">=</span><span class="pln">format</span><span class="pun">:</span><span class="str">"%h %s"</span><span class="pln">
-    </span><span class="lit">1c002dd</span><span class="pln"> added cat</span><span class="pun">-</span><span class="pln">file
-    </span><span class="lit">9b29157</span><span class="pln"> added blame
-    </span><span class="lit">35cfb2b</span><span class="pln"> updated README formatting
-    f3cc40e changed </span><span class="kwd">my</span><span class="pln"> name a bit</span></code></pre>
+<pre>$ git log -4 --pretty=format:"%h %s"
+    1c002dd added cat-file
+    9b29157 added blame
+    35cfb2b updated README formatting
+    f3cc40e changed my name a bit</pre>
 
 <p>再次提醒，这会修改你列表中的提交的 SHA 值，所以请确保这个列表里不包含你已经推送到共享仓库的提交。</p>
 
@@ -763,9 +761,9 @@
     .</code>，意外地提交了一个巨大的二进制文件，你想将它从所有地方删除。也许你不小心提交了一个包含密码的文件，而你想让你的项目开源。<code>filter-branch</code>大概会是你用来清理整个历史的工具。要从整个历史中删除一个名叫password.txt的文件，你可以在<code>filter-branch</code>上使用<code>--tree-filter</code>选项：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git filter</span><span class="pun">-</span><span class="pln">branch </span><span class="pun">--</span><span class="pln">tree</span><span class="pun">-</span><span class="pln">filter </span><span class="str">'rm -f passwords.txt'</span><span class="pln"> HEAD
-    </span><span class="typ">Rewrite</span><span class="pln"> </span><span class="lit">6b9b3cf04e7c5686a9cb838c3f36a8cb6a0fc2bd</span><span class="pln"> </span><span class="pun">(</span><span class="lit">21</span><span class="pun">/</span><span class="lit">21</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Ref</span><span class="pln"> </span><span class="str">'refs/heads/master'</span><span class="pln"> was rewritten</span></code></pre>
+<pre>$ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD
+    Rewrite 6b9b3cf04e7c5686a9cb838c3f36a8cb6a0fc2bd (21/21)
+    Ref 'refs/heads/master' was rewritten</pre>
 
 <p><code>--tree-filter</code>选项会在每次检出项目时先执行指定的命令然后重新提交结果。在这个例子中，你会在所有快照中删除一个名叫 password.txt
     的文件，无论它是否存在。如果你想删除所有不小心提交上去的编辑器备份文件，你可以运行类似<code>git filter-branch --tree-filter 'rm -f *~' HEAD</code>的命令。
@@ -779,9 +777,9 @@
 <p>假设你完成了从另外一个代码控制系统的导入工作，得到了一些没有意义的子目录（trunk,
     tags等等）。如果你想让<code>trunk</code>子目录成为每一次提交的新的项目根目录，<code>filter-branch</code>也可以帮你做到：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git filter</span><span class="pun">-</span><span class="pln">branch </span><span class="pun">--</span><span class="pln">subdirectory</span><span class="pun">-</span><span class="pln">filter trunk HEAD
-    </span><span class="typ">Rewrite</span><span class="pln"> </span><span class="lit">856f0bf61e41a27326cdae8f09fe708d679f596f</span><span class="pln"> </span><span class="pun">(</span><span class="lit">12</span><span class="pun">/</span><span class="lit">12</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Ref</span><span class="pln"> </span><span class="str">'refs/heads/master'</span><span class="pln"> was rewritten</span></code></pre>
+<pre>$ git filter-branch --subdirectory-filter trunk HEAD
+    Rewrite 856f0bf61e41a27326cdae8f09fe708d679f596f (12/12)
+    Ref 'refs/heads/master' was rewritten</pre>
 
 <p>现在你的项目根目录就是<code>trunk</code>子目录了。Git 会自动地删除不对这个子目录产生影响的提交。</p>
 
@@ -790,7 +788,7 @@
 <p>另一个常见的案例是你在开始时忘了运行<code>git config</code>来设置你的姓名和电子邮件地址，也许你想开源一个项目，把你所有的工作电子邮件地址修改为个人地址。无论哪种情况你都可以用<code>filter-branch</code>来更换多次提交里的电子邮件地址。你必须小心一些，只改变属于你的电子邮件地址，所以你使用<code>--commit-filter</code>：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git filter</span><span class="pun">-</span><span class="pln">branch </span><span class="pun">--</span><span class="pln">commit</span><span class="pun">-</span><span class="pln">filter </span><span class="str">'
+<pre>$ git filter-branch --commit-filter '
     if [ "$GIT_AUTHOR_EMAIL" = "schacon@localhost" ];
     then
     GIT_AUTHOR_NAME="Scott Chacon";
@@ -798,7 +796,7 @@
     git commit-tree "$@";
     else
     git commit-tree "$@";
-    fi'</span><span class="pln"> HEAD</span></code></pre>
+    fi' HEAD</pre>
 
 <p>这个会遍历并重写所有提交使之拥有你的新地址。因为提交里包含了它们的父提交的SHA-1值，这个命令会修改你的历史中的所有提交，而不仅仅是包含了匹配的电子邮件地址的那些。</p>
 
@@ -811,18 +809,18 @@
 <p>如果你在追踪代码中的缺陷想知道这是什么时候为什么被引进来的，文件标注会是你的最佳工具。它会显示文件中对每一行进行修改的最近一次提交。因此，如果你发现自己代码中的一个方法存在缺陷，你可以用<code>git blame</code>来标注文件，查看那个方法的每一行分别是由谁在哪一天修改的。下面这个例子使用了<code>-L</code>选项来限制输出范围在第12至22行：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git blame </span><span class="pun">-</span><span class="pln">L </span><span class="lit">12</span><span class="pun">,</span><span class="lit">22</span><span class="pln"> simplegit</span><span class="pun">.</span><span class="pln">rb
-    </span><span class="pun">^</span><span class="lit">4832fe2</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">15</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">31</span><span class="pun">:</span><span class="lit">28</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">12</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">def</span><span class="pln"> show</span><span class="pun">(</span><span class="pln">tree </span><span class="pun">=</span><span class="pln"> </span><span class="str">'master'</span><span class="pun">)</span><span class="pln">
-    </span><span class="pun">^</span><span class="lit">4832fe2</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">15</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">31</span><span class="pun">:</span><span class="lit">28</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">13</span><span class="pun">)</span><span class="pln"> command</span><span class="pun">(</span><span class="str">"git show #{tree}"</span><span class="pun">)</span><span class="pln">
-    </span><span class="pun">^</span><span class="lit">4832fe2</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">15</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">31</span><span class="pun">:</span><span class="lit">28</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">14</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">end</span><span class="pln">
-    </span><span class="pun">^</span><span class="lit">4832fe2</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">15</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">31</span><span class="pun">:</span><span class="lit">28</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">15</span><span class="pun">)</span><span class="pln">
-    </span><span class="lit">9f6560e4</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">17</span><span class="pln"> </span><span class="lit">21</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">20</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">16</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">def</span><span class="pln"> log</span><span class="pun">(</span><span class="pln">tree </span><span class="pun">=</span><span class="pln"> </span><span class="str">'master'</span><span class="pun">)</span><span class="pln">
-    </span><span class="lit">79eaf55d</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">04</span><span class="pun">-</span><span class="lit">06</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">15</span><span class="pun">:</span><span class="lit">08</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">17</span><span class="pun">)</span><span class="pln"> command</span><span class="pun">(</span><span class="str">"git log #{tree}"</span><span class="pun">)</span><span class="pln">
-    </span><span class="lit">9f6560e4</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">17</span><span class="pln"> </span><span class="lit">21</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">20</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">18</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">end</span><span class="pln">
-    </span><span class="lit">9f6560e4</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">17</span><span class="pln"> </span><span class="lit">21</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">20</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">19</span><span class="pun">)</span><span class="pln">
-    </span><span class="lit">42cf2861</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Magnus</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">04</span><span class="pun">-</span><span class="lit">13</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">45</span><span class="pun">:</span><span class="lit">01</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">20</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">def</span><span class="pln"> blame</span><span class="pun">(</span><span class="pln">path</span><span class="pun">)</span><span class="pln">
-    </span><span class="lit">42cf2861</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Magnus</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">04</span><span class="pun">-</span><span class="lit">13</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">45</span><span class="pun">:</span><span class="lit">01</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">21</span><span class="pun">)</span><span class="pln"> command</span><span class="pun">(</span><span class="str">"git blame #{path}"</span><span class="pun">)</span><span class="pln">
-    </span><span class="lit">42cf2861</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Magnus</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="lit">2008</span><span class="pun">-</span><span class="lit">04</span><span class="pun">-</span><span class="lit">13</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">45</span><span class="pun">:</span><span class="lit">01</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln"> </span><span class="lit">22</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">end</span></code></pre>
+<pre>$ git blame -L 12,22 simplegit.rb
+    ^4832fe2 (Scott Chacon 2008-03-15 10:31:28 -0700 12) def show(tree = 'master')
+    ^4832fe2 (Scott Chacon 2008-03-15 10:31:28 -0700 13) command("git show #{tree}")
+    ^4832fe2 (Scott Chacon 2008-03-15 10:31:28 -0700 14) end
+    ^4832fe2 (Scott Chacon 2008-03-15 10:31:28 -0700 15)
+    9f6560e4 (Scott Chacon 2008-03-17 21:52:20 -0700 16) def log(tree = 'master')
+    79eaf55d (Scott Chacon 2008-04-06 10:15:08 -0700 17) command("git log #{tree}")
+    9f6560e4 (Scott Chacon 2008-03-17 21:52:20 -0700 18) end
+    9f6560e4 (Scott Chacon 2008-03-17 21:52:20 -0700 19)
+    42cf2861 (Magnus Chacon 2008-04-13 10:45:01 -0700 20) def blame(path)
+    42cf2861 (Magnus Chacon 2008-04-13 10:45:01 -0700 21) command("git blame #{path}")
+    42cf2861 (Magnus Chacon 2008-04-13 10:45:01 -0700 22) end</pre>
 
 <p>请注意第一个域里是最后一次修改该行的那次提交的 SHA-1
     值。接下去的两个域是从那次提交中抽取的值——作者姓名和日期——所以你可以方便地获知谁在什么时候修改了这一行。在这后面是行号和文件的内容。请注意<code>^4832fe2</code>提交的那些行，这些指的是文件最初提交的那些行。那个提交是文件第一次被加入这个项目时存在的，自那以后未被修改过。这会带来小小的困惑，因为你已经至少看到了Git使用<code>^</code>来修饰一个提交的SHA值的三种不同的意义，但这里确实就是这个意思。
@@ -832,20 +830,20 @@
     blame</code>后加上<code>-C</code>，Git会分析你在标注的文件然后尝试找出其中代码片段的原始出处，如果它是从其他地方拷贝过来的话。最近，我在将一个名叫<code>GITServerHandler.m</code>的文件分解到多个文件中，其中一个是<code>GITPackUpload.m</code>。通过对<code>GITPackUpload.m</code>执行带<code>-C</code>参数的blame命令，我可以看到代码块的原始出处：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git blame </span><span class="pun">-</span><span class="pln">C </span><span class="pun">-</span><span class="pln">L </span><span class="lit">141</span><span class="pun">,</span><span class="lit">153</span><span class="pln"> </span><span class="typ">GITPackUpload</span><span class="pun">.</span><span class="pln">m
-    f344f58d </span><span class="typ">GITServerHandler</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">04</span><span class="pln"> </span><span class="lit">141</span><span class="pun">)</span><span class="pln">
-    f344f58d </span><span class="typ">GITServerHandler</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">04</span><span class="pln"> </span><span class="lit">142</span><span class="pun">)</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">void</span><span class="pun">)</span><span class="pln"> gatherObjectShasFromC
-    f344f58d </span><span class="typ">GITServerHandler</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">04</span><span class="pln"> </span><span class="lit">143</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-    </span><span class="lit">70befddd</span><span class="pln"> </span><span class="typ">GITServerHandler</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">22</span><span class="pln"> </span><span class="lit">144</span><span class="pun">)</span><span class="pln"> </span><span class="com">//NSLog(@"GATHER COMMI</span><span class="pln">
-    ad11ac80 </span><span class="typ">GITPackUpload</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">24</span><span class="pln"> </span><span class="lit">145</span><span class="pun">)</span><span class="pln">
-    ad11ac80 </span><span class="typ">GITPackUpload</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">24</span><span class="pln"> </span><span class="lit">146</span><span class="pun">)</span><span class="pln"> </span><span class="typ">NSString</span><span class="pln"> </span><span class="pun">*</span><span class="pln">parentSha</span><span class="pun">;</span><span class="pln">
-    ad11ac80 </span><span class="typ">GITPackUpload</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">24</span><span class="pln"> </span><span class="lit">147</span><span class="pun">)</span><span class="pln"> </span><span class="typ">GITCommit</span><span class="pln"> </span><span class="pun">*</span><span class="pln">commit </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">g
-    ad11ac80 </span><span class="typ">GITPackUpload</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">24</span><span class="pln"> </span><span class="lit">148</span><span class="pun">)</span><span class="pln">
-    ad11ac80 </span><span class="typ">GITPackUpload</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">24</span><span class="pln"> </span><span class="lit">149</span><span class="pun">)</span><span class="pln"> </span><span class="com">//NSLog(@"GATHER COMMI</span><span class="pln">
-    ad11ac80 </span><span class="typ">GITPackUpload</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">24</span><span class="pln"> </span><span class="lit">150</span><span class="pun">)</span><span class="pln">
-    </span><span class="lit">56ef2caf</span><span class="pln"> </span><span class="typ">GITServerHandler</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">05</span><span class="pln"> </span><span class="lit">151</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">commit</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-    </span><span class="lit">56ef2caf</span><span class="pln"> </span><span class="typ">GITServerHandler</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">05</span><span class="pln"> </span><span class="lit">152</span><span class="pun">)</span><span class="pln"> </span><span class="pun">[</span><span class="pln">refDict setOb
-    </span><span class="lit">56ef2caf</span><span class="pln"> </span><span class="typ">GITServerHandler</span><span class="pun">.</span><span class="pln">m </span><span class="pun">(</span><span class="typ">Scott</span><span class="pln"> </span><span class="lit">2009</span><span class="pun">-</span><span class="lit">01</span><span class="pun">-</span><span class="lit">05</span><span class="pln"> </span><span class="lit">153</span><span class="pun">)</span></code></pre>
+<pre>$ git blame -C -L 141,153 GITPackUpload.m
+    f344f58d GITServerHandler.m (Scott 2009-01-04 141)
+    f344f58d GITServerHandler.m (Scott 2009-01-04 142) - (void) gatherObjectShasFromC
+    f344f58d GITServerHandler.m (Scott 2009-01-04 143) {
+    70befddd GITServerHandler.m (Scott 2009-03-22 144) //NSLog(@"GATHER COMMI
+    ad11ac80 GITPackUpload.m (Scott 2009-03-24 145)
+    ad11ac80 GITPackUpload.m (Scott 2009-03-24 146) NSString *parentSha;
+    ad11ac80 GITPackUpload.m (Scott 2009-03-24 147) GITCommit *commit = [g
+    ad11ac80 GITPackUpload.m (Scott 2009-03-24 148)
+    ad11ac80 GITPackUpload.m (Scott 2009-03-24 149) //NSLog(@"GATHER COMMI
+    ad11ac80 GITPackUpload.m (Scott 2009-03-24 150)
+    56ef2caf GITServerHandler.m (Scott 2009-01-05 151) if(commit) {
+    56ef2caf GITServerHandler.m (Scott 2009-01-05 152) [refDict setOb
+    56ef2caf GITServerHandler.m (Scott 2009-01-05 153)</pre>
 
 <p>这真的非常有用。通常，你会把你拷贝代码的那次提交作为原始提交，因为这是你在这个文件中第一次接触到那几行。Git可以告诉你编写那些行的原始提交，即便是在另一个文件里。 </p>
 
@@ -858,48 +856,48 @@
     start</code>启动，然后你用<code>git bisect bad</code>来告诉系统当前的提交已经有问题了。然后你必须告诉bisect已知的最后一次正常状态是哪次提交，使用<code>git bisect good
     [good_commit]</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git bisect start
+<pre>$ git bisect start
     $ git bisect bad
-    $ git bisect good v1</span><span class="pun">.</span><span class="lit">0</span><span class="pln">
-    </span><span class="typ">Bisecting</span><span class="pun">:</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> revisions left to test after </span><span class="kwd">this</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">ecb6e1bc347ccecc5f9350d878ce677feb13d3b2</span><span class="pun">]</span><span class="pln"> error handling on repo</span></code></pre>
+    $ git bisect good v1.0
+    Bisecting: 6 revisions left to test after this
+    [ecb6e1bc347ccecc5f9350d878ce677feb13d3b2] error handling on repo</pre>
 
 <p>Git
     发现在你标记为正常的提交(v1.0)和当前的错误版本之间有大约12次提交，于是它检出中间的一个。在这里，你可以运行测试来检查问题是否存在于这次提交。如果是，那么它是在这个中间提交之前的某一次引入的；如果否，那么问题是在中间提交之后引入的。假设这里是没有错误的，那么你就通过<code>git
         bisect good</code>来告诉 Git 然后继续你的旅程：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git bisect good
-    </span><span class="typ">Bisecting</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> revisions left to test after </span><span class="kwd">this</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">b047b02ea83310a70fd603dc8cd7a6cd13d15c04</span><span class="pun">]</span><span class="pln"> secure </span><span class="kwd">this</span><span class="pln"> thing</span></code></pre>
+<pre>$ git bisect good
+    Bisecting: 3 revisions left to test after this
+    [b047b02ea83310a70fd603dc8cd7a6cd13d15c04] secure this thing</pre>
 
 <p>现在你在另外一个提交上了，在你刚刚测试通过的和一个错误提交的中点处。你再次运行测试然后发现这次提交是错误的，因此你通过<code>git bisect bad</code>来告诉Git：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git bisect bad
-    </span><span class="typ">Bisecting</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> revisions left to test after </span><span class="kwd">this</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">f71ce38690acf49c1f3c9bea38e09d82a5ce6014</span><span class="pun">]</span><span class="pln"> drop exceptions table</span></code></pre>
+<pre>$ git bisect bad
+    Bisecting: 1 revisions left to test after this
+    [f71ce38690acf49c1f3c9bea38e09d82a5ce6014] drop exceptions table</pre>
 
 <p>这次提交是好的，那么 Git 就获得了确定问题引入位置所需的所有信息。它告诉你第一个错误提交的 SHA-1 值并且显示一些提交说明以及哪些文件在那次提交里修改过，这样你可以找出缺陷被引入的根源：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git bisect good
-    b047b02ea83310a70fd603dc8cd7a6cd13d15c04 </span><span class="kwd">is</span><span class="pln"> first bad commit
+<pre>$ git bisect good
+    b047b02ea83310a70fd603dc8cd7a6cd13d15c04 is first bad commit
     commit b047b02ea83310a70fd603dc8cd7a6cd13d15c04
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> PJ </span><span class="typ">Hyett</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">pjhyett@example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Tue</span><span class="pln"> </span><span class="typ">Jan</span><span class="pln"> </span><span class="lit">27</span><span class="pln"> </span><span class="lit">14</span><span class="pun">:</span><span class="lit">48</span><span class="pun">:</span><span class="lit">32</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0800</span><span class="pln">
+    Author: PJ Hyett &lt;pjhyett@example.com&gt;
+    Date: Tue Jan 27 14:48:32 2009 -0800
 
-    secure </span><span class="kwd">this</span><span class="pln"> thing
+    secure this thing
 
-    </span><span class="pun">:</span><span class="lit">040000</span><span class="pln"> </span><span class="lit">040000</span><span class="pln"> </span><span class="lit">40ee3e7821b895e52c1695092db9bdc4c61d1730</span><span class="pln">
-    f24d3c6ebcfc639b1a3814550e62d60b8e68a8e4 M config</span></code></pre>
+    :040000 040000 40ee3e7821b895e52c1695092db9bdc4c61d1730
+    f24d3c6ebcfc639b1a3814550e62d60b8e68a8e4 M config</pre>
 
 <p>当你完成之后，你应该运行<code>git bisect reset</code>来重设你的HEAD到你开始前的地方，否则你会处于一个诡异的地方：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git bisect reset</span></code></pre>
+<pre>$ git bisect reset</pre>
 
 <p>这是个强大的工具，可以帮助你检查上百的提交，在几分钟内找出缺陷引入的位置。事实上，如果你有一个脚本会在工程正常时返回0，错误时返回非0的话，你可以完全自动地执行<code>git bisect</code>。首先你需要提供已知的错误和正确提交来告诉它二分查找的范围。你可以通过<code>bisect
     start</code>命令来列出它们，先列出已知的错误提交再列出已知的正确提交：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git bisect start HEAD v1</span><span class="pun">.</span><span class="lit">0</span><span class="pln">
-    $ git bisect run test</span><span class="pun">-</span><span class="pln">error</span><span class="pun">.</span><span class="pln">sh</span></code></pre>
+<pre>$ git bisect start HEAD v1.0
+    $ git bisect run test-error.sh</pre>
 
 <p>这样会自动地在每一个检出的提交里运行<code>test-error.sh</code>直到Git找出第一个破损的提交。你也可以运行像<code>make</code>或者<code>make tests</code>或者任何你所拥有的来为你执行自动化的测试。
 </p>
@@ -919,46 +917,46 @@
 <p>假设你想把 Rack 库（一个 Ruby 的 web 服务器网关接口）加入到你的项目中，可能既要保持你自己的变更，又要延续上游的变更。首先你要把外部的仓库克隆到你的子目录中。你通过<code>git submodule
     add</code>将外部项目加为子模块：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git submodule add git</span><span class="pun">:</span><span class="com">//github.com/chneukirchen/rack.git rack</span><span class="pln">
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">subtest</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">/.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3181</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Compressing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1534</span><span class="pun">/</span><span class="lit">1534</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">3181</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1951</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">2623</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1603</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Receiving</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3181</span><span class="pun">/</span><span class="lit">3181</span><span class="pun">),</span><span class="pln"> </span><span class="lit">675.42</span><span class="pln"> </span><span class="typ">KiB</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="lit">422</span><span class="pln"> </span><span class="typ">KiB</span><span class="pun">/</span><span class="pln">s</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Resolving</span><span class="pln"> deltas</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1951</span><span class="pun">/</span><span class="lit">1951</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span></code></pre>
+<pre>$ git submodule add git://github.com/chneukirchen/rack.git rack
+    Initialized empty Git repository in /opt/subtest/rack/.git/
+    remote: Counting objects: 3181, done.
+    remote: Compressing objects: 100% (1534/1534), done.
+    remote: Total 3181 (delta 1951), reused 2623 (delta 1603)
+    Receiving objects: 100% (3181/3181), 675.42 KiB | 422 KiB/s, done.
+    Resolving deltas: 100% (1951/1951), done.</pre>
 
 <p>现在你就在项目里的<code>rack</code>子目录下有了一个 Rack 项目。你可以进入那个子目录，进行变更，加入你自己的远程可写仓库来推送你的变更，从原始仓库拉取和归并等等。如果你在加入子模块后立刻运行<code>git
     status</code>，你会看到下面两项：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git status
-    </span><span class="com"># On branch master</span><span class="pln">
-    </span><span class="com"># Changes to be committed:</span><span class="pln">
-    </span><span class="com"># (use "git reset HEAD &lt;file&gt;..." to unstage)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># new file: .gitmodules</span><span class="pln">
-    </span><span class="com"># new file: rack</span><span class="pln">
-    </span><span class="com">#</span></code></pre>
+<pre>$ git status
+    # On branch master
+    # Changes to be committed:
+    # (use "git reset HEAD &lt;file&gt;..." to unstage)
+    #
+    # new file: .gitmodules
+    # new file: rack
+    #</pre>
 
 <p>首先你注意到有一个<code>.gitmodules</code>文件。这是一个配置文件，保存了项目 URL 和你拉取到的本地子目录</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cat </span><span class="pun">.</span><span class="pln">gitmodules
-    </span><span class="pun">[</span><span class="pln">submodule </span><span class="str">"rack"</span><span class="pun">]</span><span class="pln">
-    path </span><span class="pun">=</span><span class="pln"> rack
-    url </span><span class="pun">=</span><span class="pln"> git</span><span class="pun">:</span><span class="com">//github.com/chneukirchen/rack.git</span></code></pre>
+<pre>$ cat .gitmodules
+    [submodule "rack"]
+    path = rack
+    url = git://github.com/chneukirchen/rack.git</pre>
 
 <p>如果你有多个子模块，这个文件里会有多个条目。很重要的一点是这个文件跟其他文件一样也是处于版本控制之下的，就像你的<code>.gitignore</code>文件一样。它跟项目里的其他文件一样可以被推送和拉取。这是其他克隆此项目的人获知子模块项目来源的途径。
 </p>
 
 <p><code>git status</code>的输出里所列的另一项目是 rack 。如果你运行在那上面运行<code>git diff</code>，会发现一些有趣的东西：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git diff </span><span class="pun">--</span><span class="pln">cached rack
-    diff </span><span class="pun">--</span><span class="pln">git a</span><span class="pun">/</span><span class="pln">rack b</span><span class="pun">/</span><span class="pln">rack
-    </span><span class="kwd">new</span><span class="pln"> file mode </span><span class="lit">160000</span><span class="pln">
-    index </span><span class="lit">0000000.</span><span class="pun">.</span><span class="lit">08d709f</span><span class="pln">
-    </span><span class="pun">---</span><span class="pln"> </span><span class="pun">/</span><span class="pln">dev</span><span class="pun">/</span><span class="kwd">null</span><span class="pln">
-    </span><span class="pun">+++</span><span class="pln"> b</span><span class="pun">/</span><span class="pln">rack
-    </span><span class="pun">@@</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pln"> </span><span class="pun">@@</span><span class="pln">
-    </span><span class="pun">+</span><span class="typ">Subproject</span><span class="pln"> commit </span><span class="lit">08d709f78b8c5b0fbeb7821e37fa53e69afcf433</span></code></pre>
+<pre>$ git diff --cached rack
+    diff --git a/rack b/rack
+    new file mode 160000
+    index 0000000..08d709f
+    --- /dev/null
+    +++ b/rack
+    @@ -0,0 +1 @@
+    +Subproject commit 08d709f78b8c5b0fbeb7821e37fa53e69afcf433</pre>
 
 <p>尽管<code>rack</code>是你工作目录里的子目录，但 Git 把它视作一个子模块，当你不在那个目录里时并不记录它的内容。取而代之的是，Git
     将它记录成来自那个仓库的一个特殊的提交。当你在那个子目录里修改并提交时，子项目会通知那里的 HEAD 已经发生变更并记录你当前正在工作的那个提交；通过那样的方法，当其他人克隆此项目，他们可以重新创建一致的环境。</p>
@@ -967,117 +965,117 @@
 
 <p>当你提交时，会看到类似下面的：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git commit </span><span class="pun">-</span><span class="pln">m </span><span class="str">'first commit with submodule rack'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">master </span><span class="lit">0550271</span><span class="pun">]</span><span class="pln"> first commit </span><span class="kwd">with</span><span class="pln"> submodule rack
-    </span><span class="lit">2</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> deletions</span><span class="pun">(-)</span><span class="pln">
-    create mode </span><span class="lit">100644</span><span class="pln"> </span><span class="pun">.</span><span class="pln">gitmodules
-    create mode </span><span class="lit">160000</span><span class="pln"> rack</span></code></pre>
+<pre>$ git commit -m 'first commit with submodule rack'
+    [master 0550271] first commit with submodule rack
+    2 files changed, 4 insertions(+), 0 deletions(-)
+    create mode 100644 .gitmodules
+    create mode 160000 rack</pre>
 
 <p>注意 rack 条目的 160000 模式。这在Git中是一个特殊模式，基本意思是你将一个提交记录为一个目录项而不是子目录或者文件。</p>
 
 <p>你可以将<code>rack</code>目录当作一个独立的项目，保持一个指向子目录的最新提交的指针然后反复地更新上层项目。所有的Git命令都在两个子目录里独立工作：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">-</span><span class="lit">1</span><span class="pln">
-    commit </span><span class="lit">0550271328a0038865aad6331e620cd7238601bb</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">9</span><span class="pln"> </span><span class="lit">09</span><span class="pun">:</span><span class="lit">03</span><span class="pun">:</span><span class="lit">56</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
+<pre>$ git log -1
+    commit 0550271328a0038865aad6331e620cd7238601bb
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Thu Apr 9 09:03:56 2009 -0700
 
-    first commit </span><span class="kwd">with</span><span class="pln"> submodule rack
-    $ cd rack</span><span class="pun">/</span><span class="pln">
-    $ git log </span><span class="pun">-</span><span class="lit">1</span><span class="pln">
-    commit </span><span class="lit">08d709f78b8c5b0fbeb7821e37fa53e69afcf433</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Christian</span><span class="pln"> </span><span class="typ">Neukirchen</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">chneukirchen@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Wed</span><span class="pln"> </span><span class="typ">Mar</span><span class="pln"> </span><span class="lit">25</span><span class="pln"> </span><span class="lit">14</span><span class="pun">:</span><span class="lit">49</span><span class="pun">:</span><span class="lit">04</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">+</span><span class="lit">0100</span><span class="pln">
+    first commit with submodule rack
+    $ cd rack/
+    $ git log -1
+    commit 08d709f78b8c5b0fbeb7821e37fa53e69afcf433
+    Author: Christian Neukirchen &lt;chneukirchen@gmail.com&gt;
+    Date: Wed Mar 25 14:49:04 2009 +0100
 
-    </span><span class="typ">Document</span><span class="pln"> version change</span></code></pre>
+    Document version change</pre>
 
 <h3>克隆一个带子模块的项目</h3>
 
 <p>这里你将克隆一个带子模块的项目。当你接收到这样一个项目，你将得到了包含子项目的目录，但里面没有文件：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone git</span><span class="pun">:</span><span class="com">//github.com/schacon/myproject.git</span><span class="pln">
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">myproject</span><span class="pun">/.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">6</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Compressing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">4</span><span class="pun">/</span><span class="lit">4</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">6</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">0</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">0</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">0</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Receiving</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">6</span><span class="pun">/</span><span class="lit">6</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
+<pre>$ git clone git://github.com/schacon/myproject.git
+    Initialized empty Git repository in /opt/myproject/.git/
+    remote: Counting objects: 6, done.
+    remote: Compressing objects: 100% (4/4), done.
+    remote: Total 6 (delta 0), reused 0 (delta 0)
+    Receiving objects: 100% (6/6), done.
     $ cd myproject
-    $ ls </span><span class="pun">-</span><span class="pln">l
-    total </span><span class="lit">8</span><span class="pln">
-    </span><span class="pun">-</span><span class="pln">rw</span><span class="pun">-</span><span class="pln">r</span><span class="pun">--</span><span class="pln">r</span><span class="pun">--</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> schacon admin </span><span class="lit">3</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">9</span><span class="pln"> </span><span class="lit">09</span><span class="pun">:</span><span class="lit">11</span><span class="pln"> README
-    drwxr</span><span class="pun">-</span><span class="pln">xr</span><span class="pun">-</span><span class="pln">x </span><span class="lit">2</span><span class="pln"> schacon admin </span><span class="lit">68</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">9</span><span class="pln"> </span><span class="lit">09</span><span class="pun">:</span><span class="lit">11</span><span class="pln"> rack
-    $ ls rack</span><span class="pun">/</span><span class="pln">
-    $</span></code></pre>
+    $ ls -l
+    total 8
+    -rw-r--r-- 1 schacon admin 3 Apr 9 09:11 README
+    drwxr-xr-x 2 schacon admin 68 Apr 9 09:11 rack
+    $ ls rack/
+    $</pre>
 
 <p><code>rack</code>目录存在了，但是是空的。你必须运行两个命令：<code>git submodule init</code>来初始化你的本地配置文件，<code>git submodule update</code>来从那个项目拉取所有数据并检出你上层项目里所列的合适的提交：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git submodule init
-    </span><span class="typ">Submodule</span><span class="pln"> </span><span class="str">'rack'</span><span class="pln"> </span><span class="pun">(</span><span class="pln">git</span><span class="pun">:</span><span class="com">//github.com/chneukirchen/rack.git) registered for path 'rack'</span><span class="pln">
+<pre>$ git submodule init
+    Submodule 'rack' (git://github.com/chneukirchen/rack.git) registered for path 'rack'
     $ git submodule update
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">myproject</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">/.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3181</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Compressing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1534</span><span class="pun">/</span><span class="lit">1534</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">3181</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1951</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">2623</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1603</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Receiving</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3181</span><span class="pun">/</span><span class="lit">3181</span><span class="pun">),</span><span class="pln"> </span><span class="lit">675.42</span><span class="pln"> </span><span class="typ">KiB</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="lit">173</span><span class="pln"> </span><span class="typ">KiB</span><span class="pun">/</span><span class="pln">s</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Resolving</span><span class="pln"> deltas</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1951</span><span class="pun">/</span><span class="lit">1951</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Submodule</span><span class="pln"> path </span><span class="str">'rack'</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">checked</span><span class="pln"> </span><span class="kwd">out</span><span class="pln"> </span><span class="str">'08d709f78b8c5b0fbeb7821e37fa53e69afcf433'</span></code></pre>
+    Initialized empty Git repository in /opt/myproject/rack/.git/
+    remote: Counting objects: 3181, done.
+    remote: Compressing objects: 100% (1534/1534), done.
+    remote: Total 3181 (delta 1951), reused 2623 (delta 1603)
+    Receiving objects: 100% (3181/3181), 675.42 KiB | 173 KiB/s, done.
+    Resolving deltas: 100% (1951/1951), done.
+    Submodule path 'rack': checked out '08d709f78b8c5b0fbeb7821e37fa53e69afcf433'</pre>
 
 <p>现在你的<code>rack</code>子目录就处于你先前提交的确切状态了。如果另外一个开发者变更了 rack 的代码并提交，你拉取那个引用然后归并之，将得到稍有点怪异的东西：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git merge origin</span><span class="pun">/</span><span class="pln">master
-    </span><span class="typ">Updating</span><span class="pln"> </span><span class="lit">0550271.</span><span class="pun">.</span><span class="lit">85a3eee</span><span class="pln">
-    </span><span class="typ">Fast</span><span class="pln"> forward
-    rack </span><span class="pun">|</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">+-</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> deletions</span><span class="pun">(-)</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">master</span><span class="pun">*]</span><span class="pln">$ git status
-    </span><span class="com"># On branch master</span><span class="pln">
-    </span><span class="com"># Changes not staged for commit:</span><span class="pln">
-    </span><span class="com"># (use "git add &lt;file&gt;..." to update what will be committed)</span><span class="pln">
-    </span><span class="com"># (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># modified: rack</span><span class="pln">
-    </span><span class="com">#</span></code></pre>
+<pre>$ git merge origin/master
+    Updating 0550271..85a3eee
+    Fast forward
+    rack | 2 +-
+    1 files changed, 1 insertions(+), 1 deletions(-)
+    [master*]$ git status
+    # On branch master
+    # Changes not staged for commit:
+    # (use "git add &lt;file&gt;..." to update what will be committed)
+    # (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+    #
+    # modified: rack
+    #</pre>
 
 <p>你归并来的仅仅上是一个指向你的子模块的指针；但是它并不更新你子模块目录里的代码，所以看起来你的工作目录处于一个临时状态：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git diff
-    diff </span><span class="pun">--</span><span class="pln">git a</span><span class="pun">/</span><span class="pln">rack b</span><span class="pun">/</span><span class="pln">rack
-    index </span><span class="lit">6c5e70b</span><span class="pun">..</span><span class="lit">08d709f</span><span class="pln"> </span><span class="lit">160000</span><span class="pln">
-    </span><span class="pun">---</span><span class="pln"> a</span><span class="pun">/</span><span class="pln">rack
-    </span><span class="pun">+++</span><span class="pln"> b</span><span class="pun">/</span><span class="pln">rack
-    </span><span class="pun">@@</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1</span><span class="pln"> </span><span class="pun">+</span><span class="lit">1</span><span class="pln"> </span><span class="pun">@@</span><span class="pln">
-    </span><span class="pun">-</span><span class="typ">Subproject</span><span class="pln"> commit </span><span class="lit">6c5e70b984a60b3cecd395edd5b48a7575bf58e0</span><span class="pln">
-    </span><span class="pun">+</span><span class="typ">Subproject</span><span class="pln"> commit </span><span class="lit">08d709f78b8c5b0fbeb7821e37fa53e69afcf433</span></code></pre>
+<pre>$ git diff
+    diff --git a/rack b/rack
+    index 6c5e70b..08d709f 160000
+    --- a/rack
+    +++ b/rack
+    @@ -1 +1 @@
+    -Subproject commit 6c5e70b984a60b3cecd395edd5b48a7575bf58e0
+    +Subproject commit 08d709f78b8c5b0fbeb7821e37fa53e69afcf433</pre>
 
 <p>事情就是这样，因为你所拥有的指向子模块的指针和子模块目录的真实状态并不匹配。为了修复这一点，你必须再次运行<code>git submodule update</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git submodule update
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Compressing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3</span><span class="pun">/</span><span class="lit">3</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">2</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">0</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Unpacking</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3</span><span class="pun">/</span><span class="lit">3</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">From</span><span class="pln"> git@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="pln">schacon</span><span class="pun">/</span><span class="pln">rack
-    </span><span class="lit">08d709f</span><span class="pun">..</span><span class="lit">6c5e70b</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> origin</span><span class="pun">/</span><span class="pln">master
-    </span><span class="typ">Submodule</span><span class="pln"> path </span><span class="str">'rack'</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">checked</span><span class="pln"> </span><span class="kwd">out</span><span class="pln"> </span><span class="str">'6c5e70b984a60b3cecd395edd5b48a7575bf58e0'</span></code></pre>
+<pre>$ git submodule update
+    remote: Counting objects: 5, done.
+    remote: Compressing objects: 100% (3/3), done.
+    remote: Total 3 (delta 1), reused 2 (delta 0)
+    Unpacking objects: 100% (3/3), done.
+    From git@github.com:schacon/rack
+    08d709f..6c5e70b master -&gt; origin/master
+    Submodule path 'rack': checked out '6c5e70b984a60b3cecd395edd5b48a7575bf58e0'</pre>
 
 <p>每次你从主项目中拉取一个子模块的变更都必须这样做。看起来很怪但是管用。</p>
 
 <p>一个常见问题是当开发者对子模块做了一个本地的变更但是并没有推送到公共服务器。然后他们提交了一个指向那个非公开状态的指针然后推送上层项目。当其他开发者试图运行<code>git submodule update</code>，那个子模块系统会找不到所引用的提交，因为它只存在于第一个开发者的系统中。如果发生那种情况，你会看到类似这样的错误：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git submodule update
-    fatal</span><span class="pun">:</span><span class="pln"> reference isn</span><span class="pun">’</span><span class="pln">t a tree</span><span class="pun">:</span><span class="pln"> </span><span class="lit">6c5e70b984a60b3cecd395edd5b48a7575bf58e0</span><span class="pln">
-    </span><span class="typ">Unable</span><span class="pln"> to checkout </span><span class="str">'6c5e70b984a60b3cecd395edd5ba7575bf58e0'</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> submodule path </span><span class="str">'rack'</span></code></pre>
+<pre>$ git submodule update
+    fatal: reference isn’t a tree: 6c5e70b984a60b3cecd395edd5b48a7575bf58e0
+    Unable to checkout '6c5e70b984a60b3cecd395edd5ba7575bf58e0' in submodule path 'rack'</pre>
 
 <p>你不得不去查看谁最后变更了子模块</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git log </span><span class="pun">-</span><span class="lit">1</span><span class="pln"> rack
-    commit </span><span class="lit">85a3eee996800fcfa91e2119372dd4172bf76678</span><span class="pln">
-    </span><span class="typ">Author</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Scott</span><span class="pln"> </span><span class="typ">Chacon</span><span class="pln"> </span><span class="pun">&lt;</span><span class="pln">schacon@gmail</span><span class="pun">.</span><span class="pln">com</span><span class="pun">&gt;</span><span class="pln">
-    </span><span class="typ">Date</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Thu</span><span class="pln"> </span><span class="typ">Apr</span><span class="pln"> </span><span class="lit">9</span><span class="pln"> </span><span class="lit">09</span><span class="pun">:</span><span class="lit">19</span><span class="pun">:</span><span class="lit">14</span><span class="pln"> </span><span class="lit">2009</span><span class="pln"> </span><span class="pun">-</span><span class="lit">0700</span><span class="pln">
+<pre>$ git log -1 rack
+    commit 85a3eee996800fcfa91e2119372dd4172bf76678
+    Author: Scott Chacon &lt;schacon@gmail.com&gt;
+    Date: Thu Apr 9 09:19:14 2009 -0700
 
-    added a submodule reference I will never make </span><span class="kwd">public</span><span class="pun">.</span><span class="pln"> hahahahaha</span><span class="pun">!</span></code></pre>
+    added a submodule reference I will never make public. hahahahaha!</pre>
 
 <p>然后，你给那个家伙发电子邮件说他一通。</p>
 
@@ -1097,59 +1095,59 @@
 
 <p>切换带有子模块的分支同样也很有技巧。如果你创建一个新的分支，增加了一个子模块，然后切换回不带该子模块的分支，你仍然会拥有一个未被追踪的子模块的目录</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout </span><span class="pun">-</span><span class="pln">b rack
-    </span><span class="typ">Switched</span><span class="pln"> to a </span><span class="kwd">new</span><span class="pln"> branch </span><span class="str">"rack"</span><span class="pln">
-    $ git submodule add git@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="pln">schacon</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">.</span><span class="pln">git rack
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">myproj</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">/.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    </span><span class="pun">...</span><span class="pln">
-    </span><span class="typ">Receiving</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3184</span><span class="pun">/</span><span class="lit">3184</span><span class="pun">),</span><span class="pln"> </span><span class="lit">677.42</span><span class="pln"> </span><span class="typ">KiB</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="lit">34</span><span class="pln"> </span><span class="typ">KiB</span><span class="pun">/</span><span class="pln">s</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Resolving</span><span class="pln"> deltas</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1952</span><span class="pun">/</span><span class="lit">1952</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    $ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'added rack submodule'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">rack cc49a69</span><span class="pun">]</span><span class="pln"> added rack submodule
-    </span><span class="lit">2</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> deletions</span><span class="pun">(-)</span><span class="pln">
-    create mode </span><span class="lit">100644</span><span class="pln"> </span><span class="pun">.</span><span class="pln">gitmodules
-    create mode </span><span class="lit">160000</span><span class="pln"> rack
+<pre>$ git checkout -b rack
+    Switched to a new branch "rack"
+    $ git submodule add git@github.com:schacon/rack.git rack
+    Initialized empty Git repository in /opt/myproj/rack/.git/
+    ...
+    Receiving objects: 100% (3184/3184), 677.42 KiB | 34 KiB/s, done.
+    Resolving deltas: 100% (1952/1952), done.
+    $ git commit -am 'added rack submodule'
+    [rack cc49a69] added rack submodule
+    2 files changed, 4 insertions(+), 0 deletions(-)
+    create mode 100644 .gitmodules
+    create mode 160000 rack
     $ git checkout master
-    </span><span class="typ">Switched</span><span class="pln"> to branch </span><span class="str">"master"</span><span class="pln">
+    Switched to branch "master"
     $ git status
-    </span><span class="com"># On branch master</span><span class="pln">
-    </span><span class="com"># Untracked files:</span><span class="pln">
-    </span><span class="com"># (use "git add &lt;file&gt;..." to include in what will be committed)</span><span class="pln">
-    </span><span class="com">#</span><span class="pln">
-    </span><span class="com"># rack/</span></code></pre>
+    # On branch master
+    # Untracked files:
+    # (use "git add &lt;file&gt;..." to include in what will be committed)
+    #
+    # rack/</pre>
 
 <p>你将不得不将它移走或者删除，这样的话当你切换回去的时候必须重新克隆它——你可能会丢失你未推送的本地的变更或分支。</p>
 
 <p>最后一个需要引起注意的是关于从子目录切换到子模块的。如果你已经跟踪了你项目中的一些文件但是想把它们移到子模块去，你必须非常小心，否则Git会生你的气。假设你的项目中有一个子目录里放了 rack
     的文件，然后你想将它转换为子模块。如果你删除子目录然后运行<code>submodule add</code>，Git会向你大吼：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ rm </span><span class="pun">-</span><span class="typ">Rf</span><span class="pln"> rack</span><span class="pun">/</span><span class="pln">
-    $ git submodule add git@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="pln">schacon</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">.</span><span class="pln">git rack
-    </span><span class="str">'rack'</span><span class="pln"> already exists </span><span class="kwd">in</span><span class="pln"> the index</span></code></pre>
+<pre>$ rm -Rf rack/
+    $ git submodule add git@github.com:schacon/rack.git rack
+    'rack' already exists in the index</pre>
 
 <p>你必须先将<code>rack</code>目录撤回。然后你才能加入子模块：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git rm </span><span class="pun">-</span><span class="pln">r rack
-    $ git submodule add git@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="pln">schacon</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">.</span><span class="pln">git rack
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">testsub</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">/.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3184</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Compressing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1465</span><span class="pun">/</span><span class="lit">1465</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">3184</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1952</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">2770</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1675</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Receiving</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3184</span><span class="pun">/</span><span class="lit">3184</span><span class="pun">),</span><span class="pln"> </span><span class="lit">677.42</span><span class="pln"> </span><span class="typ">KiB</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="lit">88</span><span class="pln"> </span><span class="typ">KiB</span><span class="pun">/</span><span class="pln">s</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Resolving</span><span class="pln"> deltas</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1952</span><span class="pun">/</span><span class="lit">1952</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span></code></pre>
+<pre>$ git rm -r rack
+    $ git submodule add git@github.com:schacon/rack.git rack
+    Initialized empty Git repository in /opt/testsub/rack/.git/
+    remote: Counting objects: 3184, done.
+    remote: Compressing objects: 100% (1465/1465), done.
+    remote: Total 3184 (delta 1952), reused 2770 (delta 1675)
+    Receiving objects: 100% (3184/3184), 677.42 KiB | 88 KiB/s, done.
+    Resolving deltas: 100% (1952/1952), done.</pre>
 
 <p>现在假设你在一个分支里那样做了。如果你尝试切换回一个仍然在目录里保留那些文件而不是子模块的分支时——你会得到下面的错误：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout master
-    error</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Untracked</span><span class="pln"> working tree file </span><span class="str">'rack/AUTHORS'</span><span class="pln"> would be overwritten </span><span class="kwd">by</span><span class="pln"> merge</span><span class="pun">.</span></code></pre>
+<pre>$ git checkout master
+    error: Untracked working tree file 'rack/AUTHORS' would be overwritten by merge.</pre>
 
 <p>你必须先移除<code>rack</code>子模块的目录才能切换到不包含它的分支： </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ mv rack </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">
+<pre>$ mv rack /tmp/
     $ git checkout master
-    </span><span class="typ">Switched</span><span class="pln"> to branch </span><span class="str">"master"</span><span class="pln">
+    Switched to branch "master"
     $ ls
-    README rack</span></code></pre>
+    README rack</pre>
 
 <p>然后，当你切换回来，你会得到一个空的<code>rack</code>目录。你可以运行<code>git submodule update</code>重新克隆，也可以将<code>/tmp/rack</code>目录重新移回空目录。
 </p>
@@ -1165,52 +1163,52 @@
 
 <p>首先你将 Rack 应用加入到项目中。你将 Rack 项目当作你项目中的一个远程引用，然后将它检出到它自身的分支：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git remote add rack_remote git@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="pln">schacon</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">.</span><span class="pln">git
+<pre>$ git remote add rack_remote git@github.com:schacon/rack.git
     $ git fetch rack_remote
-    warning</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">no</span><span class="pln"> common commits
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3184</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Compressing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1465</span><span class="pun">/</span><span class="lit">1465</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    remote</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">3184</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1952</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">2770</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1675</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">Receiving</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3184</span><span class="pun">/</span><span class="lit">3184</span><span class="pun">),</span><span class="pln"> </span><span class="lit">677.42</span><span class="pln"> </span><span class="typ">KiB</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> </span><span class="typ">KiB</span><span class="pun">/</span><span class="pln">s</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Resolving</span><span class="pln"> deltas</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1952</span><span class="pun">/</span><span class="lit">1952</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">From</span><span class="pln"> git@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="pln">schacon</span><span class="pun">/</span><span class="pln">rack
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">new</span><span class="pln"> branch</span><span class="pun">]</span><span class="pln"> build </span><span class="pun">-&gt;</span><span class="pln"> rack_remote</span><span class="pun">/</span><span class="pln">build
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">new</span><span class="pln"> branch</span><span class="pun">]</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> rack_remote</span><span class="pun">/</span><span class="pln">master
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">new</span><span class="pln"> branch</span><span class="pun">]</span><span class="pln"> rack</span><span class="pun">-</span><span class="lit">0.4</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> rack_remote</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">-</span><span class="lit">0.4</span><span class="pln">
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">new</span><span class="pln"> branch</span><span class="pun">]</span><span class="pln"> rack</span><span class="pun">-</span><span class="lit">0.9</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> rack_remote</span><span class="pun">/</span><span class="pln">rack</span><span class="pun">-</span><span class="lit">0.9</span><span class="pln">
-    $ git checkout </span><span class="pun">-</span><span class="pln">b rack_branch rack_remote</span><span class="pun">/</span><span class="pln">master
-    </span><span class="typ">Branch</span><span class="pln"> rack_branch </span><span class="kwd">set</span><span class="pln"> up to track remote branch refs</span><span class="pun">/</span><span class="pln">remotes</span><span class="pun">/</span><span class="pln">rack_remote</span><span class="pun">/</span><span class="pln">master</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Switched</span><span class="pln"> to a </span><span class="kwd">new</span><span class="pln"> branch </span><span class="str">"rack_branch"</span></code></pre>
+    warning: no common commits
+    remote: Counting objects: 3184, done.
+    remote: Compressing objects: 100% (1465/1465), done.
+    remote: Total 3184 (delta 1952), reused 2770 (delta 1675)
+    Receiving objects: 100% (3184/3184), 677.42 KiB | 4 KiB/s, done.
+    Resolving deltas: 100% (1952/1952), done.
+    From git@github.com:schacon/rack
+    * [new branch] build -&gt; rack_remote/build
+    * [new branch] master -&gt; rack_remote/master
+    * [new branch] rack-0.4 -&gt; rack_remote/rack-0.4
+    * [new branch] rack-0.9 -&gt; rack_remote/rack-0.9
+    $ git checkout -b rack_branch rack_remote/master
+    Branch rack_branch set up to track remote branch refs/remotes/rack_remote/master.
+    Switched to a new branch "rack_branch"</pre>
 
 <p>现在在你的<code>rack_branch</code>分支中就有了Rack项目的根目录，而你自己的项目在<code>master</code>分支中。如果你先检出其中一个然后另外一个，你会看到它们有不同的项目根目录：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ls
-    AUTHORS KNOWN</span><span class="pun">-</span><span class="pln">ISSUES </span><span class="typ">Rakefile</span><span class="pln"> contrib lib
+<pre>$ ls
+    AUTHORS KNOWN-ISSUES Rakefile contrib lib
     COPYING README bin example test
     $ git checkout master
-    </span><span class="typ">Switched</span><span class="pln"> to branch </span><span class="str">"master"</span><span class="pln">
+    Switched to branch "master"
     $ ls
-    README</span></code></pre>
+    README</pre>
 
 <p>要将 Rack 项目当作子目录拉取到你的<code>master</code>项目中。你可以在 Git 中用<code>git read-tree</code>来实现。你会在第9章学到更多与<code>read-tree</code>和它的朋友相关的东西，当前你会知道它读取一个分支的根目录树到当前的暂存区和工作目录。你只要切换回你的<code>master</code>分支，然后拉取<code>rack</code>分支到你主项目的<code>master</code>分支的<code>rack</code>子目录：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git read</span><span class="pun">-</span><span class="pln">tree </span><span class="pun">--</span><span class="pln">prefix</span><span class="pun">=</span><span class="pln">rack</span><span class="pun">/</span><span class="pln"> </span><span class="pun">-</span><span class="pln">u rack_branch</span></code></pre>
+<pre>$ git read-tree --prefix=rack/ -u rack_branch</pre>
 
 <p>当你提交的时候，看起来就像你在那个子目录下拥有Rack的文件——就像你从一个tarball里拷贝的一样。有意思的是你可以比较容易地归并其中一个分支的变更到另外一个。因此，如果 Rack
     项目更新了，你可以通过切换到那个分支并执行拉取来获得上游的变更：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout rack_branch
-    $ git pull</span></code></pre>
+<pre>$ git checkout rack_branch
+    $ git pull</pre>
 
 <p>然后，你可以将那些变更归并回你的 master 分支。你可以使用<code>git merge -s subtree</code>，它会工作的很好；但是 Git
     同时会把历史归并到一起，这可能不是你想要的。为了拉取变更并预置提交说明，需要在<code>-s
         subtree</code>策略选项的同时使用<code>--squash</code>和<code>--no-commit</code>选项。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git checkout master
-    $ git merge </span><span class="pun">--</span><span class="pln">squash </span><span class="pun">-</span><span class="pln">s subtree </span><span class="pun">--</span><span class="kwd">no</span><span class="pun">-</span><span class="pln">commit rack_branch
-    </span><span class="typ">Squash</span><span class="pln"> commit </span><span class="pun">--</span><span class="pln"> </span><span class="kwd">not</span><span class="pln"> updating HEAD
-    </span><span class="typ">Automatic</span><span class="pln"> merge went well</span><span class="pun">;</span><span class="pln"> stopped before committing </span><span class="kwd">as</span><span class="pln"> requested</span></code></pre>
+<pre>$ git checkout master
+    $ git merge --squash -s subtree --no-commit rack_branch
+    Squash commit -- not updating HEAD
+    Automatic merge went well; stopped before committing as requested</pre>
 
 <p>所有 Rack 项目的变更都被归并可以进行本地提交。你也可以做相反的事情——在你主分支的<code>rack</code>目录里进行变更然后归并回<code>rack_branch</code>分支，然后将它们提交给维护者或者推送到上游。
 </p>
@@ -1218,11 +1216,11 @@
 <p>为了得到<code>rack</code>子目录和你<code>rack_branch</code>分支的区别——以决定你是否需要归并它们——你不能使用一般的<code>diff</code>命令。而是对你想比较的分支运行<code>git
     diff-tree</code>：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git diff</span><span class="pun">-</span><span class="pln">tree </span><span class="pun">-</span><span class="pln">p rack_branch</span></code></pre>
+<pre>$ git diff-tree -p rack_branch</pre>
 
 <p>或者，为了比较你的<code>rack</code>子目录和服务器上你拉取时的<code>master</code>分支，你可以运行</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git diff</span><span class="pun">-</span><span class="pln">tree </span><span class="pun">-</span><span class="pln">p rack_remote</span><span class="pun">/</span><span class="pln">master</span></code></pre>
+<pre>$ git diff-tree -p rack_remote/master</pre>
 
 <h2 id="ProGit6_8">6.8 总结</h2>
 

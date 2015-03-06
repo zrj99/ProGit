@@ -2,8 +2,6 @@
     <title>4 服务器上的 Git - Pro Git</title>
     <meta charset="utf-8">
     <link href="files/styles.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="files/prettify.css" rel="stylesheet" type="text/css">
-    <script src="files/prettify.js" type="text/javascript"></script>
 </head>
 <body>
 <p class="bottom-nav"><a class="next" href="5-分布式Git.html">下一节</a><a class="prev" href="3-Git分支.html">上一节</a><a href="0-ProGit.html">Pro Git</a></p>
@@ -48,11 +46,11 @@
 
 <p>如果你使用一个共享的文件系统，就可以在一个本地文件系统中克隆仓库，推送和获取。克隆的时候只需要将远程仓库的路径作为 URL 使用，比如下面这样：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">project</span><span class="pun">.</span><span class="pln">git</span></code></pre>
+<pre>$ git clone /opt/git/project.git</pre>
 
 <p>或者这样：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone file</span><span class="pun">:</span><span class="com">///opt/git/project.git</span></code></pre>
+<pre>$ git clone file:///opt/git/project.git</pre>
 
 <p>如果在 URL 开头明确使用 <code>file://</code> ，那么 Git 会以一种略微不同的方式运行。如果你只给出路径，Git 会尝试使用硬链接或直接复制它所需要的文件。如果使用了
     <code>file://</code> ，Git 会调用它平时通过网络来传输数据的工序，而这种方式的效率相对较低。使用 <code>file://</code> 前缀的主要原因是当你需要一个不包含无关引用或对象的干净仓库副本的时候
@@ -60,7 +58,7 @@
 
 <p>要添加一个本地仓库作为现有 Git 项目的远程仓库，可以这样做：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git remote add local_proj </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">project</span><span class="pun">.</span><span class="pln">git</span></code></pre>
+<pre>$ git remote add local_proj /opt/git/project.git</pre>
 
 <p>然后就可以像在网络上一样向这个远程仓库推送和获取数据了。</p>
 
@@ -86,11 +84,11 @@
 
 <p>通过 SSH 克隆一个 Git 仓库，你可以像下面这样给出 ssh:// 的 URL：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone ssh</span><span class="pun">:</span><span class="com">//user@server/project.git</span></code></pre>
+<pre>$ git clone ssh://user@server/project.git</pre>
 
 <p>或者不指明某个协议 — 这时 Git 会默认使用 SSH ：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone user@server</span><span class="pun">:</span><span class="pln">project</span><span class="pun">.</span><span class="pln">git</span></code></pre>
+<pre>$ git clone user@server:project.git</pre>
 
 <p>如果不指明用户，Git 会默认使用当前登录的用户名连接服务器。 </p>
 
@@ -127,16 +125,16 @@
 <p>最后还有 HTTP 协议。HTTP 或 HTTPS 协议的优美之处在于架设的简便性。基本上，只需要把 Git 的裸仓库文件放在 HTTP 的根目录下，配置一个特定的 <code>post-update</code>
     挂钩（hook）就可以搞定（Git 挂钩的细节见第 7 章）。此后，每个能访问 Git 仓库所在服务器上 web 服务的人都可以进行克隆操作。下面的操作可以允许通过 HTTP 对仓库进行读取：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cd </span><span class="pun">/</span><span class="kwd">var</span><span class="pun">/</span><span class="pln">www</span><span class="pun">/</span><span class="pln">htdocs</span><span class="pun">/</span><span class="pln">
-    $ git clone </span><span class="pun">--</span><span class="pln">bare </span><span class="pun">/</span><span class="pln">path</span><span class="pun">/</span><span class="pln">to</span><span class="pun">/</span><span class="pln">git_project gitproject</span><span class="pun">.</span><span class="pln">git
-    $ cd gitproject</span><span class="pun">.</span><span class="pln">git
-    $ mv hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update</span><span class="pun">.</span><span class="pln">sample hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update
-    $ chmod a</span><span class="pun">+</span><span class="pln">x hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update</span></code></pre>
+<pre>$ cd /var/www/htdocs/
+    $ git clone --bare /path/to/git_project gitproject.git
+    $ cd gitproject.git
+    $ mv hooks/post-update.sample hooks/post-update
+    $ chmod a+x hooks/post-update</pre>
 
 <p>这样就可以了。Git 附带的 <code>post-update</code> 挂钩会默认运行合适的命令（<code>git update-server-info</code>）来确保通过 HTTP
     的获取和克隆正常工作。这条命令在你用 SSH 向仓库推送内容时运行；之后，其他人就可以用下面的命令来克隆仓库：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone http</span><span class="pun">:</span><span class="com">//example.com/gitproject.git</span></code></pre>
+<pre>$ git clone http://example.com/gitproject.git</pre>
 
 <p>在本例中，我们使用了 Apache 设定中常用的 <code>/var/www/htdocs</code> 路径，不过你可以使用任何静态 web 服务 — 把裸仓库放在它的目录里就行。 Git
     的数据是以最基本的静态文件的形式提供的（关于如何提供文件的详情见第 9 章）。</p>
@@ -164,15 +162,15 @@
 <p>开始架设 Git 服务器前，需要先把现有仓库导出为裸仓库 — 即一个不包含当前工作目录的仓库。做法直截了当，克隆时用 <code>--bare</code> 选项即可。裸仓库的目录名一般以 <code>.git</code>
     结尾，像这样：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone </span><span class="pun">--</span><span class="pln">bare my_project my_project</span><span class="pun">.</span><span class="pln">git
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">projects</span><span class="pun">/</span><span class="pln">my_project</span><span class="pun">.</span><span class="pln">git</span><span class="pun">/</span></code></pre>
+<pre>$ git clone --bare my_project my_project.git
+    Initialized empty Git repository in /opt/projects/my_project.git/</pre>
 
 <p>该命令的输出或许会让人有些不解。其实 <code>clone</code> 操作基本上相当于 <code>git init</code> 加 <code>git fetch</code>，所以这里出现的其实是 <code>git
     init</code> 的输出，先由它建立一个空目录，而之后传输数据对象的操作并无任何输出，只是悄悄在幕后执行。现在 <code>my_project.git</code> 目录中已经有了一份 Git 目录数据的副本。</p>
 
 <p>整体上的效果大致相当于：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cp </span><span class="pun">-</span><span class="typ">Rf</span><span class="pln"> my_project</span><span class="pun">/.</span><span class="pln">git my_project</span><span class="pun">.</span><span class="pln">git</span></code></pre>
+<pre>$ cp -Rf my_project/.git my_project.git</pre>
 
 <p>但在配置文件中有若干小改动，不过对用户来讲，使用方式都一样，不会有什么影响。它仅取出 Git 仓库的必要原始数据，存放在该目录中，而不会另外创建工作目录。</p>
 
@@ -181,19 +179,19 @@
 <p>有了裸仓库的副本后，剩下的就是把它放到服务器上并设定相关协议。假设一个域名为 <code>git.example.com</code> 的服务器已经架设好，并可以通过 SSH 访问，我们打算把所有 Git 仓库储存在 <code>/opt/git</code>
     目录下。只要把裸仓库复制过去：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ scp </span><span class="pun">-</span><span class="pln">r my_project</span><span class="pun">.</span><span class="pln">git user@git</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="str">/opt/</span><span class="pln">git</span></code></pre>
+<pre>$ scp -r my_project.git user@git.example.com:/opt/git</pre>
 
 <p>现在，所有对该服务器有 SSH 访问权限，并可读取 <code>/opt/git</code> 目录的用户都可以用下面的命令克隆该项目：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone user@git</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="str">/opt/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">my_project</span><span class="pun">.</span><span class="pln">git</span></code></pre>
+<pre>$ git clone user@git.example.com:/opt/git/my_project.git</pre>
 
 <p>如果某个 SSH 用户对 <code>/opt/git/my_project.git</code> 目录有写权限，那他就有推送权限。如果到该项目目录中运行 <code>git init</code> 命令，并加上 <code>--shared</code>
     选项，那么 Git 会自动修改该仓库目录的组权限为可写（译注：实际上 <code>--shared</code> 可以指定其他行为，只是默认为将组权限改为可写并执行 <code>g+sx</code>，所以最后会得到 <code>rws</code>。）。
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ssh user@git</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">com
-    $ cd </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">my_project</span><span class="pun">.</span><span class="pln">git
-    $ git init </span><span class="pun">--</span><span class="pln">bare </span><span class="pun">--</span><span class="pln">shared</span></code></pre>
+<pre>$ ssh user@git.example.com
+    $ cd /opt/git/my_project.git
+    $ git init --bare --shared</pre>
 
 <p>由此可见，根据现有的 Git 仓库创建一个裸仓库，然后把它放上你和同事都有 SSH 访问权的服务器是多么容易。现在已经可以开始在同一项目上密切合作了。</p>
 
@@ -225,36 +223,36 @@
 <p>大多数 Git 服务器都会选择使用 SSH 公钥来进行授权。系统中的每个用户都必须提供一个公钥用于授权，没有的话就要生成一个。生成公钥的过程在所有操作系统上都差不多。首先先确认一下是否已经有一个公钥了。SSH
     公钥默认储存在账户的主目录下的 <code>~/.ssh</code> 目录。进去看看：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cd </span><span class="pun">~/.</span><span class="pln">ssh
+<pre>$ cd ~/.ssh
     $ ls
     authorized_keys2 id_dsa known_hosts
-    config id_dsa</span><span class="pun">.</span><span class="pln">pub</span></code></pre>
+    config id_dsa.pub</pre>
 
 <p>关键是看有没有用 <code>something</code> 和 <code>something.pub</code> 来命名的一对文件，这个 <code>something</code> 通常就是
     <code>id_dsa</code> 或 <code>id_rsa</code>。有 <code>.pub</code> 后缀的文件就是公钥，另一个文件则是密钥。假如没有这些文件，或者干脆连 <code>.ssh</code>
     目录都没有，可以用 <code>ssh-keygen</code> 来创建。该程序在 Linux/Mac 系统上由 SSH 包提供，而在 Windows 上则包含在 MSysGit 包里：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ssh</span><span class="pun">-</span><span class="pln">keygen
-    </span><span class="typ">Generating</span><span class="pln"> </span><span class="kwd">public</span><span class="pun">/</span><span class="kwd">private</span><span class="pln"> rsa key pair</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Enter</span><span class="pln"> file </span><span class="kwd">in</span><span class="pln"> which to save the key </span><span class="pun">(</span><span class="str">/Users/</span><span class="pln">schacon</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">):</span><span class="pln">
-    </span><span class="typ">Enter</span><span class="pln"> passphrase </span><span class="pun">(</span><span class="pln">empty </span><span class="kwd">for</span><span class="pln"> </span><span class="kwd">no</span><span class="pln"> passphrase</span><span class="pun">):</span><span class="pln">
-    </span><span class="typ">Enter</span><span class="pln"> same passphrase again</span><span class="pun">:</span><span class="pln">
-    </span><span class="typ">Your</span><span class="pln"> identification has been saved </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="typ">Users</span><span class="pun">/</span><span class="pln">schacon</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Your</span><span class="pln"> </span><span class="kwd">public</span><span class="pln"> key has been saved </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="typ">Users</span><span class="pun">/</span><span class="pln">schacon</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">pub</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">The</span><span class="pln"> key fingerprint </span><span class="kwd">is</span><span class="pun">:</span><span class="pln">
-    </span><span class="lit">43</span><span class="pun">:</span><span class="pln">c5</span><span class="pun">:</span><span class="lit">5b</span><span class="pun">:</span><span class="lit">5f</span><span class="pun">:</span><span class="pln">b1</span><span class="pun">:</span><span class="pln">f1</span><span class="pun">:</span><span class="lit">50</span><span class="pun">:</span><span class="lit">43</span><span class="pun">:</span><span class="pln">ad</span><span class="pun">:</span><span class="lit">20</span><span class="pun">:</span><span class="pln">a6</span><span class="pun">:</span><span class="lit">92</span><span class="pun">:</span><span class="lit">6a</span><span class="pun">:</span><span class="lit">1f</span><span class="pun">:</span><span class="lit">9a</span><span class="pun">:</span><span class="lit">3a</span><span class="pln"> schacon@agadorlaptop</span><span class="pun">.</span><span class="kwd">local</span></code></pre>
+<pre>$ ssh-keygen
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/Users/schacon/.ssh/id_rsa):
+    Enter passphrase (empty for no passphrase):
+    Enter same passphrase again:
+    Your identification has been saved in /Users/schacon/.ssh/id_rsa.
+    Your public key has been saved in /Users/schacon/.ssh/id_rsa.pub.
+    The key fingerprint is:
+    43:c5:5b:5f:b1:f1:50:43:ad:20:a6:92:6a:1f:9a:3a schacon@agadorlaptop.local</pre>
 
 <p>它先要求你确认保存公钥的位置（<code>.ssh/id_rsa</code>），然后它会让你重复一个密码两次，如果不想在使用公钥的时候输入密码，可以留空。</p>
 
 <p>现在，所有做过这一步的用户都得把它们的公钥给你或者 Git 服务器的管理员（假设 SSH 服务被设定为使用公钥机制）。他们只需要复制 <code>.pub</code> 文件的内容然后发邮件给管理员。公钥的样子大致如下：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cat </span><span class="pun">~</span><span class="str">/.ssh/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">pub
-    ssh</span><span class="pun">-</span><span class="pln">rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom</span><span class="pun">/</span><span class="pln">BWDSU
-    </span><span class="typ">GPl</span><span class="pun">+</span><span class="pln">nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
-    </span><span class="typ">Pbv7kOdJ</span><span class="pun">/</span><span class="typ">MTyBlWXFCR</span><span class="pun">+</span><span class="typ">HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK</span><span class="pun">/</span><span class="lit">7XA</span><span class="pln">
-    t3FaoJoAsncM1Q9x5</span><span class="pun">+</span><span class="lit">3V0Ww68</span><span class="pun">/</span><span class="pln">eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw</span><span class="pun">/</span><span class="typ">Pb0rwert</span><span class="pun">/</span><span class="typ">En</span><span class="pln">
-    mZ</span><span class="pun">+</span><span class="pln">AW4OZPnTPI89ZPmVMLuayrD2cE86Z</span><span class="pun">/</span><span class="pln">il8b</span><span class="pun">+</span><span class="pln">gw3r3</span><span class="pun">+</span><span class="lit">1nKatmIkjn2so1d01QraTlMqVSsbx</span><span class="pln">
-    </span><span class="typ">NrRFi9wrf</span><span class="pun">+</span><span class="pln">M7Q</span><span class="pun">==</span><span class="pln"> schacon@agadorlaptop</span><span class="pun">.</span><span class="kwd">local</span></code></pre>
+<pre>$ cat ~/.ssh/id_rsa.pub
+    ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
+    GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
+    Pbv7kOdJ/MTyBlWXFCR+HAo3FXRitBqxiX1nKhXpHAZsMciLq8V6RjsNAQwdsdMFvSlVK/7XA
+    t3FaoJoAsncM1Q9x5+3V0Ww68/eIFmb1zuUFljQJKprrX88XypNDvjYNby6vw/Pb0rwert/En
+    mZ+AW4OZPnTPI89ZPmVMLuayrD2cE86Z/il8b+gw3r3+1nKatmIkjn2so1d01QraTlMqVSsbx
+    NrRFi9wrf+M7Q== schacon@agadorlaptop.local</pre>
 
 <p>关于在多个操作系统上设立相同 SSH 公钥的教程，可以查阅 GitHub 上有关 SSH 公钥的向导：<code>http://github.com/guides/providing-your-ssh-key</code>。</p>
 
@@ -263,74 +261,74 @@
 <p>现在我们过一边服务器端架设 SSH 访问的流程。本例将使用 <code>authorized_keys</code> 方法来给用户授权。我们还将假定使用类似 Ubuntu 这样的标准 Linux 发行版。首先，创建一个名为 'git'
     的用户，并为其创建一个 <code>.ssh</code> 目录。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ sudo adduser git
+<pre>$ sudo adduser git
     $ su git
     $ cd
-    $ mkdir </span><span class="pun">.</span><span class="pln">ssh</span></code></pre>
+    $ mkdir .ssh</pre>
 
 <p>接下来，把开发者的 SSH 公钥添加到这个用户的 <code>authorized_keys</code> 文件中。假设你通过电邮收到了几个公钥并存到了临时文件里。重复一下，公钥大致看起来是这个样子：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cat </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">john</span><span class="pun">.</span><span class="pln">pub
-    ssh</span><span class="pun">-</span><span class="pln">rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n</span><span class="pun">/</span><span class="pln">ww</span><span class="pun">+</span><span class="pln">ouN4gSLKssMxXnBOvf9LGt4L
-    ojG6rs6hPB09j9R</span><span class="pun">/</span><span class="pln">T17</span><span class="pun">/</span><span class="pln">x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9</span><span class="pun">/</span><span class="lit">5zytK6Ztg3RPKK</span><span class="pun">+</span><span class="lit">4k</span><span class="pln">
-    </span><span class="typ">Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez</span><span class="pln">
-    </span><span class="typ">Sdfd8AcCIicTDWbqLAcU4UpkaX8KyGlLwsNuuGztobF8m72ALC</span><span class="pun">/</span><span class="pln">nLF6JLtPofwFBlgc</span><span class="pun">+</span><span class="pln">myiv
+<pre>$ cat /tmp/id_rsa.john.pub
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCB007n/ww+ouN4gSLKssMxXnBOvf9LGt4L
+    ojG6rs6hPB09j9R/T17/x4lhJA0F3FR1rP6kYBRsWj2aThGw6HXLm9/5zytK6Ztg3RPKK+4k
+    Yjh6541NYsnEAZuXz0jTTyAUfrtU3Z5E003C4oxOj6H0rfIF1kKI9MAQLMdpGW1GYEIgS9Ez
+    Sdfd8AcCIicTDWbqLAcU4UpkaX8KyGlLwsNuuGztobF8m72ALC/nLF6JLtPofwFBlgc+myiv
     O7TCUSBdLQlgMVOFq1I2uPWQOkOWQAHukEOmfjy2jctxSDBQ220ymjaNsHT4kgtZg2AYYgPq
-    dAv8JggJICUvax2T9va5 gsg</span><span class="pun">-</span><span class="pln">keypair</span></code></pre>
+    dAv8JggJICUvax2T9va5 gsg-keypair</pre>
 
 <p>只要把它们逐个追加到 <code>authorized_keys</code> 文件尾部即可：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cat </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">john</span><span class="pun">.</span><span class="pln">pub </span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="pun">~</span><span class="str">/.ssh/</span><span class="pln">authorized_keys
-    $ cat </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">josie</span><span class="pun">.</span><span class="pln">pub </span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="pun">~</span><span class="str">/.ssh/</span><span class="pln">authorized_keys
-    $ cat </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">jessica</span><span class="pun">.</span><span class="pln">pub </span><span class="pun">&gt;&gt;</span><span class="pln"> </span><span class="pun">~</span><span class="str">/.ssh/</span><span class="pln">authorized_keys</span></code></pre>
+<pre>$ cat /tmp/id_rsa.john.pub &gt;&gt; ~/.ssh/authorized_keys
+    $ cat /tmp/id_rsa.josie.pub &gt;&gt; ~/.ssh/authorized_keys
+    $ cat /tmp/id_rsa.jessica.pub &gt;&gt; ~/.ssh/authorized_keys</pre>
 
 <p>现在可以用 <code>--bare</code> 选项运行 <code>git init</code> 来建立一个裸仓库，这会初始化一个不包含工作目录的仓库。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cd </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git
-    $ mkdir project</span><span class="pun">.</span><span class="pln">git
-    $ cd project</span><span class="pun">.</span><span class="pln">git
-    $ git </span><span class="pun">--</span><span class="pln">bare init</span></code></pre>
+<pre>$ cd /opt/git
+    $ mkdir project.git
+    $ cd project.git
+    $ git --bare init</pre>
 
 <p>这时，Join，Josie 或者 Jessica 就可以把它加为远程仓库，推送一个分支，从而把第一个版本的项目文件上传到仓库里了。值得注意的是，每次添加一个新项目都需要通过 shell 登入主机并创建一个裸仓库目录。我们不妨以
     <code>gitserver</code> 作为 <code>git</code> 用户及项目仓库所在的主机名。如果在网络内部运行该主机，并在 DNS 中设定 <code>gitserver</code>
     指向该主机，那么以下这些命令都是可用的：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># 在 John 的电脑上</span><span class="pln">
+<pre># 在 John 的电脑上
     $ cd myproject
     $ git init
-    $ git add </span><span class="pun">.</span><span class="pln">
-    $ git commit </span><span class="pun">-</span><span class="pln">m </span><span class="str">'initial commit'</span><span class="pln">
-    $ git remote add origin git@gitserver</span><span class="pun">:</span><span class="str">/opt/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">project</span><span class="pun">.</span><span class="pln">git
-    $ git push origin master</span></code></pre>
+    $ git add .
+    $ git commit -m 'initial commit'
+    $ git remote add origin git@gitserver:/opt/git/project.git
+    $ git push origin master</pre>
 
 <p>这样，其他人的克隆和推送也一样变得很简单：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone git@gitserver</span><span class="pun">:</span><span class="str">/opt/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">project</span><span class="pun">.</span><span class="pln">git
+<pre>$ git clone git@gitserver:/opt/git/project.git
     $ vim README
-    $ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'fix for the README file'</span><span class="pln">
-    $ git push origin master</span></code></pre>
+    $ git commit -am 'fix for the README file'
+    $ git push origin master</pre>
 
 <p>用这个方法可以很快捷地为少数几个开发者架设一个可读写的 Git 服务。</p>
 
 <p>作为一个额外的防范措施，你可以用 Git 自带的 <code>git-shell</code> 工具限制 <code>git</code> 用户的活动范围。只要把它设为 <code>git</code> 用户登入的
     shell，那么该用户就无法使用普通的 bash 或者 csh 什么的 shell 程序。编辑 <code>/etc/passwd</code> 文件：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ sudo vim </span><span class="pun">/</span><span class="pln">etc</span><span class="pun">/</span><span class="pln">passwd</span></code></pre>
+<pre>$ sudo vim /etc/passwd</pre>
 
 <p>在文件末尾，你应该能找到类似这样的行：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">git</span><span class="pun">:</span><span class="pln">x</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">::</span><span class="str">/home/</span><span class="pln">git</span><span class="pun">:</span><span class="str">/bin/</span><span class="pln">sh</span></code></pre>
+<pre>git:x:1000:1000::/home/git:/bin/sh</pre>
 
 <p>把 <code>bin/sh</code> 改为 <code>/usr/bin/git-shell</code> （或者用 <code>which git-shell</code> 查看它的实际安装路径）。该行修改后的样子如下：
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">git</span><span class="pun">:</span><span class="pln">x</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">::</span><span class="str">/home/</span><span class="pln">git</span><span class="pun">:</span><span class="str">/usr/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">git</span><span class="pun">-</span><span class="pln">shell</span></code></pre>
+<pre>git:x:1000:1000::/home/git:/usr/bin/git-shell</pre>
 
 <p>现在 <code>git</code> 用户只能用 SSH 连接来推送和获取 Git 仓库，而不能直接使用主机 shell。尝试普通 SSH 登录的话，会看到下面这样的拒绝信息：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ssh git@gitserver
-    fatal</span><span class="pun">:</span><span class="pln"> </span><span class="typ">What</span><span class="pln"> </span><span class="kwd">do</span><span class="pln"> you think I am</span><span class="pun">?</span><span class="pln"> A shell</span><span class="pun">?</span><span class="pln">
-    </span><span class="typ">Connection</span><span class="pln"> to gitserver closed</span><span class="pun">.</span></code></pre>
+<pre>$ ssh git@gitserver
+    fatal: What do you think I am? A shell?
+    Connection to gitserver closed.</pre>
 
 <h2 id="ProGit4_5">4.5 公共访问</h2>
 
@@ -342,40 +340,40 @@
 
 <p>首先，开启挂钩：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cd project</span><span class="pun">.</span><span class="pln">git
-    $ mv hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update</span><span class="pun">.</span><span class="pln">sample hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update
-    $ chmod a</span><span class="pun">+</span><span class="pln">x hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update</span></code></pre>
+<pre>$ cd project.git
+    $ mv hooks/post-update.sample hooks/post-update
+    $ chmod a+x hooks/post-update</pre>
 
 <p>如果用的是 Git 1.6 之前的版本，则可以省略 <code>mv</code> 命令 — Git 是从较晚的版本才开始在挂钩实例的结尾添加 .sample 后缀名的。</p>
 
 <p><code>post-update</code> 挂钩是做什么的呢？其内容大致如下：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cat </span><span class="pun">.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update
-    </span><span class="com">#!/bin/sh</span><span class="pln">
-    </span><span class="kwd">exec</span><span class="pln"> git</span><span class="pun">-</span><span class="pln">update</span><span class="pun">-</span><span class="pln">server</span><span class="pun">-</span><span class="pln">info</span></code></pre>
+<pre>$ cat .git/hooks/post-update
+    #!/bin/sh
+    exec git-update-server-info</pre>
 
 <p>意思是当通过 SSH 向服务器推送时，Git 将运行这个 <code>git-update-server-info</code> 命令来更新匿名 HTTP 访问获取数据时所需要的文件。</p>
 
 <p>接下来，在 Apache 配置文件中添加一个 VirtualHost 条目，把文档根目录设为 Git 项目所在的根目录。这里我们假定 DNS 服务已经配置好，会把对 <code>.gitserver</code>
     的请求发送到这台主机：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="tag">&lt;VirtualHost</span><span class="pln"> *:80</span><span class="tag">&gt;</span><span class="pln">
+<pre>&lt;VirtualHost *:80&gt;
     ServerName git.gitserver
     DocumentRoot /opt/git
-    </span><span class="tag">&lt;Directory</span><span class="pln"> </span><span class="pun">/</span><span class="atn">opt</span><span class="pun">/</span><span class="atn">git</span><span class="tag">/&gt;</span><span class="pln">
+    &lt;Directory /opt/git/&gt;
     Order allow, deny
     allow from all
-    </span><span class="tag">&lt;/Directory&gt;</span><span class="pln">
-    </span><span class="tag">&lt;/VirtualHost&gt;</span></code></pre>
+    &lt;/Directory&gt;
+    &lt;/VirtualHost&gt;</pre>
 
 <p>另外，需要把 <code>/opt/git</code> 目录的 Unix 用户组设定为 <code>www-data</code> ，这样 web 服务才可以读取仓库内容，因为运行 CGI 脚本的 Apache
     实例进程默认就是以该用户的身份起来的：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ chgrp </span><span class="pun">-</span><span class="pln">R www</span><span class="pun">-</span><span class="pln">data </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span></code></pre>
+<pre>$ chgrp -R www-data /opt/git</pre>
 
 <p>重启 Apache 之后，就可以通过项目的 URL 来克隆该目录下的仓库了。</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone http</span><span class="pun">:</span><span class="com">//git.gitserver/project.git</span></code></pre>
+<pre>$ git clone http://git.gitserver/project.git</pre>
 
 <p>这一招可以让你在几分钟内为相当数量的用户架设好基于 HTTP 的读取权限。另一个提供非授权访问的简单方法是开启一个 Git 守护进程，不过这将要求该进程作为后台进程常驻 — 接下来的这一节就要讨论这方面的细节。</p>
 
@@ -393,37 +391,37 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
     主机上，通常都预装了 <code>lighttpd</code> ，可以到项目目录中键入 <code>git instaweb</code> 来启动。如果用的是 Mac ，Leopard 预装了 Ruby，所以 <code>webrick</code>
     应该是最好的选择。如果要用 lighttpd 以外的程序来启动 <code>git instaweb</code>，可以通过 <code>--httpd</code> 选项指定：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git instaweb </span><span class="pun">--</span><span class="pln">httpd</span><span class="pun">=</span><span class="pln">webrick
-    </span><span class="pun">[</span><span class="lit">2009</span><span class="pun">-</span><span class="lit">02</span><span class="pun">-</span><span class="lit">21</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">02</span><span class="pun">:</span><span class="lit">21</span><span class="pun">]</span><span class="pln"> INFO </span><span class="typ">WEBrick</span><span class="pln"> </span><span class="lit">1.3</span><span class="pun">.</span><span class="lit">1</span><span class="pln">
-    </span><span class="pun">[</span><span class="lit">2009</span><span class="pun">-</span><span class="lit">02</span><span class="pun">-</span><span class="lit">21</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">02</span><span class="pun">:</span><span class="lit">21</span><span class="pun">]</span><span class="pln"> INFO ruby </span><span class="lit">1.8</span><span class="pun">.</span><span class="lit">6</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2008</span><span class="pun">-</span><span class="lit">03</span><span class="pun">-</span><span class="lit">03</span><span class="pun">)</span><span class="pln"> </span><span class="pun">[</span><span class="pln">universal</span><span class="pun">-</span><span class="pln">darwin9</span><span class="pun">.</span><span class="lit">0</span><span class="pun">]</span></code></pre>
+<pre>$ git instaweb --httpd=webrick
+    [2009-02-21 10:02:21] INFO WEBrick 1.3.1
+    [2009-02-21 10:02:21] INFO ruby 1.8.6 (2008-03-03) [universal-darwin9.0]</pre>
 
 <p>这会在 1234 端口开启一个 HTTPD 服务，随之在浏览器中显示该页，十分简单。关闭服务时，只需在原来的命令后面加上 <code>--stop</code> 选项就可以了：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git instaweb </span><span class="pun">--</span><span class="pln">httpd</span><span class="pun">=</span><span class="pln">webrick </span><span class="pun">--</span><span class="pln">stop</span></code></pre>
+<pre>$ git instaweb --httpd=webrick --stop</pre>
 
 <p>如果需要为团队或者某个开源项目长期运行 GitWeb，那么 CGI 脚本就要由正常的网页服务来运行。一些 Linux 发行版可以通过 <code>apt</code> 或 <code>yum</code> 安装一个叫做 <code>gitweb</code>
     的软件包，不妨首先尝试一下。我们将快速介绍一下手动安装 GitWeb 的流程。首先，你需要 Git 的源码，其中带有 GitWeb，并能生成定制的 CGI 脚本：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone git</span><span class="pun">:</span><span class="com">//git.kernel.org/pub/scm/git/git.git</span><span class="pln">
-    $ cd git</span><span class="pun">/</span><span class="pln">
-    $ make GITWEB_PROJECTROOT</span><span class="pun">=</span><span class="str">"/opt/git"</span><span class="pln"> \
-    prefix</span><span class="pun">=</span><span class="str">/usr gitweb/</span><span class="pln">gitweb</span><span class="pun">.</span><span class="pln">cgi
-    $ sudo cp </span><span class="pun">-</span><span class="typ">Rf</span><span class="pln"> gitweb </span><span class="pun">/</span><span class="kwd">var</span><span class="pun">/</span><span class="pln">www</span><span class="pun">/</span></code></pre>
+<pre>$ git clone git://git.kernel.org/pub/scm/git/git.git
+    $ cd git/
+    $ make GITWEB_PROJECTROOT="/opt/git" \
+    prefix=/usr gitweb/gitweb.cgi
+    $ sudo cp -Rf gitweb /var/www/</pre>
 
 <p>注意，通过指定 <code>GITWEB_PROJECTROOT</code> 变量告诉编译命令 Git 仓库的位置。然后，设置 Apache 以 CGI 方式运行该脚本，添加一个 VirtualHost 配置：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="tag">&lt;VirtualHost</span><span class="pln"> *:80</span><span class="tag">&gt;</span><span class="pln">
+<pre>&lt;VirtualHost *:80&gt;
     ServerName gitserver
     DocumentRoot /var/www/gitweb
-    </span><span class="tag">&lt;Directory</span><span class="pln"> </span><span class="pun">/</span><span class="atn">var</span><span class="pun">/</span><span class="atn">www</span><span class="pun">/</span><span class="atn">gitweb</span><span class="tag">&gt;</span><span class="pln">
+    &lt;Directory /var/www/gitweb&gt;
     Options ExecCGI +FollowSymLinks +SymLinksIfOwnerMatch
     AllowOverride All
     order allow,deny
     Allow from all
     AddHandler cgi-script cgi
     DirectoryIndex gitweb.cgi
-    </span><span class="tag">&lt;/Directory&gt;</span><span class="pln">
-    </span><span class="tag">&lt;/VirtualHost&gt;</span></code></pre>
+    &lt;/Directory&gt;
+    &lt;/VirtualHost&gt;</pre>
 
 <p>不难想象，GitWeb 可以使用任何兼容 CGI 的网页服务来运行；如果偏向使用其他 web 服务器，配置也不会很麻烦。现在，通过 <code>http://gitserver</code> 就可以在线访问仓库了，在 <code>http://git.server</code>
     上还可以通过 HTTP 克隆和获取仓库的内容。</p>
@@ -441,148 +439,148 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
 
 <p>Gitosis 的工作依赖于某些 Python 工具，所以首先要安装 Python 的 setuptools 包，在 Ubuntu 上称为 python-setuptools：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ apt</span><span class="pun">-</span><span class="kwd">get</span><span class="pln"> install python</span><span class="pun">-</span><span class="pln">setuptools</span></code></pre>
+<pre>$ apt-get install python-setuptools</pre>
 
 <p>接下来，从 Gitosis 项目主页克隆并安装：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone git</span><span class="pun">:</span><span class="com">//eagain.net/gitosis.git</span><span class="pln">
+<pre>$ git clone git://eagain.net/gitosis.git
     $ cd gitosis
-    $ sudo python setup</span><span class="pun">.</span><span class="pln">py install</span></code></pre>
+    $ sudo python setup.py install</pre>
 
 <p>这会安装几个供 Gitosis 使用的工具。默认 Gitosis 会把 <code>/home/git</code> 作为存储所有 Git 仓库的根目录，这没什么不好，不过我们之前已经把项目仓库都放在
     <code>/opt/git</code> 里面了，所以为方便起见，我们可以做一个符号连接，直接划转过去，而不必重新配置：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ln </span><span class="pun">-</span><span class="pln">s </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">repositories</span></code></pre>
+<pre>$ ln -s /opt/git /home/git/repositories</pre>
 
 <p>Gitosis 将会帮我们管理用户公钥，所以先把当前控制文件改名备份，以便稍后重新添加，准备好让 Gitosis 自动管理 <code>authorized_keys</code> 文件：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ mv </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">authorized_keys </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/.</span><span class="pln">ssh</span><span class="pun">/</span><span class="pln">ak</span><span class="pun">.</span><span class="pln">bak</span></code></pre>
+<pre>$ mv /home/git/.ssh/authorized_keys /home/git/.ssh/ak.bak</pre>
 
 <p>接下来，如果之前把 <code>git</code> 用户的登录 shell 改为 <code>git-shell</code> 命令的话，先恢复 'git' 用户的登录
     shell。改过之后，大家仍然无法通过该帐号登录（译注：因为 <code>authorized_keys</code> 文件已经没有了。），不过不用担心，这会交给 Gitosis 来实现。所以现在先打开 <code>/etc/passwd</code>
     文件，把这行：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">git</span><span class="pun">:</span><span class="pln">x</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">::</span><span class="str">/home/</span><span class="pln">git</span><span class="pun">:</span><span class="str">/usr/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">git</span><span class="pun">-</span><span class="pln">shell</span></code></pre>
+<pre>git:x:1000:1000::/home/git:/usr/bin/git-shell</pre>
 
 <p>改回:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">git</span><span class="pun">:</span><span class="pln">x</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">:</span><span class="lit">1000</span><span class="pun">::</span><span class="str">/home/</span><span class="pln">git</span><span class="pun">:</span><span class="str">/bin/</span><span class="pln">sh</span></code></pre>
+<pre>git:x:1000:1000::/home/git:/bin/sh</pre>
 
 <p>好了，现在可以初始化 Gitosis 了。你可以用自己的公钥执行 <code>gitosis-init</code> 命令，要是公钥不在服务器上，先临时复制一份：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ sudo </span><span class="pun">-</span><span class="pln">H </span><span class="pun">-</span><span class="pln">u git gitosis</span><span class="pun">-</span><span class="pln">init </span><span class="pun">&lt;</span><span class="pln"> </span><span class="str">/tmp/</span><span class="pln">id_dsa</span><span class="pun">.</span><span class="pln">pub
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">gitosis</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    </span><span class="typ">Reinitialized</span><span class="pln"> existing </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">gitosis</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">.</span><span class="pln">git</span><span class="pun">/</span></code></pre>
+<pre>$ sudo -H -u git gitosis-init &lt; /tmp/id_dsa.pub
+    Initialized empty Git repository in /opt/git/gitosis-admin.git/
+    Reinitialized existing Git repository in /opt/git/gitosis-admin.git/</pre>
 
 <p>这样该公钥的拥有者就能修改用于配置 Gitosis 的那个特殊 Git 仓库了。接下来，需要手工对该仓库中的 <code>post-update</code> 脚本加上可执行权限：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ sudo chmod </span><span class="lit">755</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">gitosis</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">hooks</span><span class="pun">/</span><span class="pln">post</span><span class="pun">-</span><span class="pln">update</span></code></pre>
+<pre>$ sudo chmod 755 /opt/git/gitosis-admin.git/hooks/post-update</pre>
 
 <p>基本上就算是好了。如果设定过程没出什么差错，现在可以试一下用初始化 Gitosis 的公钥的拥有者身份 SSH 登录服务器，应该会看到类似下面这样：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ssh git@gitserver
-    PTY allocation request failed on channel </span><span class="lit">0</span><span class="pln">
-    fatal</span><span class="pun">:</span><span class="pln"> unrecognized command </span><span class="str">'gitosis-serve schacon@quaternion'</span><span class="pln">
-    </span><span class="typ">Connection</span><span class="pln"> to gitserver closed</span><span class="pun">.</span></code></pre>
+<pre>$ ssh git@gitserver
+    PTY allocation request failed on channel 0
+    fatal: unrecognized command 'gitosis-serve schacon@quaternion'
+    Connection to gitserver closed.</pre>
 
 <p>说明 Gitosis 认出了该用户的身份，但由于没有运行任何 Git 命令，所以它切断了连接。那么，现在运行一个实际的 Git 命令 — 克隆 Gitosis 的控制仓库：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="com"># 在你本地计算机上</span><span class="pln">
-    $ git clone git@gitserver</span><span class="pun">:</span><span class="pln">gitosis</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">.</span><span class="pln">git</span></code></pre>
+<pre># 在你本地计算机上
+    $ git clone git@gitserver:gitosis-admin.git</pre>
 
 <p>这会得到一个名为 <code>gitosis-admin</code> 的工作目录，主要由两部分组成：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cd gitosis</span><span class="pun">-</span><span class="pln">admin
-    $ find </span><span class="pun">.</span><span class="pln">
-    </span><span class="pun">./</span><span class="pln">gitosis</span><span class="pun">.</span><span class="pln">conf
-    </span><span class="pun">./</span><span class="pln">keydir
-    </span><span class="pun">./</span><span class="pln">keydir</span><span class="pun">/</span><span class="pln">scott</span><span class="pun">.</span><span class="pln">pub</span></code></pre>
+<pre>$ cd gitosis-admin
+    $ find .
+    ./gitosis.conf
+    ./keydir
+    ./keydir/scott.pub</pre>
 
 <p><code>gitosis.conf</code> 文件是用来设置用户、仓库和权限的控制文件。<code>keydir</code> 目录则是保存所有具有访问权限用户公钥的地方— 每人一个。在 <code>keydir</code>
     里的文件名（比如上面的 <code>scott.pub</code>）应该跟你的不一样 — Gitosis 会自动从使用 <code>gitosis-init</code> 脚本导入的公钥尾部的描述中获取该名字。</p>
 
 <p>看一下 <code>gitosis.conf</code> 文件的内容，它应该只包含与刚刚克隆的 <code>gitosis-admin</code> 相关的信息：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cat gitosis</span><span class="pun">.</span><span class="pln">conf
-    </span><span class="pun">[</span><span class="pln">gitosis</span><span class="pun">]</span><span class="pln">
+<pre>$ cat gitosis.conf
+    [gitosis]
 
-    </span><span class="pun">[</span><span class="kwd">group</span><span class="pln"> gitosis</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">]</span><span class="pln">
-    writable </span><span class="pun">=</span><span class="pln"> gitosis</span><span class="pun">-</span><span class="pln">admin
-    members </span><span class="pun">=</span><span class="pln"> scott</span></code></pre>
+    [group gitosis-admin]
+    writable = gitosis-admin
+    members = scott</pre>
 
 <p>它显示用户 <code>scott</code> — 初始化 Gitosis 公钥的拥有者 — 是唯一能管理 <code>gitosis-admin</code> 项目的人。</p>
 
 <p>现在我们来添加一个新项目。为此我们要建立一个名为 <code>mobile</code> 的新段落，在其中罗列手机开发团队的开发者，以及他们拥有写权限的项目。由于 'scott'
     是系统中的唯一用户，我们把他设为唯一用户，并允许他读写名为 <code>iphone_project</code> 的新项目：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">[</span><span class="kwd">group</span><span class="pln"> mobile</span><span class="pun">]</span><span class="pln">
-    writable </span><span class="pun">=</span><span class="pln"> iphone_project
-    members </span><span class="pun">=</span><span class="pln"> scott</span></code></pre>
+<pre>[group mobile]
+    writable = iphone_project
+    members = scott</pre>
 
 <p>修改完之后，提交 <code>gitosis-admin</code> 里的改动，并推送到服务器使其生效：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git commit </span><span class="pun">-</span><span class="pln">am </span><span class="str">'add iphone_project and mobile group'</span><span class="pln">
-    </span><span class="pun">[</span><span class="pln">master</span><span class="pun">]:</span><span class="pln"> created </span><span class="lit">8962da8</span><span class="pun">:</span><span class="pln"> </span><span class="str">"changed name"</span><span class="pln">
-    </span><span class="lit">1</span><span class="pln"> files changed</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pln"> insertions</span><span class="pun">(+),</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> deletions</span><span class="pun">(-)</span><span class="pln">
+<pre>$ git commit -am 'add iphone_project and mobile group'
+    [master]: created 8962da8: "changed name"
+    1 files changed, 4 insertions(+), 0 deletions(-)
     $ git push
-    </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Compressing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">/</span><span class="lit">2</span><span class="pun">),</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Writing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3</span><span class="pun">/</span><span class="lit">3</span><span class="pun">),</span><span class="pln"> </span><span class="lit">272</span><span class="pln"> bytes</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">1</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">0</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">0</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> git@gitserver</span><span class="pun">:</span><span class="str">/opt/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">gitosis</span><span class="pun">-</span><span class="pln">admin</span><span class="pun">.</span><span class="pln">git
-    fb27aec</span><span class="pun">..</span><span class="lit">8962da8</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> master</span></code></pre>
+    Counting objects: 5, done.
+    Compressing objects: 100% (2/2), done.
+    Writing objects: 100% (3/3), 272 bytes, done.
+    Total 3 (delta 1), reused 0 (delta 0)
+    To git@gitserver:/opt/git/gitosis-admin.git
+    fb27aec..8962da8 master -&gt; master</pre>
 
 <p>在新工程 <code>iphone_project</code> 里首次推送数据到服务器前，得先设定该服务器地址为远程仓库。但你不用事先到服务器上手工创建该项目的裸仓库— Gitosis 会在第一次遇到推送时自动创建：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git remote add origin git@gitserver</span><span class="pun">:</span><span class="pln">iphone_project</span><span class="pun">.</span><span class="pln">git
+<pre>$ git remote add origin git@gitserver:iphone_project.git
     $ git push origin master
-    </span><span class="typ">Initialized</span><span class="pln"> empty </span><span class="typ">Git</span><span class="pln"> repository </span><span class="kwd">in</span><span class="pln"> </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">iphone_project</span><span class="pun">.</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    </span><span class="typ">Counting</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Writing</span><span class="pln"> objects</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3</span><span class="pun">/</span><span class="lit">3</span><span class="pun">),</span><span class="pln"> </span><span class="lit">230</span><span class="pln"> bytes</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">done</span><span class="pun">.</span><span class="pln">
-    </span><span class="typ">Total</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">0</span><span class="pun">),</span><span class="pln"> reused </span><span class="lit">0</span><span class="pln"> </span><span class="pun">(</span><span class="pln">delta </span><span class="lit">0</span><span class="pun">)</span><span class="pln">
-    </span><span class="typ">To</span><span class="pln"> git@gitserver</span><span class="pun">:</span><span class="pln">iphone_project</span><span class="pun">.</span><span class="pln">git
-    </span><span class="pun">*</span><span class="pln"> </span><span class="pun">[</span><span class="kwd">new</span><span class="pln"> branch</span><span class="pun">]</span><span class="pln"> master </span><span class="pun">-&gt;</span><span class="pln"> master</span></code></pre>
+    Initialized empty Git repository in /opt/git/iphone_project.git/
+    Counting objects: 3, done.
+    Writing objects: 100% (3/3), 230 bytes, done.
+    Total 3 (delta 0), reused 0 (delta 0)
+    To git@gitserver:iphone_project.git
+    * [new branch] master -&gt; master</pre>
 
 <p>请注意，这里不用指明完整路径（实际上，如果加上反而没用），只需要一个冒号加项目名字即可 — Gitosis 会自动帮你映射到实际位置。</p>
 
 <p>要和朋友们在一个项目上协同工作，就得重新添加他们的公钥。不过这次不用在服务器上一个一个手工添加到 <code>~/.ssh/authorized_keys</code> 文件末端，而只需管理 <code>keydir</code>
     目录中的公钥文件。文件的命名将决定在 <code>gitosis.conf</code> 中对用户的标识。现在我们为 John，Josie 和 Jessica 添加公钥：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cp </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">john</span><span class="pun">.</span><span class="pln">pub keydir</span><span class="pun">/</span><span class="pln">john</span><span class="pun">.</span><span class="pln">pub
-    $ cp </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">josie</span><span class="pun">.</span><span class="pln">pub keydir</span><span class="pun">/</span><span class="pln">josie</span><span class="pun">.</span><span class="pln">pub
-    $ cp </span><span class="pun">/</span><span class="pln">tmp</span><span class="pun">/</span><span class="pln">id_rsa</span><span class="pun">.</span><span class="pln">jessica</span><span class="pun">.</span><span class="pln">pub keydir</span><span class="pun">/</span><span class="pln">jessica</span><span class="pun">.</span><span class="pln">pub</span></code></pre>
+<pre>$ cp /tmp/id_rsa.john.pub keydir/john.pub
+    $ cp /tmp/id_rsa.josie.pub keydir/josie.pub
+    $ cp /tmp/id_rsa.jessica.pub keydir/jessica.pub</pre>
 
 <p>然后把他们都加进 'mobile' 团队，让他们对 <code>iphone_project</code> 具有读写权限：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">[</span><span class="kwd">group</span><span class="pln"> mobile</span><span class="pun">]</span><span class="pln">
-    writable </span><span class="pun">=</span><span class="pln"> iphone_project
-    members </span><span class="pun">=</span><span class="pln"> scott john josie jessica</span></code></pre>
+<pre>[group mobile]
+    writable = iphone_project
+    members = scott john josie jessica</pre>
 
 <p>如果你提交并推送这个修改，四个用户将同时具有该项目的读写权限。</p>
 
 <p>Gitosis 也具有简单的访问控制功能。如果想让 John 只有读权限，可以这样做：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">[</span><span class="kwd">group</span><span class="pln"> mobile</span><span class="pun">]</span><span class="pln">
-    writable </span><span class="pun">=</span><span class="pln"> iphone_project
-    members </span><span class="pun">=</span><span class="pln"> scott josie jessica
+<pre>[group mobile]
+    writable = iphone_project
+    members = scott josie jessica
 
-    </span><span class="pun">[</span><span class="kwd">group</span><span class="pln"> mobile_ro</span><span class="pun">]</span><span class="pln">
-    </span><span class="kwd">readonly</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> iphone_project
-    members </span><span class="pun">=</span><span class="pln"> john</span></code></pre>
+    [group mobile_ro]
+    readonly = iphone_project
+    members = john</pre>
 
 <p>现在 John 可以克隆和获取更新，但 Gitosis 不会允许他向项目推送任何内容。像这样的组可以随意创建，多少不限，每个都可以包含若干不同的用户和项目。甚至还可以指定某个组为成员之一（在组名前加上 <code>@</code>
     前缀），自动继承该组的成员：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">[</span><span class="kwd">group</span><span class="pln"> mobile_committers</span><span class="pun">]</span><span class="pln">
-    members </span><span class="pun">=</span><span class="pln"> scott josie jessica
+<pre>[group mobile_committers]
+    members = scott josie jessica
 
-    </span><span class="pun">[</span><span class="kwd">group</span><span class="pln"> mobile</span><span class="pun">]</span><span class="pln">
-    writable </span><span class="pun">=</span><span class="pln"> iphone_project
-    members </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@mobile_committers</span><span class="pln">
+    [group mobile]
+    writable = iphone_project
+    members = @mobile_committers
 
-    </span><span class="pun">[</span><span class="kwd">group</span><span class="pln"> mobile_2</span><span class="pun">]</span><span class="pln">
-    writable </span><span class="pun">=</span><span class="pln"> another_iphone_project
-    members </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@mobile_committers</span><span class="pln"> john</span></code></pre>
+    [group mobile_2]
+    writable = another_iphone_project
+    members = @mobile_committers john</pre>
 
 <p>如果遇到意外问题，试试看把 <code>loglevel=DEBUG</code> 加到 <code>[gitosis]</code>
     的段落（译注：把日志设置为调试级别，记录更详细的运行信息。）。如果一不小心搞错了配置，失去了推送权限，也可以手工修改服务器上的 <code>/home/git/.gitosis.conf</code> 文件 — Gitosis
@@ -630,20 +628,20 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
     server without getting a password prompt. The following method works on Linux; for other workstation OSs you may
     have to do this manually. We assume you already had a key pair generated using <code>ssh-keygen</code>.</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ssh</span><span class="pun">-</span><span class="pln">copy</span><span class="pun">-</span><span class="pln">id </span><span class="pun">-</span><span class="pln">i </span><span class="pun">~</span><span class="str">/.ssh/</span><span class="pln">id_rsa gitolite@gitserver</span></code></pre>
+<pre>$ ssh-copy-id -i ~/.ssh/id_rsa gitolite@gitserver</pre>
 
 <p>This will ask you for the password to the gitolite account, and then set up public key access. This is <strong>essential</strong>
     for the install script, so check to make sure you can run a command without getting a password prompt:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ ssh gitolite@gitserver pwd
-    </span><span class="pun">/</span><span class="pln">home</span><span class="pun">/</span><span class="pln">gitolite</span></code></pre>
+<pre>$ ssh gitolite@gitserver pwd
+    /home/gitolite</pre>
 
 <p>Next, you clone Gitolite from the project's main site and run the "easy install" script (the third
     argument is your name as you would like it to appear in the resulting gitolite-admin repository):</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone git</span><span class="pun">:</span><span class="com">//github.com/sitaramc/gitolite</span><span class="pln">
-    $ cd gitolite</span><span class="pun">/</span><span class="pln">src
-    $ </span><span class="pun">./</span><span class="pln">gl</span><span class="pun">-</span><span class="pln">easy</span><span class="pun">-</span><span class="pln">install </span><span class="pun">-</span><span class="pln">q gitolite gitserver sitaram</span></code></pre>
+<pre>$ git clone git://github.com/sitaramc/gitolite
+    $ cd gitolite/src
+    $ ./gl-easy-install -q gitolite gitserver sitaram</pre>
 
 <p>And you're done! Gitolite has now been installed on the server, and you now have a brand new repository called
     <code>gitolite-admin</code> in the home directory of your workstation. You administer your gitolite setup by making
@@ -658,13 +656,13 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
     clone either of these locally (from an account that has SSH console access to the gitolite account via <em>authorized_keys</em>),
     type:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone gitolite</span><span class="pun">:</span><span class="pln">gitolite</span><span class="pun">-</span><span class="pln">admin
-    $ git clone gitolite</span><span class="pun">:</span><span class="pln">testing</span></code></pre>
+<pre>$ git clone gitolite:gitolite-admin
+    $ git clone gitolite:testing</pre>
 
 <p>To clone these same repos from any other account:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git clone gitolite@servername</span><span class="pun">:</span><span class="pln">gitolite</span><span class="pun">-</span><span class="pln">admin
-    $ git clone gitolite@servername</span><span class="pun">:</span><span class="pln">testing</span></code></pre>
+<pre>$ git clone gitolite@servername:gitolite-admin
+    $ git clone gitolite@servername:testing</pre>
 
 <h3>Customising the Install</h3>
 
@@ -681,21 +679,21 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
 <p>Once the install is done, you switch to the <code>gitolite-admin</code> repository (placed in your HOME directory)
     and poke around to see what you got:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cd </span><span class="pun">~</span><span class="str">/gitolite-admin/</span><span class="pln">
+<pre>$ cd ~/gitolite-admin/
     $ ls
-    conf</span><span class="pun">/</span><span class="pln"> keydir</span><span class="pun">/</span><span class="pln">
-    $ find conf keydir </span><span class="pun">-</span><span class="pln">type f
-    conf</span><span class="pun">/</span><span class="pln">gitolite</span><span class="pun">.</span><span class="pln">conf
-    keydir</span><span class="pun">/</span><span class="pln">sitaram</span><span class="pun">.</span><span class="pln">pub
-    $ cat conf</span><span class="pun">/</span><span class="pln">gitolite</span><span class="pun">.</span><span class="pln">conf
-    </span><span class="com">#gitolite conf</span><span class="pln">
-    </span><span class="com"># please see conf/example.conf for details on syntax and features</span><span class="pln">
+    conf/ keydir/
+    $ find conf keydir -type f
+    conf/gitolite.conf
+    keydir/sitaram.pub
+    $ cat conf/gitolite.conf
+    #gitolite conf
+    # please see conf/example.conf for details on syntax and features
 
-    repo gitolite</span><span class="pun">-</span><span class="pln">admin
-    RW</span><span class="pun">+</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> sitaram
+    repo gitolite-admin
+    RW+ = sitaram
 
     repo testing
-    RW</span><span class="pun">+</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@all</span></code></pre>
+    RW+ = @all</pre>
 
 <p>Notice that "sitaram" (the last argument in the <code>gl-easy-install</code> command you gave earlier) has
     read-write permissions on the <code>gitolite-admin</code> repository as well as a public key file of the same name.
@@ -708,23 +706,23 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
     even matter whether they are projects or users; that distinction is only made when you <em>use</em> the "macro".
 </p>
 
-<pre class="prettyprint prettyprinted"><code><span class="lit">@oss_repos</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> linux perl rakudo git gitolite
-    </span><span class="lit">@secret_repos</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> fenestra pear
+<pre>@oss_repos = linux perl rakudo git gitolite
+    @secret_repos = fenestra pear
 
-    </span><span class="lit">@admins</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> scott </span><span class="com"># Adams, not Chacon, sorry :)</span><span class="pln">
-    </span><span class="lit">@interns</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> ashok </span><span class="com"># get the spelling right, Scott!</span><span class="pln">
-    </span><span class="lit">@engineers</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> sitaram dilbert wally alice
-    </span><span class="lit">@staff</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@admins</span><span class="pln"> </span><span class="lit">@engineers</span><span class="pln"> </span><span class="lit">@interns</span></code></pre>
+    @admins = scott # Adams, not Chacon, sorry :)
+    @interns = ashok # get the spelling right, Scott!
+    @engineers = sitaram dilbert wally alice
+    @staff = @admins @engineers @interns</pre>
 
 <p>You can control permissions at the "ref" level. In the following example, interns can only push the "int"
     branch. Engineers can push any branch whose name starts with "eng-", and tags that start with "rc"
     followed by a digit. And the admins can do anything (including rewind) to any ref.</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">repo </span><span class="lit">@oss_repos</span><span class="pln">
-    RW </span><span class="kwd">int</span><span class="pln">$ </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@interns</span><span class="pln">
-    RW eng</span><span class="pun">-</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@engineers</span><span class="pln">
-    RW refs</span><span class="pun">/</span><span class="pln">tags</span><span class="pun">/</span><span class="pln">rc</span><span class="pun">[</span><span class="lit">0</span><span class="pun">-</span><span class="lit">9</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@engineers</span><span class="pln">
-    RW</span><span class="pun">+</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@admins</span></code></pre>
+<pre>repo @oss_repos
+    RW int$ = @interns
+    RW eng- = @engineers
+    RW refs/tags/rc[0-9] = @engineers
+    RW+ = @admins</pre>
 
 <p>The expression after the <code>RW</code> or <code>RW+</code> is a regular expression (regex) that the refname (ref)
     being pushed is matched against. So we call it a "refex"! Of course, a refex can be far more powerful than
@@ -737,8 +735,8 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
     You can keep all the common stuff together, like the rules for all <code>oss_repos</code> shown above, then add
     specific rules for specific cases later on, like so:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">repo gitolite
-    RW</span><span class="pun">+</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> sitaram</span></code></pre>
+<pre>repo gitolite
+    RW+ = sitaram</pre>
 
 <p>That rule will just get added to the ruleset for the <code>gitolite</code> repository.</p>
 
@@ -764,9 +762,9 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
 <p>Let us say, in the situation above, we want engineers to be able to rewind any branch <em>except</em> master and
     integ. Here's how to do that:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln"> RW master integ </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@engineers</span><span class="pln">
-    </span><span class="pun">-</span><span class="pln"> master integ </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@engineers</span><span class="pln">
-    RW</span><span class="pun">+</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@engineers</span></code></pre>
+<pre> RW master integ = @engineers
+    - master integ = @engineers
+    RW+ = @engineers</pre>
 
 <p>Again, you simply follow the rules top down until you hit a match for your access mode, or a deny. Non-rewind push to
     master or integ is allowed by the first rule. A rewind push to those refs does not match the first rule, drops down
@@ -780,12 +778,12 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
     just anyone, because a lot of things depend on it or would break if the changes are not done <em>just right</em>.
     You can tell gitolite:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">repo foo
-    RW </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@junior_devs</span><span class="pln"> </span><span class="lit">@senior_devs</span><span class="pln">
+<pre>repo foo
+    RW = @junior_devs @senior_devs
 
-    RW NAME</span><span class="pun">/</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@senior_devs</span><span class="pln">
-    </span><span class="pun">-</span><span class="pln"> NAME</span><span class="pun">/</span><span class="typ">Makefile</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@junior_devs</span><span class="pln">
-    RW NAME</span><span class="pun">/</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="lit">@junior_devs</span></code></pre>
+    RW NAME/ = @senior_devs
+    - NAME/Makefile = @junior_devs
+    RW NAME/ = @junior_devs</pre>
 
 <p>This powerful feature is documented in <code>conf/example.conf</code>.</p>
 
@@ -833,15 +831,15 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
 <p><strong>Access rights reporting</strong>: Another convenient feature is what happens when you try and just ssh to the
     server. Gitolite shows you what repos you have access to, and what that access may be. Here's an example:</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln"> hello sitaram</span><span class="pun">,</span><span class="pln"> the gitolite version here </span><span class="kwd">is</span><span class="pln"> v1</span><span class="pun">.</span><span class="lit">5.4</span><span class="pun">-</span><span class="lit">19</span><span class="pun">-</span><span class="pln">ga3397d4
-    the gitolite config gives you the following access</span><span class="pun">:</span><span class="pln">
-    R anu</span><span class="pun">-</span><span class="pln">wsd
+<pre> hello sitaram, the gitolite version here is v1.5.4-19-ga3397d4
+    the gitolite config gives you the following access:
+    R anu-wsd
     R entrans
-    R W git</span><span class="pun">-</span><span class="pln">notes
+    R W git-notes
     R W gitolite
-    R W gitolite</span><span class="pun">-</span><span class="pln">admin
+    R W gitolite-admin
     R indic_web_input
-    R shreelipi_converter</span></code></pre>
+    R shreelipi_converter</pre>
 
 <p><strong>Delegation</strong>: For really large installations, you can delegate responsibility for groups of
     repositories to various people and have them manage those pieces independently. This reduces the load on the main
@@ -867,63 +865,63 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
 
 <p>但不管哪种情形，Git 协议的配置设定都很简单。基本上，只要以守护进程的形式运行该命令即可：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">git daemon </span><span class="pun">--</span><span class="pln">reuseaddr </span><span class="pun">--</span><span class="kwd">base</span><span class="pun">-</span><span class="pln">path</span><span class="pun">=</span><span class="str">/opt/</span><span class="pln">git</span><span class="str">/ /</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span></code></pre>
+<pre>git daemon --reuseaddr --base-path=/opt/git/ /opt/git/</pre>
 
 <p>这里的 <code>--reuseaddr</code> 选项表示在重启服务前，不等之前的连接超时就立即重启。而 <code>--base-path</code> 选项则允许克隆项目时不必给出完整路径。最后面的路径告诉 Git
     守护进程允许开放给用户访问的仓库目录。假如有防火墙，则需要为该主机的 9418 端口设置为允许通信。</p>
 
 <p>以守护进程的形式运行该进程的方法有很多，但主要还得看用的是什么操作系统。在 Ubuntu 主机上，可以用 Upstart 脚本达成。编辑该文件：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="str">/etc/</span><span class="kwd">event</span><span class="pun">.</span><span class="pln">d</span><span class="pun">/</span><span class="kwd">local</span><span class="pun">-</span><span class="pln">git</span><span class="pun">-</span><span class="pln">daemon</span></code></pre>
+<pre>/etc/event.d/local-git-daemon</pre>
 
 <p>加入以下内容：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">start on startup
+<pre>start on startup
     stop on shutdown
-    </span><span class="kwd">exec</span><span class="pln"> </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">git daemon \
-    </span><span class="pun">--</span><span class="pln">user</span><span class="pun">=</span><span class="pln">git </span><span class="pun">--</span><span class="kwd">group</span><span class="pun">=</span><span class="pln">git \
-    </span><span class="pun">--</span><span class="pln">reuseaddr \
-    </span><span class="pun">--</span><span class="kwd">base</span><span class="pun">-</span><span class="pln">path</span><span class="pun">=</span><span class="str">/opt/</span><span class="pln">git</span><span class="pun">/</span><span class="pln"> \
-    </span><span class="pun">/</span><span class="pln">opt</span><span class="pun">/</span><span class="pln">git</span><span class="pun">/</span><span class="pln">
-    respawn</span></code></pre>
+    exec /usr/bin/git daemon \
+    --user=git --group=git \
+    --reuseaddr \
+    --base-path=/opt/git/ \
+    /opt/git/
+    respawn</pre>
 
 <p>出于安全考虑，强烈建议用一个对仓库只有读取权限的用户身份来运行该进程 — 只需要简单地新建一个名为 <code>git-ro</code> 的用户（译注：新建用户默认对仓库文件不具备写权限，但这取决于仓库目录的权限设定。务必确认
     <code>git-ro</code> 对仓库只能读不能写。），并用它的身份来启动进程。这里为了简化，后面我们还是用之前运行 Gitosis 的用户 'git'。</p>
 
 <p>这样一来，当你重启计算机时，Git 进程也会自动启动。要是进程意外退出或者被杀掉，也会自行重启。在设置完成后，不重启计算机就启动该守护进程，可以运行：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">initctl start </span><span class="kwd">local</span><span class="pun">-</span><span class="pln">git</span><span class="pun">-</span><span class="pln">daemon</span></code></pre>
+<pre>initctl start local-git-daemon</pre>
 
 <p>而在其他操作系统上，可以用 <code>xinetd</code>，或者 <code>sysvinit</code> 系统的脚本，或者其他类似的脚本 — 只要能让那个命令变为守护进程并可监控。</p>
 
 <p>接下来，我们必须告诉 Gitosis 哪些仓库允许通过 Git 协议进行匿名只读访问。如果每个仓库都设有各自的段落，可以分别指定是否允许 Git 进程开放给用户匿名读取。比如允许通过 Git 协议访问
     iphone_project，可以把下面两行加到 <code>gitosis.conf</code> 文件的末尾：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">[</span><span class="pln">repo iphone_project</span><span class="pun">]</span><span class="pln">
-    daemon </span><span class="pun">=</span><span class="pln"> yes</span></code></pre>
+<pre>[repo iphone_project]
+    daemon = yes</pre>
 
 <p>在提交和推送完成后，运行中的 Git 守护进程就会响应来自 9418 端口对该项目的访问请求。</p>
 
 <p>如果不考虑 Gitosis，单单起了 Git 守护进程的话，就必须到每一个允许匿名只读访问的仓库目录内，创建一个特殊名称的空文件作为标志：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ cd </span><span class="pun">/</span><span class="pln">path</span><span class="pun">/</span><span class="pln">to</span><span class="pun">/</span><span class="pln">project</span><span class="pun">.</span><span class="pln">git
-    $ touch git</span><span class="pun">-</span><span class="pln">daemon</span><span class="pun">-</span><span class="kwd">export</span><span class="pun">-</span><span class="pln">ok</span></code></pre>
+<pre>$ cd /path/to/project.git
+    $ touch git-daemon-export-ok</pre>
 
 <p>该文件的存在，表明允许 Git 守护进程开放对该项目的匿名只读访问。</p>
 
 <p>Gitosis 还能设定哪些项目允许放在 GitWeb 上显示。先打开 GitWeb 的配置文件 <code>/etc/gitweb.conf</code>，添加以下四行：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$projects_list </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/home/git/gitosis/projects.list"</span><span class="pun">;</span><span class="pln">
-    $projectroot </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/home/git/repositories"</span><span class="pun">;</span><span class="pln">
-    $export_ok </span><span class="pun">=</span><span class="pln"> </span><span class="str">"git-daemon-export-ok"</span><span class="pun">;</span><span class="pln">
-    </span><span class="lit">@git_base_url_list</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="str">'git://gitserver'</span><span class="pun">);</span></code></pre>
+<pre>$projects_list = "/home/git/gitosis/projects.list";
+    $projectroot = "/home/git/repositories";
+    $export_ok = "git-daemon-export-ok";
+    @git_base_url_list = ('git://gitserver');</pre>
 
 <p>接下来，只要配置各个项目在 Gitosis 中的 <code>gitweb</code> 参数，便能达成是否允许 GitWeb 用户浏览该项目。比如，要让 iphone_project 项目在 GitWeb 里出现，把 <code>repo</code>
     的设定改成下面的样子：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pun">[</span><span class="pln">repo iphone_project</span><span class="pun">]</span><span class="pln">
-    daemon </span><span class="pun">=</span><span class="pln"> yes
-    gitweb </span><span class="pun">=</span><span class="pln"> yes</span></code></pre>
+<pre>[repo iphone_project]
+    daemon = yes
+    gitweb = yes</pre>
 
 <p>在提交并推送过之后，GitWeb 就会自动开始显示 iphone_project 项目的细节和历史。</p>
 
@@ -935,7 +933,7 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
 
 <p>目前，可供选择的托管服务数量繁多，各有利弊。在 Git 官方 wiki 上的 Githosting 页面有一个最新的托管服务列表：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">http</span><span class="pun">:</span><span class="com">//git.or.cz/gitwiki/GitHosting</span></code></pre>
+<pre>http://git.or.cz/gitwiki/GitHosting</pre>
 
 <p>由于本书无法全部一一介绍，而本人（译注：指本书作者 Scott Chacon。）刚好在其中一家公司工作，所以接下来我们将会介绍如何在 GitHub
     上建立新账户并启动项目。至于其他托管服务大体也是这么一个过程，基本的想法都是差不多的。</p>
@@ -1004,14 +1002,14 @@ Figure 4-1. 基于网页的 GitWeb 用户界面<p></p>
 
 <p>该指南和本书前文介绍的类似，对于新的项目，需要先在本地初始化为 Git 项目，添加要管理的文件并作首次提交：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git init
-    $ git add </span><span class="pun">.</span><span class="pln">
-    $ git commit </span><span class="pun">-</span><span class="pln">m </span><span class="str">'initial commit'</span></code></pre>
+<pre>$ git init
+    $ git add .
+    $ git commit -m 'initial commit'</pre>
 
 <p>然后在这个本地仓库内把 GitHub 添加为远程仓库，并推送 master 分支上来：</p>
 
-<pre class="prettyprint prettyprinted"><code><span class="pln">$ git remote add origin git@github</span><span class="pun">.</span><span class="pln">com</span><span class="pun">:</span><span class="pln">testinguser</span><span class="pun">/</span><span class="pln">iphone_project</span><span class="pun">.</span><span class="pln">git
-    $ git push origin master</span></code></pre>
+<pre>$ git remote add origin git@github.com:testinguser/iphone_project.git
+    $ git push origin master</pre>
 
 <p>现在该项目就托管在 GitHub 上了。你可以把它的 URL 分享给每位对此项目感兴趣的人。本例的 URL 是 <code>http://github.com/testinguser/iphone_project</code>。而在项目页面的摘要部分，你会发现有两个
     Git URL 地址（见图 4-8）：</p>
