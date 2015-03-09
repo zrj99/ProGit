@@ -544,16 +544,16 @@ lib/simplegit.rb | 25 +++++++++++++++++++++++++
     可以用，展示的信息或多或少有些不同，请自己动手实践一下看看效果如何。</p>
 
 <pre>$ git log --pretty=oneline
-    ca82a6dff817ec66f44342007202690a93763949 changed the version number
-    085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 removed unnecessary test code
-    a11bef06a3f659402fe7563abf99ad00de2209e6 first commit</pre>
+ca82a6dff817ec66f44342007202690a93763949 changed the version number
+085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7 removed unnecessary test code
+a11bef06a3f659402fe7563abf99ad00de2209e6 first commit</pre>
 
 <p>但最有意思的是 <code>format</code>，可以定制要显示的记录格式，这样的输出便于后期编程提取分析，像这样：</p>
 
 <pre>$ git log --pretty=format:"%h - %an, %ar : %s"
- ca82a6d - Scott Chacon, 11 months ago : changed the version number
- 085bb3b - Scott Chacon, 11 months ago : removed unnecessary test code
- a11bef0 - Scott Chacon, 11 months ago : first commit</pre>
+ca82a6d - Scott Chacon, 11 months ago : changed the version number
+085bb3b - Scott Chacon, 11 months ago : removed unnecessary test code
+a11bef0 - Scott Chacon, 11 months ago : first commit</pre>
 
 <p>表 2-1 列出了常用的格式占位符写法及其代表的意义。</p>
 
@@ -1094,7 +1094,7 @@ To git@github.com:schacon/simplegit.git
 <p>在输入 Git 命令的时候可以敲两次跳格键（Tab），就会看到列出所有匹配的可用命令建议：</p>
 
 <pre>$ git co&lt;tab&gt;&lt;tab&gt;
-    commit config</pre>
+commit config</pre>
 
 <p>此例中，键入 git co 然后连按两次 Tab 键，会看到两个相关的建议（命令） commit 和 config。继而输入 <code>m&lt;tab&gt;</code> 会自动完成 <code>git
     commit</code> 命令的输入。</p>
@@ -1102,7 +1102,7 @@ To git@github.com:schacon/simplegit.git
 <p>命令的选项也可以用这种方式自动完成，其实这种情况更实用些。比如运行 <code>git log</code> 的时候忘了相关选项的名字，可以输入开头的几个字母，然后敲 Tab 键看看有哪些匹配的：</p>
 
 <pre>$ git log --s&lt;tab&gt;
-    --shortstat --since= --src-prefix= --stat --summary</pre>
+--shortstat --since= --src-prefix= --stat --summary</pre>
 
 <p>这个技巧不错吧，可以节省很多输入和查阅文档的时间。</p>
 
@@ -1124,7 +1124,7 @@ $ git config --global alias.st status</pre>
 <p>这样一来，下面的两条命令完全等同：</p>
 
 <pre>$ git unstage fileA
-    $ git reset HEAD fileA</pre>
+$ git reset HEAD fileA</pre>
 
 <p>显然，使用别名的方式看起来更清楚。另外，我们还经常设置 <code>last</code> 命令：</p>
 
